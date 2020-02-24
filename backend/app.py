@@ -38,9 +38,9 @@ def create_app(test_config=None):
         return response
 
 
-    #-------------------------------------------------------#
-    # ROUTES
-    #-------------------------------------------------------#
+#-------------------------------------------------------#
+# ROUTES
+#-------------------------------------------------------#
 
     #--------------------#
     # Movies
@@ -115,9 +115,22 @@ def create_app(test_config=None):
             "success": True,
             "updated_movie":[updated_movie]
         })
-
-
-
-    return app
-
         
+    #--------------------#
+    # Actors
+    #--------------------#
+    @app.route('/actors', methods=['GET'])
+    def get_actors():
+        actors = Actor.query.all()
+        paginated_actors = paginate_items(request, actors)
+        try:
+            return jsonify({
+                "success": True,
+                "actors": paginated_actors
+            })
+        except Exception:
+            abort(422)
+    
+    
+
+    return app      
