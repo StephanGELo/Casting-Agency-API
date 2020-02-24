@@ -50,7 +50,6 @@ class Movie(db.Model):
         db.session.commit()
     
     def update(self):
-        db.session.add(self)
         db.session.commit()
     
     def delete(self):
@@ -89,7 +88,6 @@ class Actor(db.Model):
         db.session.commit()
     
     def update(self):
-        db.session.add(self)
         db.session.commit()
     
     def delete(self):
