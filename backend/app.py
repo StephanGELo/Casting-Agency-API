@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 import json
 
-from models import setup_db, Movie, Actor
+from backend.models import setup_db, Movie, Actor
 
 ITEMS_PER_PAGE = 6
 
