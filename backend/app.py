@@ -66,7 +66,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "deleted": movie.format()
+                "deleted_movie": movie.format()
             })
         except Exception:
             abort(404)
@@ -80,18 +80,42 @@ def create_app(test_config=None):
         new_release_date = body.get('release_date', None)
 
         try:
-            movie = Movie(
+            new_movie = Movie(
                 title=new_title,
                 release_date=new_release_date
             )
 
-            movie.insert()
+            new_movie.insert()
+            movie = Movie.query.get(new_movie.id).format()    
+
             return jsonify({
-                "success": True
-            }
-            )
+                "success": True,
+                "added_movie": [movie]
+            })
         except Exception:
             abort(400)
+
+    @app.route('/movies/<int:id>', methods=['PATCH'])
+    def update_a_movie(id):
+        movie = Movie.query.get(id)
+
+        if movie is None:
+            abort(404)
+
+        body = request.get_json()
+        new_title = body.get('title', None)
+        new_release_date = body.get('release_date', None)
+
+        movie.title = new_title
+        movie.release_date = new_release_date
+        movie.update()
+        updated_movie = [Movie.query.get(id).format()]
+
+        return jsonify({
+            "success": True,
+            "updated_movie":[updated_movie]
+        })
+
 
 
     return app
