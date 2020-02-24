@@ -30,11 +30,12 @@ def setup_db(app, database_path=database_path):
 #------------------------#
 
 class Movie(db.Model):
-    __tablename__ = 'Movies'
+    __tablename__ = 'movies'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String(120), nullable=True)
+    actor_id = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=False)
 
     def __init__(self, title, release_date):
         self.title = title
@@ -65,12 +66,14 @@ class Movie(db.Model):
 #------------------------#
 
 class Actor(db.Model):
-    __tablename__ = 'Actor'
+    __tablename__ = 'actors'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
+    movies = db.relationship('Movies', backref='actors')
+
 
     def __init__(self, name, age, gender):
         self.name = name
