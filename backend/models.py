@@ -37,6 +37,10 @@ class Movie(db.Model):
     release_date = db.Column(db.String(120), nullable=True)
     actor_id = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=False)
 
+    @property
+    def actor_name(self):
+        return Actor.query.get(self.actor_id).name
+
     def __init__(self, title, release_date):
         self.title = title
         self.release_date = release_date
@@ -72,7 +76,7 @@ class Actor(db.Model):
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
-    movies = db.relationship('Movies', backref='actors')
+    movies = db.relationship('Movie', backref='actors', lazy=True)
 
 
     def __init__(self, name, age, gender):
