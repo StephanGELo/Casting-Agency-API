@@ -85,11 +85,11 @@ class Actor(db.Model):
         self.gender = gender
     
     def insert(self):
-        db.session.insert(self)
+        db.session.add(self)
         db.session.commit()
     
     def update(self):
-        db.session.update(self)
+        db.session.add(self)
         db.session.commit()
     
     def delete(self):
