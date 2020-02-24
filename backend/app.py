@@ -131,11 +131,24 @@ def create_app(test_config=None):
         except Exception:
             abort(422)
 
+    @app.route('/actors/<int:id>', methods=['DELETE'])
+    def delete_an_actor(id):
+        actor = Actor.query.get(id)
+        try:
+            actor.delete()
+
+            return jsonify({
+                "success": True,
+                "deleted_actor": actor.format()
+            })
+        except Exception:
+            abort(404)
+
     @app.route('/actors', methods=['POST'])
     def add_an_actor():
         body = request.get_json()
         print("hello THERE", body)
-        
+
         new_name = body.get('name', None)
         new_age = body.get('age', None)
         new_gender = body.get('gender', None)
@@ -156,5 +169,6 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(400)
+    
 
     return app      
