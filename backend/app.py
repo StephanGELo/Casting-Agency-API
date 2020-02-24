@@ -70,7 +70,7 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(404)
-    
+
     @app.route('/movies', methods=['POST'])
     def add_a_movie():
         body = request.get_json()
@@ -130,7 +130,31 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(422)
-    
-    
+
+    @app.route('/actors', methods=['POST'])
+    def add_an_actor():
+        body = request.get_json()
+        print("hello THERE", body)
+        
+        new_name = body.get('name', None)
+        new_age = body.get('age', None)
+        new_gender = body.get('gender', None)
+
+        try:
+            new_actor = Actor(
+                name=new_name,
+                age=new_age,
+                gender=new_gender
+            )
+
+            new_actor.insert()
+            actor = Actor.query.get(new_actor.id).format()    
+
+            return jsonify({
+                "success": True,
+                "added_actor": [actor]
+            })
+        except Exception:
+            abort(400)
 
     return app      
