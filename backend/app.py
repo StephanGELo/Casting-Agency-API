@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, jsonify, abort
+from sqlalchemy import exc
 from flask_cors import CORS
 import json
 
@@ -21,7 +22,7 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    CORS(app)
+    # CORS(app)
     CORS(app, resources={r"/api/": {"origins": "*"}})
 
     @app.after_request
@@ -48,11 +49,49 @@ def create_app(test_config=None):
     @app.route('/movies', methods=['GET'])
     def get_movies():
         movies = Movie.query.all()
-        formatted_movies = [movie.format() for movie in movies]
-
-        return jsonify({
-            "success": "True",
-            "movies": formatted_movies
-        })
+        paginated_movies = paginate_items(request, movies)
+        try:
+            return jsonify({
+                "success": True,
+                "movies": paginated_movies
+            })
+        except Exception:
+            abort(422)
         
+    @app.route('/movies/<int:id>', methods=['DELETE'])
+    def delete_a_movie(id):
+        movie = Movie.query.get(id)
+        try:
+            movie.delete()
+
+            return jsonify({
+                "success": True,
+                "deleted": movie.format()
+            })
+        except Exception:
+            abort(404)
+    
+    # @app.route('/movies', methods=['POST'])
+    # def add_a_movie():
+    #     data = request.get_json()
+
+    #     new_title = data.title
+    #     new_release_date = data.release_date
+
+    #     try:
+    #         movie = Movie(
+    #             title=new_title,
+    #             release_date=new_release_date
+    #         )
+
+    #         movie.insert()
+    #         return jsonify(
+    #             'success': True
+    #         )
+    #     except Exception:
+    #         abort(422)
+
+
     return app
+
+        
