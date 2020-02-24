@@ -169,6 +169,28 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(400)
-    
 
+    @app.route('/actors/<int:id>', methods=['PATCH'])
+    def update_actor(id):
+        actor = Actor.query.get(id)
+
+        if actor is None:
+            abort(404)
+
+        body = request.get_json()
+        new_name = body.get('name', None)
+        new_age = body.get('age', None)
+        new_gender = body.get('gender', None)
+
+        actor.name = new_name
+        actor.age = new_age
+        actor.gender = new_gender
+        actor.update()
+        updated_actor = [Actor.query.get(id).format()]
+
+        return jsonify({
+            "success": True,
+            "updated_actor":[updated_actor]
+        })
+    
     return app      
