@@ -15,7 +15,7 @@ setup_db(app)
 
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config ["SQLLACHEMY_TRACK_MODIFICATIONS"] = False
+    app.config ["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
     db.create_all()
@@ -35,7 +35,7 @@ class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String(120), nullable=True)
-    actor_id = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=False)
+    # actor_id = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=False)
 
     @property
     def actor_name(self):
@@ -76,7 +76,7 @@ class Actor(db.Model):
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
-    movies = db.relationship('Movie', backref='actors', lazy=True)
+    # movies = db.relationship('Movie', backref='actors', lazy=True)
 
 
     def __init__(self, name, age, gender):
