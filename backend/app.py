@@ -71,25 +71,27 @@ def create_app(test_config=None):
         except Exception:
             abort(404)
     
-    # @app.route('/movies', methods=['POST'])
-    # def add_a_movie():
-    #     data = request.get_json()
+    @app.route('/movies', methods=['POST'])
+    def add_a_movie():
+        body = request.get_json()
+        print("hello THERE", body)
 
-    #     new_title = data.title
-    #     new_release_date = data.release_date
+        new_title = body.get('title', None)
+        new_release_date = body.get('release_date', None)
 
-    #     try:
-    #         movie = Movie(
-    #             title=new_title,
-    #             release_date=new_release_date
-    #         )
+        try:
+            movie = Movie(
+                title=new_title,
+                release_date=new_release_date
+            )
 
-    #         movie.insert()
-    #         return jsonify(
-    #             'success': True
-    #         )
-    #     except Exception:
-    #         abort(422)
+            movie.insert()
+            return jsonify({
+                "success": True
+            }
+            )
+        except Exception:
+            abort(400)
 
 
     return app
