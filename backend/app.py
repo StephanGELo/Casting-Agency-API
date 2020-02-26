@@ -42,13 +42,25 @@ def create_app(test_config=None):
 #-------------------------------------------------------#
 # ROUTES
 #-------------------------------------------------------#
+    @app.route('/', methods=['GET'])
+    def get_movies():
+        movies = Movie.query.all()
+        paginated_movies = paginate_items(request, movies)
+        try:
+            return jsonify({
+                "success": True,
+                "movies": paginated_movies
+            })
+        except Exception:
+            abort(422)
+
 
     #---------------------------------------------------#
     # Movies
     #---------------------------------------------------#
-    @app.route('/movies', methods=['GET'])
-    @requires_auth("get:movies")
-    def get_movies(token):
+    @app.route('/movies-details', methods=['GET'])
+    @requires_auth("get:movies-details")
+    def get_movies_details(token):
         movies = Movie.query.all()
         paginated_movies = paginate_items(request, movies)
         try:
