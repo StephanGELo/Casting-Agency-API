@@ -1,8 +1,8 @@
 import json
-from flask import Flask, request, request_ctx_stack, abort
+from flask import Flask, request, abort
 from functools import wraps
 from jose import jwt
-from urlib.request import urlopen
+from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'universaleagle.auth0.com'
 ALGORITHMS = ['RS256']
@@ -83,7 +83,7 @@ def verify_decode_jwt(token):
         }, 401)
 
     for key in jwks['keys']:
-        if key['kid'] = raw_header['kid']:
+        if key['kid'] == raw_header['kid']:
             rsa_key = {
                 'kty': key['kty'],
                 'kid': key['kid'],
