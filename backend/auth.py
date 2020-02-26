@@ -6,8 +6,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'universaleagle.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'castingagency'
-
+API_AUDIENCE = 'casting'
 
 #----------------------------------------------------------#
 # AuthError Exception
@@ -35,7 +34,7 @@ def get_token_auth_header():
             'description': 'The header is expected.'
         }, 401)
 
-    header_parts = authorization_header.split(' ')
+    header_parts = authorization_header.split()
     if header_parts[0].lower() != 'bearer':
         raise AuthError({
             'code': 'invalid_header',
@@ -146,8 +145,8 @@ def requires_auth(permission=''):
                 payload = verify_decode_jwt(token)
             except Exception:
                 abort(401)
-                check_permissions(permission, payload)
-                return f(payload, *args, **kwargs)
-        
+            check_permissions(permission, payload)
+            return f(payload, *args, **kwargs)
+
         return wrapper
     return requires_auth_decorator
