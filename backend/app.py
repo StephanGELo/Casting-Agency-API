@@ -5,6 +5,7 @@ from flask_cors import CORS
 import json
 
 from backend.models import setup_db, Movie, Actor
+from backend.auth import AuthError, requires_auth
 
 ITEMS_PER_PAGE = 6
 
