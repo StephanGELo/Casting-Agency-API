@@ -43,12 +43,12 @@ def create_app(test_config=None):
 # ROUTES
 #-------------------------------------------------------#
 
-    #--------------------#
+    #---------------------------------------------------#
     # Movies
-    #--------------------#
-
+    #---------------------------------------------------#
     @app.route('/movies', methods=['GET'])
-    def get_movies():
+    @requires_auth("get:movies")
+    def get_movies(token):
         movies = Movie.query.all()
         paginated_movies = paginate_items(request, movies)
         try:
@@ -60,7 +60,8 @@ def create_app(test_config=None):
             abort(422)
         
     @app.route('/movies/<int:id>', methods=['DELETE'])
-    def delete_a_movie(id):
+    @requires_auth("delete:movies")
+    def delete_a_movie(token, id):
         movie = Movie.query.get(id)
         try:
             movie.delete()
@@ -73,7 +74,8 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/movies', methods=['POST'])
-    def add_a_movie():
+    @requires_auth("post:movies")
+    def add_a_movie(token):
         body = request.get_json()
         print("hello THERE", body)
 
@@ -97,7 +99,8 @@ def create_app(test_config=None):
             abort(400)
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
-    def update_a_movie(id):
+    @requires_auth("patch:movies")
+    def update_a_movie(token, id):
         movie = Movie.query.get(id)
 
         if movie is None:
@@ -117,11 +120,12 @@ def create_app(test_config=None):
             "updated_movie":[updated_movie]
         })
         
-    #--------------------#
+    #---------------------------------------------------#
     # Actors
-    #--------------------#
+    #---------------------------------------------------#
     @app.route('/actors', methods=['GET'])
-    def get_actors():
+    @requires_auth("get:actors")
+    def get_actors(token):
         actors = Actor.query.all()
         paginated_actors = paginate_items(request, actors)
         try:
@@ -133,7 +137,8 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
-    def delete_an_actor(id):
+    @requires_auth("delete:actors")
+    def delete_an_actor(token, id):
         actor = Actor.query.get(id)
         try:
             actor.delete()
@@ -146,7 +151,8 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/actors', methods=['POST'])
-    def add_an_actor():
+    @requires_auth("post:actors")
+    def add_an_actor(token):
         body = request.get_json()
         print("hello THERE", body)
 
@@ -172,7 +178,8 @@ def create_app(test_config=None):
             abort(400)
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
-    def update_actor(id):
+    @requires_auth("patch:actors")
+    def update_actor(token, id):
         actor = Actor.query.get(id)
 
         if actor is None:
