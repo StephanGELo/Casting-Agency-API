@@ -35,15 +35,15 @@ class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String(120), nullable=True)
-    # actor_id = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=False)
+    actors = db.relationship('Actor', backref='movies', lazy=True)
 
-    @property
-    def actor_name(self):
-        return Actor.query.get(self.actor_id).name
+    def __repr__(self):
+            return '<Movie %r>'% self
 
-    def __init__(self, title, release_date):
-        self.title = title
-        self.release_date = release_date
+    # @property
+    # def actors_names(self):
+    #     actors = [Actor.query.get(actor).name for actor in self.actors ]
+    #     return actors
     
     def insert(self):
         db.session.add(self)
@@ -60,8 +60,10 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'release_date': self.release_date
+            'release_date': self.release_date,  
         }
+    
+    
 
 
 #------------------------#
@@ -75,13 +77,7 @@ class Actor(db.Model):
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
-    # movies = db.relationship('Movie', backref='actors', lazy=True)
-
-
-    def __init__(self, name, age, gender):
-        self.name = name
-        self.age = age
-        self.gender = gender
+    movie = db.Column(db.Integer, db.ForeignKey('movies.id'))
     
     def insert(self):
         db.session.add(self)
@@ -99,5 +95,8 @@ class Actor(db.Model):
             'id': self.id,
             'name': self.name,
             'age': self.age,
-            'gender': self.gender
+            'gender': self.gender,
+            'movie': self.movie
         }
+
+    
