@@ -42,8 +42,9 @@ class Movie(db.Model):
 
     # @property
     # def actors_names(self):
-    #     actors = [Actor.query.get(actor).name for actor in self.actors ]
-    #     return actors
+    #     for actor in self.actors:
+    #         actors = [Actor.query.get(actor).name for actor in self.actors ]
+    #         return actors
     
     def insert(self):
         db.session.add(self)
