@@ -32,9 +32,22 @@ def get_token_auth_header():
     if not authorization_header:
         raise AuthError({
             'code': 'missing_header',
+            'description': 'The header is expected.'
+        }, 401)
+
+    header_parts = authorization_header.split(' ')
+    if header_parts[0].lower() != 'bearer':
+        raise AuthError({
+            'code': 'invalid_header',
             'description': 'The header must contain a "Bearer".'
         }, 401)
-    
+
+    elif len(header_parts) == 1:
+        raise AuthError({
+            'code': 'malformed_header',
+            'description': 'The header is malformed.'
+        }, 401)
+
     elif len(header_parts) > 2:
         raise AuthError({
             'code': 'invalid_header',
