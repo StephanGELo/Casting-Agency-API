@@ -4,8 +4,8 @@ from sqlalchemy import exc
 from flask_cors import CORS
 import json
 
-from backend.models import setup_db, Movie, Actor
-from backend.auth import AuthError, requires_auth
+from models import setup_db, Movie, Actor
+from auth import AuthError, requires_auth
 
 ITEMS_PER_PAGE = 6
 
@@ -46,7 +46,10 @@ def create_app(test_config=None):
     def get_movies():
         movies = Movie.query.all()
         selected_movies = paginate_items(request, movies)
-        print (selected_movies)
+
+        for movie in selected_movies:
+            movie['actors'] = [actor.format() for actor in movie['actors']]
+
         try:
             return jsonify({
                 "success": True,
@@ -64,8 +67,10 @@ def create_app(test_config=None):
     def get_movies_details(token):
         movies = Movie.query.all()
         paginated_movies = paginate_items(request, movies)
+
         for movie in paginated_movies:
             movie['actors'] = [actor.format() for actor in movie['actors']]
+
         try:
             return jsonify({
                 "success": True,
@@ -92,9 +97,9 @@ def create_app(test_config=None):
     @requires_auth("post:movies")
     def add_a_movie(token):
         body = request.get_json()
-        print("hello THERE", body)
-
+        print(body)
         new_title = body.get('title', None)
+        print(new_title)
         new_release_date = body.get('release_date', None)
 
         try:
