@@ -31,7 +31,6 @@ def setup_db(app, database_path=database_path):
 
 class Movie(db.Model):
     __tablename__ = 'movies'
-
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String(120), nullable=True)
@@ -40,12 +39,6 @@ class Movie(db.Model):
     def __repr__(self):
             return '<Movie %r>'% self
 
-    # @property
-    # def actors_names(self):
-    #     for actor in self.actors:
-    #         actors = [Actor.query.get(actor).name for actor in self.actors ]
-    #         return actors
-    
     def insert(self):
         db.session.add(self)
         db.session.commit()
@@ -61,19 +54,17 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'release_date': self.release_date,  
+            'release_date': self.release_date,
+            'actors': self.actors
         }
     
     
-
-
 #------------------------#
 # Actor model
 #------------------------#
 
 class Actor(db.Model):
     __tablename__ = 'actors'
-
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
