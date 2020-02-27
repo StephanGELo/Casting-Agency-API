@@ -45,11 +45,12 @@ def create_app(test_config=None):
     @app.route('/', methods=['GET'])
     def get_movies():
         movies = Movie.query.all()
-        paginated_movies = paginate_items(request, movies)
+        selected_movies = paginate_items(request, movies)
+        print (selected_movies)
         try:
             return jsonify({
                 "success": True,
-                "movies": paginated_movies
+                "movies": selected_movies
             })
         except Exception:
             abort(422)
@@ -63,6 +64,8 @@ def create_app(test_config=None):
     def get_movies_details(token):
         movies = Movie.query.all()
         paginated_movies = paginate_items(request, movies)
+        for movie in paginated_movies:
+            movie['actors'] = [actor.format() for actor in movie['actors']]
         try:
             return jsonify({
                 "success": True,
