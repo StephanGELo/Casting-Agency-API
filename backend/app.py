@@ -14,7 +14,7 @@ def paginate_items(request, list):
     start = (page - 1) * ITEMS_PER_PAGE
     end = start + ITEMS_PER_PAGE
 
-    formatted_items = [item.format() for item in list]
+    formatted_items = [item for item in list]
     paginated_items = formatted_items[start:end]
 
     return paginated_items
@@ -23,7 +23,6 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    # CORS(app)
     CORS(app, resources={r"/api/": {"origins": "*"}})
 
     @app.after_request
@@ -42,13 +41,11 @@ def create_app(test_config=None):
 #-------------------------------------------------------#
 # ROUTES
 #-------------------------------------------------------#
-    @app.route('/', methods=['GET'])
+    @app.route('/movies', methods=['GET'])
     def get_movies():
         movies = Movie.query.all()
-        selected_movies = paginate_items(request, movies)
-
-        for movie in selected_movies:
-            movie['actors'] = [actor.format() for actor in movie['actors']]
+        formatted_movies = [movie.short() for movie in movies]
+        selected_movies = paginate_items(request, formatted_movies)
 
         try:
             return jsonify({
@@ -66,10 +63,11 @@ def create_app(test_config=None):
     @requires_auth("get:movies-details")
     def get_movies_details(token):
         movies = Movie.query.all()
-        paginated_movies = paginate_items(request, movies)
-
+        formatted_movies = [movie.detailed() for movie in movies]
+        paginated_movies = paginate_items(request, formatted_movies)
+        
         for movie in paginated_movies:
-            movie['actors'] = [actor.format() for actor in movie['actors']]
+            movie['actors'] = [actor.detailed() for actor in movie['actors']]
 
         try:
             return jsonify({
@@ -110,7 +108,7 @@ def create_app(test_config=None):
             )
 
             new_movie.insert()
-            movie = Movie.query.get(new_movie.id).format()    
+            movie = Movie.query.get(new_movie.id).short()    
 
             return jsonify({
                 "success": True,
@@ -134,7 +132,7 @@ def create_app(test_config=None):
         movie.title = new_title
         movie.release_date = new_release_date
         movie.update()
-        updated_movie = [Movie.query.get(id).format()]
+        updated_movie = [Movie.query.get(id).short()]
 
         return jsonify({
             "success": True,
@@ -166,7 +164,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "deleted_actor": actor.format()
+                "deleted_actor": actor.short()
             })
         except Exception:
             abort(404)
