@@ -1,11 +1,11 @@
 CREATE TABLE public.movies (
-  id serial NOT NULL,
+  id serial NOT NULL PRIMARY KEY,
   title text NOT NULL,
   release_date text NOT NULL
 );
 
 CREATE TABLE public.actors (
-  id serial NOT NULL,
+  id serial NOT NULL PRIMARY KEY,
   name text NOT NULL,
   age integer NOT NULL,
   gender text NOT NULL,
