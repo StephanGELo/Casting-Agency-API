@@ -6,9 +6,9 @@ from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db, Movie, Actor
 
-casting_assistant_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgyNzkwMTIwLCJleHAiOjE1ODI3OTczMjAsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.UqmGRRe2uvqpnlvA1-fKScDq2aKrA8yyP_E_pL7i-b1GmPKxG9Uij18msH4PT_Nhi0qhGOyUN4mV26mtr4DSm1z3sEZOPJZ5rAUVfb36IeoGfHxJoFKxvnRNIX5xHJH16F0J0MMAD4xIiC1PdFgYaIKQdO9NO6VYZ5-5z_q6R3SMZb6tsUZHu3uNS_KDdF_RV6FjlWz0IxjMy-2QvG3DAkZp7K8sgup9y5Qo6gwG93xBkL8oy_M5kqWJsfp-NWa47W9-fk5Uuc1iyUBPZvjd43GZyDxh-181Bw7R3oOBXSYcG64PDRmHMjiXayRKyAA1e9uC6uJxemVoeD-1JzMKjw'
+casting_assistant_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzMjIwNTg5LCJleHAiOjE1ODMyMjc3ODksImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.B-r82EAKENq7QSrQU7gROo0sL2pzQDboATmc6_wyGh425BWHptY1auldzIn6Z59nZC8ozDMx63bilQk9aH3oaqy6Xs5t06yXRUAU_COxTDvmVTQuxjbJeJEHK5IM1cQUmg3ap6GNeTx6GstgZ55coXFAtKJhtjolra6lou1WrvNAYuzRqvA1tOWAlY9EdwAn9vZcey4dSMz9iniNpHU7lv8T0--nwsJsEo1rUihFTQ6au2KHbPhDnsSe7iehwzSmUO0vhUe0myNZuYJLZeS4OJLKggah1rp7frprKPN19nqxTvTM72S3a-pUnrxw0RzhU4kgn-ZAAdq0hcnnoZgjFQ'
 # casting_director_token = "Bearer {}".format(os.environ.get('DIRECTOR_JWT'))
-exec_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgyNzk1NDE0LCJleHAiOjE1ODI4MDI2MTQsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.Rzg14PU2wxYhGDu4yoevQaakASKZc8H2BWIdWOwzyu5KJNC1GgkkW7jY2_TEG0AgD-9M5POJftZQ6FTNluO39JNN2ZqC3UZBy2YFwe68WjT2Dv5G513WnE8emLN5TUqEaYAqtJhsXhjckbJronGJx4wtiE9mPMoFyfuAEwYH29v3GYpeAGrsWaLDcpWT96IwdTICc1PtmISYGQTLqzzV7XugCLDuZbG-lFCGKxxu7zfhZ6kGDNWf6Mg8ck0oyW1z1CdOXX_3xUEuqRTwDMIoGRzpcFCH7gUR0dHRI4IRSmXOUYvNB82StNdJCjZKQVFHOWoKxVDfp4QPJ81gbfA2ag'
+exec_producer_token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzMjIwNTg5LCJleHAiOjE1ODMyMjc3ODksImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.B-r82EAKENq7QSrQU7gROo0sL2pzQDboATmc6_wyGh425BWHptY1auldzIn6Z59nZC8ozDMx63bilQk9aH3oaqy6Xs5t06yXRUAU_COxTDvmVTQuxjbJeJEHK5IM1cQUmg3ap6GNeTx6GstgZ55coXFAtKJhtjolra6lou1WrvNAYuzRqvA1tOWAlY9EdwAn9vZcey4dSMz9iniNpHU7lv8T0--nwsJsEo1rUihFTQ6au2KHbPhDnsSe7iehwzSmUO0vhUe0myNZuYJLZeS4OJLKggah1rp7frprKPN19nqxTvTM72S3a-pUnrxw0RzhU4kgn-ZAAdq0hcnnoZgjFQ'
 #----------------------------------------------------------#
 # Unittest Test Cases
 #----------------------------------------------------------#
@@ -39,6 +39,11 @@ class CastingAgencyTestCase(unittest.TestCase):
             'movie_id': 2
         }
 
+        self.patch_movie = {
+            'title' : "L'homme qui pleure",
+            'release_date': 'March 30, 2020'
+        }
+
         # Binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -56,7 +61,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     # Movies Endpoints
     #------------------------------#
     def test_get_movies_index(self):
-        res = self.client().get('/')
+        res = self.client().get('/movies')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -82,19 +87,25 @@ class CastingAgencyTestCase(unittest.TestCase):
     #     self.assertTrue(data['added_movie'])
     #     self.assertTrue(len(data['added_movie']) == 1)
 
-    def test_delete_a_movie(self):
-        res = self.client().delete('/movies/4', headers={ "Authorization":(exec_producer_token)})
-        data = json.loads(res.data)
+    # def test_delete_a_movie(self):
+    #     res = self.client().delete('/movies/4', headers={ "Authorization":(exec_producer_token)})
+    #     data = json.loads(res.data)
 
-        movie = Movie.query.filter(Movie.id == 4).one_or_none()
+    #     movie = Movie.query.filter(Movie.id == 4).one_or_none()
 
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(movie, None)
-        self.assertEqual(data['success'], True)
-        self.assertEqual(int(data['deleted_movie'['id']]), 4)
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(movie, None)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['deleted_movie'])
     
+    # def test_modify_a_movie(self):
+    #     res = self.client().patch('/movies/3', json=self.patch_movie, headers={"Authorization": (exec_producer_token)})
+    #     data = json.loads(res.data)
 
-
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(len(data['movie']) == 1)
+    
     #----------------------------------------------------------#
     # Tests for error behavior of each endpoint
     #----------------------------------------------------------#
