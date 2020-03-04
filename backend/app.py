@@ -77,18 +77,18 @@ def create_app(test_config=None):
         except Exception:
             abort(422)
         
-    @app.route('/movies/<int:id>', methods=['DELETE'])
+    @app.route('/movies/<int:movie_id>', methods=['DELETE'])
     @requires_auth("delete:movies")
-    def delete_a_movie(token, id):
-        print("id is >>>", id)
-        movie = Movie.query.get(id)
+    def delete_a_movie(token, movie_id):
+        movie = Movie.query.get(movie_id)
+
         try:
             movie.delete()
-
+           
             return jsonify({
                 "success": True,
-                "deleted_movie": movie.format()
-            })
+                "deleted_movie": movie_id
+            }), 200
         except Exception:
             abort(404)
 
@@ -96,24 +96,16 @@ def create_app(test_config=None):
     @requires_auth("post:movies")
     def add_a_movie(token):
         body = request.get_json()
-        print(body)
         new_title = body.get('title', None)
-        print(new_title)
         new_release_date = body.get('release_date', None)
 
         try:
-            new_movie = Movie(
-                title=new_title,
-                release_date=new_release_date
-            )
-
-            new_movie.insert()
-            movie = Movie.query.get(new_movie.id).short()    
-
-            return jsonify({
-                "success": True,
-                "added_movie": [movie]
-            })
+           new_movie = Movie(title=new_title, release_date=new_release_date)
+           new_movie.insert()
+           return jsonify({
+               "success": True,
+               "added_movie": [new_movie.short()]
+            }), 200
         except Exception:
             abort(400)
 
