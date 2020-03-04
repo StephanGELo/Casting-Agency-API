@@ -135,8 +135,22 @@ def create_app(test_config=None):
     # Actors
     #---------------------------------------------------#
     @app.route('/actors', methods=['GET'])
+    def get_actors():
+        actors = Actor.query.all()
+        # paginated_actors = paginate_items(request, actors)
+        formatted_actors = [actor.short() for actor in actors]
+        selected_actors = paginate_items(request, formatted_actors)
+        try:
+            return jsonify({
+                "success": True,
+                "actors": selected_actors
+            })
+        except Exception:
+            abort(422)
+    
+    @app.route('/actors-details', methods=['GET'])
     @requires_auth("get:actors")
-    def get_actors(token):
+    def get_actors_details(token):
         actors = Actor.query.all()
         paginated_actors = paginate_items(request, actors)
         try:
