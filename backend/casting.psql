@@ -1,15 +1,15 @@
 CREATE TABLE public.movies (
-  id serial NOT NULL PRIMARY KEY,
+  id serial NOT NULL,
   title text NOT NULL,
   release_date text NOT NULL
 );
 
 CREATE TABLE public.actors (
-  id serial NOT NULL PRIMARY KEY,
+  id serial NOT NULL,
   name text NOT NULL,
   age integer NOT NULL,
   gender text NOT NULL,
-  movie integer NOT NULL
+  movie integer
 );
 
 INSERT INTO movies (id, title, release_date) VALUES (1, 'Sonic The Hedgehog', 'Feb 14, 2020');
@@ -17,10 +17,10 @@ INSERT INTO movies (id, title, release_date) VALUES (2, 'The Call Of the Wild', 
 INSERT INTO movies (id, title, release_date) VALUES (3, 'Birds of Prey', 'Feb 21, 2020');
 INSERT INTO movies (id, title, release_date) VALUES (4, 'Burden', 'Feb 28, 2020');
 
-INSERT INTO actors (id, name, age, gender,movie) VALUES (1, 'Jim Carrey', 58, 'male', 1);
-INSERT INTO actors (id, name, age, gender,movie) VALUES (2, 'James Marsden', 46, 'male', 1);
-INSERT INTO actors (id, name, age, gender,movie) VALUES (3, 'Harrison Ford', 77, 'male', 2);
-INSERT INTO actors (id, name, age, gender,movie) VALUES (4, 'Omar Sy', 42, 'male', 2);
-INSERT INTO actors (id, name, age, gender,movie) VALUES (5, 'Karen Gillan', 32, 'female', 2);
-INSERT INTO actors (id, name, age, gender, movie) VALUES (6, 'Ali Wong', 37, 'female', 3);
-INSERT INTO actors (id, name, age, gender, movie) VALUES (7, 'Andrea Riseborough', 38, 'female', 4);
+INSERT INTO actors (id, name, age, gender) VALUES (1, 'Jim Carrey', 58, 'male');
+INSERT INTO actors (id, name, age, gender) VALUES (2, 'James Marsden', 46, 'male');
+INSERT INTO actors (id, name, age, gender) VALUES (3, 'Harrison Ford', 77, 'male');
+INSERT INTO actors (id, name, age, gender) VALUES (4, 'Omar Sy', 42, 'male');
+INSERT INTO actors (id, name, age, gender) VALUES (5, 'Karen Gillan', 32, 'female');
+INSERT INTO actors (id, name, age, gender) VALUES (6, 'Ali Wong', 37, 'female');
+INSERT INTO actors (id, name, age, gender) VALUES (7, 'Andrea Riseborough', 38, 'female');
