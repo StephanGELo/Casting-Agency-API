@@ -37,7 +37,7 @@ class Movie(db.Model):
     actors = db.relationship('Actor', backref='movies', lazy=True)
 
     def __repr__(self):
-            return '<Movie %r>'% self
+            return f'<Movie %r>'% self
 
     def insert(self):
         db.session.add(self)
@@ -54,7 +54,7 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'release_date': self.release_date,
+            'release_date': self.release_date
         }
     
     def detailed(self):
@@ -103,7 +103,7 @@ class Actor(db.Model):
             'name': self.name,
             'age': self.age,
             'gender': self.gender,
-            'movie': self.movie_id
+            'movie': self.movie
         }
 
     
