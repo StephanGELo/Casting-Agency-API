@@ -90,7 +90,6 @@ class CastingAgencyTestCase(unittest.TestCase):
     def test_delete_a_movie(self):
         res = self.client().delete('/movies/3', headers={ "Authorization":(producer)})
         data = json.loads(res.data)
-        # print("data is ", data)
 
         movie = Movie.query.filter(Movie.id == 3).one_or_none()
 
@@ -99,8 +98,6 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['deleted_movie'])
 
-
-    
     def test_modify_a_movie(self):
         res = self.client().patch('/movies/4', json=self.patch_movie, headers={ "Authorization":(producer)})
         data = json.loads(res.data)
@@ -108,6 +105,18 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(len(data['updated_movie']) == 1)
+
+    #------------------------------#
+    # Actors Endpoints
+    #------------------------------#
+    def test_get_actors_index(self):
+        res = self.client().get('/actors')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actors'])
+        self.assertTrue(len(data['actors']) > 0)
     
     #----------------------------------------------------------#
     # Tests for error behavior of each endpoint
