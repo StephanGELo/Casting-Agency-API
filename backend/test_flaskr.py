@@ -69,6 +69,11 @@ class CastingAgencyTestCase(unittest.TestCase):
             'release_date': 'March 30, 2020'
         }
 
+        self.wrong_patch_actor = {
+            'name': 'Richard Brandson',
+            'age': 65,
+            'gender': '',
+        }
         
 
         # Binds the app to the current context
@@ -263,6 +268,14 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Resource Not Found')
+
+    def test_422_unprocessed_if_updating_an_actor_with_insufficient_data(self):
+        res = self.client().patch('/actors/2', json=self.wrong_patch_actor, headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Unprocessable')
 
     #----------------------------------------------------------#
     # Tests of RBAC for each role

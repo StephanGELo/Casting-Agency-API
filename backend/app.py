@@ -222,6 +222,13 @@ def create_app(test_config=None):
         new_age = body.get('age', None)
         new_gender = body.get('gender', None)
         new_movie = body.get('movie', None)
+        
+        if len(new_name) == 0:
+            abort(400)
+        elif new_age == 0:
+            abort(400)
+        elif len(new_gender) == 0:
+            abort(400)
 
         try:
             new_actor = Actor(
@@ -241,10 +248,11 @@ def create_app(test_config=None):
         except Exception:
             abort(400)
 
-    @app.route('/actors/<int:id>', methods=['PATCH'])
+    @app.route('/actors/<int:actor_id>', methods=['PATCH'])
     @requires_auth("patch:actors")
-    def update_actor(token, id):
-        actor = Actor.query.get(id)
+    def update_actor(token, actor_id):
+        
+        actor = Actor.query.get(actor_id)
 
         if actor is None:
             abort(404)
@@ -255,18 +263,28 @@ def create_app(test_config=None):
         new_gender = body.get('gender', None)
         new_movie = body.get('movie', None)
 
-        actor.name = new_name
-        actor.age = new_age
-        actor.gender = new_gender
-        actor.new_movie = new_movie
-        actor.update()
-        updated_actor = [Actor.query.get(id).detailed()]
+        if len(new_name) == 0:
+            abort(422)
+        elif new_age == 0:
+            abort(422)
+        elif len(new_gender) == 0:
+            abort(422)
 
-        return jsonify({
-            "success": True,
-            "updated_actor":[updated_actor]
-        })
-    #---------------------------------------------------#
+        try:
+            actor.name = new_name
+            actor.age = new_age
+            actor.gender = new_gender
+            actor.new_movie = new_movie
+            actor.update()
+            updated_actor = [Actor.query.get(actor_id).detailed()]
+
+            return jsonify({
+                "success": True,
+                "updated_actor":[updated_actor]
+            }), 200
+        except Exception:
+            abort(422)
+        #---------------------------------------------------#
     # Error handlers
     #---------------------------------------------------#
     @app.errorhandler(400)
