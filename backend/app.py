@@ -152,7 +152,11 @@ def create_app(test_config=None):
     @requires_auth("get:actors")
     def get_actors_details(token):
         actors = Actor.query.all()
-        paginated_actors = paginate_items(request, actors)
+        # paginated_actors = paginate_items(request, actors)
+
+        formatted_actors = [actor.detailed() for actor in actors]
+        paginated_actors = paginate_items(request, formatted_actors)
+        
         try:
             return jsonify({
                 "success": True,
@@ -179,21 +183,21 @@ def create_app(test_config=None):
     @requires_auth("post:actors")
     def add_an_actor(token):
         body = request.get_json()
-        print("hello THERE", body)
-
         new_name = body.get('name', None)
         new_age = body.get('age', None)
         new_gender = body.get('gender', None)
+        new_movie = body.get('movie', None)
 
         try:
             new_actor = Actor(
                 name=new_name,
                 age=new_age,
-                gender=new_gender
+                gender=new_gender,
+                movie=new_movie
             )
 
             new_actor.insert()
-            actor = Actor.query.get(new_actor.id).format()    
+            actor = Actor.query.get(new_actor.id).detailed()    
 
             return jsonify({
                 "success": True,

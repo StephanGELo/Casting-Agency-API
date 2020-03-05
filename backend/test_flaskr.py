@@ -127,6 +127,15 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertTrue(data['actors'])
         self.assertTrue(len(data['actors']) > 0)
     
+    def test_add_an_actor(self):
+        res = self.client().post('/actors', json=self.new_actor, headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['added_actor'])
+        self.assertTrue(len(data['added_actor']) == 1)
+    
     
     
     #----------------------------------------------------------#
