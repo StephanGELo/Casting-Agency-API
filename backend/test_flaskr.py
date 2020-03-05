@@ -57,10 +57,19 @@ class CastingAgencyTestCase(unittest.TestCase):
             'release_date': ""
         }
 
+        self.bad_actor_request = {
+            'name': 'Charlie Chaplin',
+            'age': '',
+            'gender':'Male',
+            'movie': 2
+        }
+
         self.wrong_patch_movie = {
             'title' : "",
             'release_date': 'March 30, 2020'
         }
+
+        
 
         # Binds the app to the current context
         with self.app.app_context():
@@ -238,6 +247,15 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Unauthorized')
+
+    def test_400_add_an_actor_incorrectly(self):
+        res = self.client().post('/actors', json=self.bad_actor_request, headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Bad Request')
+
 
     #----------------------------------------------------------#
     # Tests of RBAC for each role
