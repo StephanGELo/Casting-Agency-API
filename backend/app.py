@@ -41,6 +41,10 @@ def create_app(test_config=None):
 #-------------------------------------------------------#
 # ROUTES
 #-------------------------------------------------------#
+    #---------------------------------------------------#
+    # Endpoints for index page
+    #---------------------------------------------------#    
+    
     @app.route('/movies', methods=['GET'])
     def get_movies():
         try:
@@ -54,6 +58,24 @@ def create_app(test_config=None):
             return jsonify({
                 "success": True,
                 "movies": selected_movies
+            })
+        except Exception:
+            abort(404)
+    
+
+    @app.route('/actors', methods=['GET'])
+    def get_actors():
+        try:
+            actors = Actor.query.all()
+            formatted_actors = [actor.short() for actor in actors]
+            selected_actors = paginate_items(request, formatted_actors)
+            
+            if len(selected_actors) == 0:
+                abort(404)
+            
+            return jsonify({
+                "success": True,
+                "actors": selected_actors
             })
         except Exception:
             abort(404)
@@ -156,30 +178,17 @@ def create_app(test_config=None):
     #---------------------------------------------------#
     # Endpoints for Actors
     #---------------------------------------------------#
-    @app.route('/actors', methods=['GET'])
-    def get_actors():
-        actors = Actor.query.all()
-        # paginated_actors = paginate_items(request, actors)
-        formatted_actors = [actor.short() for actor in actors]
-        selected_actors = paginate_items(request, formatted_actors)
-        try:
-            return jsonify({
-                "success": True,
-                "actors": selected_actors
-            })
-        except Exception:
-            abort(422)
-    
     @app.route('/actors-details', methods=['GET'])
     @requires_auth("get:actors")
     def get_actors_details(token):
-        actors = Actor.query.all()
-        # paginated_actors = paginate_items(request, actors)
-
-        formatted_actors = [actor.detailed() for actor in actors]
-        paginated_actors = paginate_items(request, formatted_actors)
-        
         try:
+            actors = Actor.query.all()
+            formatted_actors = [actor.detailed() for actor in actors]
+            paginated_actors = paginate_items(request, formatted_actors)
+
+            if len(paginated_actors) == 0:
+                    abort(404)
+                            
             return jsonify({
                 "success": True,
                 "actors": paginated_actors
