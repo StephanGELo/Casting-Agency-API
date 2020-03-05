@@ -65,14 +65,17 @@ def create_app(test_config=None):
     @app.route('/movies-details', methods=['GET'])
     @requires_auth("get:movies-details")
     def get_movies_details(token):
-        movies = Movie.query.all()
-        formatted_movies = [movie.detailed() for movie in movies]
-        paginated_movies = paginate_items(request, formatted_movies)
-        
-        for movie in paginated_movies:
-            movie['actors'] = [actor.detailed() for actor in movie['actors']]
-
         try:
+            movies = Movie.query.all()
+            formatted_movies = [movie.detailed() for movie in movies]
+            paginated_movies = paginate_items(request, formatted_movies)
+
+            if len(paginated_movies) == 0:
+                    abort(404)
+            
+            for movie in paginated_movies:
+                movie['actors'] = [actor.detailed() for actor in movie['actors']]
+
             return jsonify({
                 "success": True,
                 "movies": paginated_movies
