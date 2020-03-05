@@ -52,6 +52,11 @@ class CastingAgencyTestCase(unittest.TestCase):
             'movie': 2
         }
 
+        self.bad_movie_request = {
+            'title': "1840",
+            'release_date': ""
+        }
+
         # Binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -186,36 +191,15 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Unauthorized')
 
- 
-    
-    # def test_add_a_movie(self):
-    #     res = self.client().post('/movies', json=self.new_movie, headers={ "Authorization":(producer)})
-    #     data = json.loads(res.data)
+    def test_400_add_a_movie_incorrectly(self):
+        res = self.client().post('/movies', json=self.bad_movie_request, headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['added_movie'])
-    #     self.assertTrue(len(data['added_movie']) == 1)
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Bad Request')
 
-    # def test_delete_a_movie(self):
-    #     res = self.client().delete('/movies/3', headers={ "Authorization":(producer)})
-    #     data = json.loads(res.data)
-
-    #     movie = Movie.query.filter(Movie.id == 3).one_or_none()
-
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(movie, None)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['deleted_movie'])
-
-    # def test_modify_a_movie(self):
-    #     res = self.client().patch('/movies/4', json=self.patch_movie, headers={ "Authorization":(producer)})
-    #     data = json.loads(res.data)
-
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(len(data['updated_movie']) == 1)
-
+        
     #----------------------------------------------------------#
     # Tests of RBAC for each role
     #----------------------------------------------------------#

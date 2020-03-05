@@ -101,16 +101,21 @@ def create_app(test_config=None):
     @app.route('/movies', methods=['POST'])
     @requires_auth("post:movies")
     def add_a_movie(token):
-        body = request.get_json()
-        new_title = body.get('title', None)
-        new_release_date = body.get('release_date', None)
-
         try:
-           new_movie = Movie(title=new_title, release_date=new_release_date)
-           new_movie.insert()
-           return jsonify({
-               "success": True,
-               "added_movie": [new_movie.short()]
+            body = request.get_json()
+            new_title = body.get('title', None)
+            new_release_date = body.get('release_date', None)
+           
+            if len(new_title) == 0:
+                abort(400)
+            elif len(new_release_date) == 0:
+                abort(400)
+
+            new_movie = Movie(title=new_title, release_date=new_release_date)
+            new_movie.insert()
+            return jsonify({
+                "success": True,
+                "added_movie": [new_movie.short()]
             }), 200
         except Exception:
             abort(400)
