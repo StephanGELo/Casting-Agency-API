@@ -166,6 +166,53 @@ class CastingAgencyTestCase(unittest.TestCase):
     #----------------------------------------------------------#
     # Tests for error behavior of each endpoint
     #----------------------------------------------------------#
+    #------------------------------#
+    # Movies Endpoints
+    #------------------------------#
+    def test_404_get_movies_beyond_valid_page(self):
+        res = self.client().get('/movies?page=500')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource Not Found')
+
+    # def test_get_movies(self):
+    #     res = self.client().get('/movies-details', headers={ "Authorization":(producer)})
+    #     data = json.loads(res.data)
+
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['movies'])
+    #     self.assertTrue(len(data['movies']) > 0)
+    
+    # def test_add_a_movie(self):
+    #     res = self.client().post('/movies', json=self.new_movie, headers={ "Authorization":(producer)})
+    #     data = json.loads(res.data)
+
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['added_movie'])
+    #     self.assertTrue(len(data['added_movie']) == 1)
+
+    # def test_delete_a_movie(self):
+    #     res = self.client().delete('/movies/3', headers={ "Authorization":(producer)})
+    #     data = json.loads(res.data)
+
+    #     movie = Movie.query.filter(Movie.id == 3).one_or_none()
+
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(movie, None)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['deleted_movie'])
+
+    # def test_modify_a_movie(self):
+    #     res = self.client().patch('/movies/4', json=self.patch_movie, headers={ "Authorization":(producer)})
+    #     data = json.loads(res.data)
+
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(len(data['updated_movie']) == 1)
 
     #----------------------------------------------------------#
     # Tests of RBAC for each role

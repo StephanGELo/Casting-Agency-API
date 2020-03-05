@@ -48,12 +48,15 @@ def create_app(test_config=None):
             formatted_movies = [movie.short() for movie in movies]
             selected_movies = paginate_items(request, formatted_movies)
 
+            if len(selected_movies) == 0:
+                abort(404)
+
             return jsonify({
                 "success": True,
                 "movies": selected_movies
             })
         except Exception:
-            abort(400)
+            abort(404)
 
 
     #---------------------------------------------------#
