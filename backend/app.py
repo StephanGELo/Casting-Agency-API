@@ -218,12 +218,14 @@ def create_app(test_config=None):
         new_name = body.get('name', None)
         new_age = body.get('age', None)
         new_gender = body.get('gender', None)
+        new_movie = body.get('movie', None)
 
         actor.name = new_name
         actor.age = new_age
         actor.gender = new_gender
+        actor.new_movie = new_movie
         actor.update()
-        updated_actor = [Actor.query.get(id).format()]
+        updated_actor = [Actor.query.get(id).detailed()]
 
         return jsonify({
             "success": True,

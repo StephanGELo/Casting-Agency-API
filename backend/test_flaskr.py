@@ -33,7 +33,7 @@ class CastingAgencyTestCase(unittest.TestCase):
         }
 
         self.new_actor = {
-            'name': "Russell Poke",
+            'name': 'Russell Poke',
             'age': 27,
             'gender': 'Male',
             'movie': 2
@@ -42,6 +42,13 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.patch_movie = {
             'title' : "L'homme qui pleure",
             'release_date': 'March 30, 2020'
+        }
+
+        self.patch_actor = {
+            'name': 'Lisette Riseborough',
+            'age': 30,
+            'gender': 'Female',
+            'movie': 2
         }
 
         # Binds the app to the current context
@@ -147,7 +154,14 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['deleted_actor'])
 
-    
+    def test_modify_an_actor(self):
+        res = self.client().patch('/actors/4', json=self.patch_actor, headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(len(data['updated_actor']) == 1)
+
     
     #----------------------------------------------------------#
     # Tests for error behavior of each endpoint
