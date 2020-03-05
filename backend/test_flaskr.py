@@ -8,7 +8,7 @@ from models import setup_db, Movie, Actor
 
 # casting_assistant_token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJEN3VjWmdVUW9Cd3Q2RjBNWGdGbVFpekxBNDJyMVk1WEBjbGllbnRzIiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTU4MzI2OTQ2NSwiZXhwIjoxNTgzMzU1ODY1LCJhenAiOiJEN3VjWmdVUW9Cd3Q2RjBNWGdGbVFpekxBNDJyMVk1WCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsInBlcm1pc3Npb25zIjpbXX0.UGfytvS_UkN-k8j11xFxJaKnSxo0VxBPFAvxSgqgCy3AIY7y-fruvt6qmTAE2JZEMJYbK_c7LcC9XdnpJQSod8Tt6pDs00XB2z0uOJ9oaBkfzyC1H7YjtqbsFqFg0-jZ7kWj3l6yOPaVfrtMHc9hWJcMnxael2miqp1L5aEnvD3Kv9-1fij6JYR6yjdNEvYPpUE3-M_tVHxF-QX1RdNrTNmZ1vBK3PytwEwa36wztHvNPHYy1pdVxZEbNPtJYfgbqb4lZQuqmqPJtgJ0nH9cGrKJgSw2kgRSBLGiBk53U1mHmt9ytQr1iyuKPUA5kKl0mRDh1ADgXpYjihQ88-cnhg"
 # casting_director_token = "Bearer {}".format(os.environ.get('DIRECTOR_JWT'))
-producer = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzMjcwNDA3LCJleHAiOjE1ODMzMDY0MDcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.F_prSsb2hJeNnd7ki78oQDcm1y2kJdPnWOV_FDToCH0iiyEdLqXc7dCTGXLIevvrNXUGEbuh0feaPM8HVcB3Gt_0QpJSbz6FqQG0dSJDBuGiqirJTrvmGSxsSiEee86mqjPQwmnvD_zmTotSw3OeclGA55NZ-QaxrHygj9LwxTOYCG2LuHr09iH1IEiUI_dv_VbY16giuO5i2qnnWoNsDLU-Q50zwxM1seFWpYZy9GWy2pGp9gzS2TyfTHK6COZqiIza_GBwDePq1U_26z7Dv73d_9lsZdpndv8BrPKDlcw6pGUYx1pF43DlqMmF4F4wkMA_wl83z4iVCvayfUbZDg"
+producer = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTA5M2JlMGI5ZWE2YzBjZDFjNTYzZTIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzMzY2NzEwLCJleHAiOjE1ODM0MDI3MTAsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.QOGZOH-zYAci4ot0w-Z0-p6ZsY_URou2NN4Vc-HEO6ebJIvgGN1UKnNQh2-Ly2oL3KRShAsnwwRVD-F8_IHNFQDiLk0WGXq6J9V8J8M-UNcs4iLtJOl0RUe2qnKp4akmIqer5ABXORn26TUZSD3UqJYTQpa5rzbAaHXj9mwI5s95lsrkWMBoYTZgctxKatzLK4BIgEmEweJg_nd9E7-1_6cb4GkBWezGzgsBQIb4DS7H4Z2TwA5TYSWZ678JvPyM1u1pAla4xM2oPfqgLJgxMx7p8zfoglhjBbit0iCNTkl7cJ8K2Q_TvG24waHRoYLJJw81zK6MAIjwm-vh7XBI9Q"
 #----------------------------------------------------------#
 # Unittest Test Cases
 #----------------------------------------------------------#
@@ -117,6 +117,17 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['actors'])
         self.assertTrue(len(data['actors']) > 0)
+    
+    def test_get_actors_details(self):
+        res = self.client().get('/actors-details', headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actors'])
+        self.assertTrue(len(data['actors']) > 0)
+    
+    
     
     #----------------------------------------------------------#
     # Tests for error behavior of each endpoint
