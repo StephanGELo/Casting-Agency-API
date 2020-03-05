@@ -36,7 +36,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'name': "Russell Poke",
             'age': 27,
             'gender': 'Male',
-            'movie_id': 2
+            'movie': 2
         }
 
         self.patch_movie = {
@@ -136,6 +136,17 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertTrue(data['added_actor'])
         self.assertTrue(len(data['added_actor']) == 1)
     
+    def test_delete_an_actor(self):
+        res = self.client().delete('/actors/1', headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        movie = Movie.query.filter(Movie.id == 3).one_or_none()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(movie, None)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['deleted_actor'])
+
     
     
     #----------------------------------------------------------#
