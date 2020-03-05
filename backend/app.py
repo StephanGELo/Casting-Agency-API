@@ -4,8 +4,8 @@ from sqlalchemy import exc
 from flask_cors import CORS
 import json
 
-from models import setup_db, Movie, Actor
-from auth import AuthError, requires_auth
+from .models import setup_db, Movie, Actor
+from .auth import AuthError, requires_auth
 
 ITEMS_PER_PAGE = 6
 
