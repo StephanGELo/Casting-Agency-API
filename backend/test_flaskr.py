@@ -57,6 +57,11 @@ class CastingAgencyTestCase(unittest.TestCase):
             'release_date': ""
         }
 
+        self.wrong_patch_movie = {
+            'title' : "",
+            'release_date': 'March 30, 2020'
+        }
+
         # Binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -199,13 +204,22 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Bad Request')
 
-    def test_422_unprocessable_if_deleting_a_movie_with_non_existant_id(self):
+    def test_404_not_found_if_deleting_a_movie_with_non_existant_id(self):
         res = self.client().delete('/movies/1000', headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource Not Found')
+
+    def test_422_unprocessed_if_updating_a_movie_with_insufficient_data(self):
+        res = self.client().patch('/movies/2', json=self.wrong_patch_movie, headers={ "Authorization":(producer)})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Unprocessable')
+
 
     #----------------------------------------------------------#
     # Tests of RBAC for each role

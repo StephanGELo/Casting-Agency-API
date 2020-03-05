@@ -89,7 +89,7 @@ def create_app(test_config=None):
         movie = Movie.query.get(movie_id)
 
         if movie is None:
-            abort(422)
+            abort(404)
 
         try:
             movie.delete()
@@ -99,7 +99,7 @@ def create_app(test_config=None):
                 "deleted_movie": movie_id
             }), 200
         except Exception:
-            abort(404)
+            abort(422)
 
     @app.route('/movies', methods=['POST'])
     @requires_auth("post:movies")
@@ -126,24 +126,32 @@ def create_app(test_config=None):
     @app.route('/movies/<int:movie_id>', methods=['PATCH'])
     @requires_auth("patch:movies")
     def update_a_movie(token, movie_id):
-        movie = Movie.query.get(movie_id)
+        try:
+            movie = Movie.query.get(movie_id)
 
-        if movie is None:
-            abort(404)
+            if movie is None:
+                abort(404)
 
-        body = request.get_json()
-        new_title = body.get('title', None)
-        new_release_date = body.get('release_date', None)
+            body = request.get_json()
+            new_title = body.get('title', None)
+            new_release_date = body.get('release_date', None)
 
-        movie.title = new_title
-        movie.release_date = new_release_date
-        movie.update()
-        updated_movie = [Movie.query.get(movie_id).short()]
+            if len(new_title) == 0:
+                abort(422)
+            elif len(new_release_date) == 0:
+                abort(422)
 
-        return jsonify({
-            "success": True,
-            "updated_movie":[updated_movie]
-        })
+            movie.title = new_title
+            movie.release_date = new_release_date
+            movie.update()
+            updated_movie = [Movie.query.get(movie_id).short()]
+
+            return jsonify({
+                "success": True,
+                "updated_movie":[updated_movie]
+            })
+        except Exception:
+            abort(422)
         
     #---------------------------------------------------#
     # Endpoints for Actors
