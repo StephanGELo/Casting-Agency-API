@@ -199,7 +199,14 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Bad Request')
 
-        
+    def test_422_unprocessable_if_deleting_a_movie_with_non_existant_id(self):
+        res = self.client().delete('/movies/1000', headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Unprocessable')
+
     #----------------------------------------------------------#
     # Tests of RBAC for each role
     #----------------------------------------------------------#

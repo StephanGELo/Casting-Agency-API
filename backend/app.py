@@ -88,6 +88,9 @@ def create_app(test_config=None):
     def delete_a_movie(token, movie_id):
         movie = Movie.query.get(movie_id)
 
+        if movie is None:
+            abort(422)
+
         try:
             movie.delete()
            
@@ -120,10 +123,10 @@ def create_app(test_config=None):
         except Exception:
             abort(400)
 
-    @app.route('/movies/<int:id>', methods=['PATCH'])
+    @app.route('/movies/<int:movie_id>', methods=['PATCH'])
     @requires_auth("patch:movies")
-    def update_a_movie(token, id):
-        movie = Movie.query.get(id)
+    def update_a_movie(token, movie_id):
+        movie = Movie.query.get(movie_id)
 
         if movie is None:
             abort(404)
@@ -135,7 +138,7 @@ def create_app(test_config=None):
         movie.title = new_title
         movie.release_date = new_release_date
         movie.update()
-        updated_movie = [Movie.query.get(id).short()]
+        updated_movie = [Movie.query.get(movie_id).short()]
 
         return jsonify({
             "success": True,
