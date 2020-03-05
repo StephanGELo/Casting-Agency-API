@@ -256,6 +256,13 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Bad Request')
 
+    def test_404_not_found_if_deleting_an_actor_with_non_existant_id(self):
+        res = self.client().delete('/actors/1000', headers={ "Authorization":(producer)})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource Not Found')
 
     #----------------------------------------------------------#
     # Tests of RBAC for each role

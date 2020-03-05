@@ -200,6 +200,10 @@ def create_app(test_config=None):
     @requires_auth("delete:actors")
     def delete_an_actor(token, id):
         actor = Actor.query.get(id)
+
+        if actor is None:
+            abort(404)
+
         try:
             actor.delete()
 
@@ -208,7 +212,7 @@ def create_app(test_config=None):
                 "deleted_actor": actor.short()
             })
         except Exception:
-            abort(404)
+            abort(422)
 
     @app.route('/actors', methods=['POST'])
     @requires_auth("post:actors")
