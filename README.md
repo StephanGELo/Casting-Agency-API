@@ -6,7 +6,35 @@ The name of the application is called the Casting Agency.  The Casting Agency mo
 
 This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction.
 
-## Getting Started
+## Authentication
+The app uses [Auth0](https://auth0.com) as a third party authentication service.
+
+Three roles have been created to manage the system. Each role is restricted to perform certain CRUD operations on the system as assigned and permitted by Auth0 service.
+
+The three roles are:
+
+- Casting assistant 
+  - Permission to `get:movies-details` and `get:actors-details`
+  - Login info:
+    - Email:
+    - password:
+
+- Casting Director
+  - All permissions a Casting Assistant has
+  - Permission to `post:actors` and `delete:actors` 
+  - Permission to `patch:actors` and `patch:movies`
+  - Login info:
+    - Email:
+    - password:
+
+- Executive Producer
+  - All permissions a Casting Director has
+  - Permission to `post:movies` and `delete:movies` 
+  - Login info:
+    - Email:
+    - password:
+
+## Getting Started with local development
 
 ### Installing Dependencies
 
