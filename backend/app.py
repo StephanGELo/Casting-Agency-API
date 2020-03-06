@@ -235,19 +235,18 @@ def create_app(test_config=None):
             abort(400)
 
         try:
-            new_actor = Actor()
-            new_actor.name = new_name
-            new_actor.age = new_age
-            new_actor.gender = new_gender
-            # new_actor.movie = new_movie
-        
+            new_actor = Actor(
+                name=new_name,
+                age=new_age,
+                gender=new_gender
+            )
             print("line 241 :", new_actor)
             new_actor.insert()
             # actor = Actor.query.get(new_actor.id).detailed()    
 
             return jsonify({
                 "success": True,
-                "added_actor": [new_actor]
+                "added_actor": "yeah"
             })
         except Exception:
             abort(400)
