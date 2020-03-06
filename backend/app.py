@@ -223,6 +223,9 @@ def create_app(test_config=None):
         new_gender = body['gender']
         new_movie = body['movie']
         print("line 225 name is: ", new_name)
+        print("line 226 name is: ", new_age)
+        print("line 227 name is: ", new_gender)
+        print("line 228 name is: ", new_movie)
         
         if len(new_name) == 0:
             abort(400)
