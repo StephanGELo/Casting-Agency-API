@@ -227,12 +227,12 @@ def create_app(test_config=None):
         print("line 227 name is: ", new_gender)
         print("line 228 name is: ", new_movie)
         
-        if len(new_name) == 0:
-            abort(400)
-        elif new_age == 0:
-            abort(400)
-        elif len(new_gender) == 0:
-            abort(400)
+        # if len(new_name) == 0:
+        #     abort(400)
+        # elif new_age == 0:
+        #     abort(400)
+        # elif len(new_gender) == 0:
+        #     abort(400)
 
         try:
             new_actor = Actor(
