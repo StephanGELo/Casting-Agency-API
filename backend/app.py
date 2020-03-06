@@ -221,11 +221,11 @@ def create_app(test_config=None):
         new_name = body['name']
         new_age = body['age']
         new_gender = body['gender']
-        # new_movie = body['movie']
+        new_movie = body['movie']
         print("line 225 name is: ", new_name)
         print("line 226 name is: ", new_age)
         print("line 227 name is: ", new_gender)
-        # print("line 228 name is: ", new_movie)
+        print("line 228 name is: ", new_movie)
         
         if len(new_name) == 0:
             abort(400)
@@ -238,9 +238,10 @@ def create_app(test_config=None):
             new_actor = Actor(
                 name=new_name,
                 age=new_age,
-                gender=new_gender
+                gender=new_gender,
+                movie=new_movie
             )
-            print("line 241 :", new_actor)
+            print("line 241 :", new_actor.name)
             new_actor.insert()
             # actor = Actor.query.get(new_actor.id).detailed()    
 
