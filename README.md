@@ -76,25 +76,25 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
 - General:
   - Fetches a dictionary of movies
   - Request Arguments: None
-  - Returns: an object with keys movies and success. The movies key contains a list of id, title and release_date with their corresponding values.
+  - Returns: an object with keys `movies` and `success`. The key `movies` contains a list of id, title and release_date with their corresponding values.
 
 - Sample:
 ```
-{
-  "movies": [
     {
-      "id": 1,
-      "release_date": "Feb 14, 2020",
-      "title": "Sonic The Hedgehog"
-    },
-    {
-      "id": 2,
-      "release_date": "Feb 7, 2020",
-      "title": "The Call Of the Wild"
+        "movies": [
+            {
+            "id": 1,
+            "release_date": "Feb 14, 2020",
+            "title": "Sonic The Hedgehog"
+            },
+            {
+            "id": 2,
+            "release_date": "Feb 7, 2020",
+            "title": "The Call Of the Wild"
+            }
+        ],
+        "success": true
     }
-  ],
-  "success": true
-}
 
 ```
 
@@ -103,40 +103,105 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
 - General:
   - Fetches a dictionary of actors
   - Request Arguments: None
-  - Returns: an object with keys actors and success. The actors key contains a list of name, age, and gender with their corresponding values.
+  - Returns: an object with keys `actors` and `success`. The key `actors` contains a list of name, age, and gender with their corresponding values.
 
 - Sample:
 ```
-{
-  "actors": [
     {
-      "age": 58,
-      "gender": "male",
-      "id": 1,
-      "name": "Jim Carrey"
-    },
-    {
-      "age": 46,
-      "gender": "male",
-      "id": 2,
-      "name": "James Marsden"
+        "actors": [
+            {
+            "age": 58,
+            "gender": "male",
+            "id": 1,
+            "name": "Jim Carrey"
+            },
+            {
+            "age": 46,
+            "gender": "male",
+            "id": 2,
+            "name": "James Marsden"
+            }
+        ],
+        "success": true
     }
-  ],
-  "success": true
-}
 
 ```
 
+### GET '/movies-details'
+
+- General:
+  - Fetches a dictionary of movies with full details
+  - Request Arguments: None
+  - Returns: an object with keys `movies `and `success`. The key `movies` is another object that contains a list of `actors`, the `id`, `release_date`, `title` of the movies. The list of actors provide the details of actors assigned to the movies.
+
+- Sample:
+```
+    {
+        "movies": [
+            {
+                "actors": [
+                    {
+                        "age": 58,
+                        "gender": "male",
+                        "id": 1,
+                        "movie": 1,
+                        "name": "Jim Carrey"
+                    },
+                    {
+                        "age": 46,
+                        "gender": "male",
+                        "id": 2,
+                        "movie": 1,
+                        "name": "James Marsden"
+                    }
+                ],
+                "id": 1,
+                "release_date": "Feb 14, 2020",
+                "title": "Sonic The Hedgehog"
+            },
+            {
+                "actors": [
+                    {
+                        "age": 77,
+                        "gender": "male",
+                        "id": 3,
+                        "movie": 2,
+                        "name": "Harrison Ford"
+                    },
+                    {
+                        "age": 42,
+                        "gender": "male",
+                        "id": 4,
+                        "movie": 2,
+                        "name": "Omar Sy"
+                    },
+                    {
+                        "age": 32,
+                        "gender": "female",
+                        "id": 5,
+                        "movie": 2,
+                        "name": "Karen Gillan"
+                    }
+                ],
+                "id": 2,
+                "release_date": "Feb 7, 2020",
+                "title": "The Call Of the Wild"
+            }
+        ],
+        "success": true
+    }
+```
 
 ## Testing
 
 In order to carry out the tests on the endpoints, navigate to the backend folder in your terminal and run the following commands:
 
+```bash
 dropdb castingagency_test
 createdb castingagency_test
 psql castingagency_test < casting.psql
 python3 test_flaskr.py
-
+```
 
 ## License
-The contents of this repository are covered under the MIT License.
+The contents of this repository are covered under the [MIT License.](https://choosealicense.com/licenses/mit/)
