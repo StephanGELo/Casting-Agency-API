@@ -49,9 +49,19 @@ python3 manage.py db upgrade
 
 Note: You  may be required to delete the migrations folder before running the commands above.
 
-## Running the server
+## Running the server locally on your machine
 
 Ensure that you are working using your created virtual environment.
+
+In `backend/app.py` remove the `.` from line 7 and 8. 
+
+Line 7 & 8 should look like this:
+
+`from models import setup_db, Movie, Actor`
+`from auth import AuthError, requires_auth`
+
+### Issue#1
+The `.` is required on line 7 and 8 when Heroku launches the app from the `wsgi.py` file found in the `casting-agency-folder`. The `.models` is equivalent to `backend.models`. It designates the path to the module. The issue is why the app can't be launched locally when the command lines below are executed in the terminal, unless the changes, as mentioned above, are made to lines 7 & 8.
 
 From within the `casting-agency-api` directory, run the server by executing:
 
@@ -192,11 +202,32 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
     }
 ```
 
+### DELETE '/actors'
+
+- General:
+  - Delete details of an actor
+  - Request Arguments: `actor.id`
+  - Returns: an object with keys `deleted_actor `and `success`. The key `deleted_actor` is another object that contains the `id`, `name`, `age` and `gender` with their corresponding values.
+
+- Sample:
+```
+    {
+        "deleted_actor": {
+            "age": 77,
+            "gender": "male",
+            "id": 3,
+            "name": "Harrison Ford"
+        },
+        "success": true
+    }
+```
+
 ## Testing
 
 In order to carry out the tests on the endpoints, navigate to the backend folder in your terminal and run the following commands:
 
 ```bash
+source setup.sh
 dropdb castingagency_test
 createdb castingagency_test
 psql castingagency_test < casting.psql
