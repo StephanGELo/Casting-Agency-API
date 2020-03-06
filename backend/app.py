@@ -4,8 +4,8 @@ from sqlalchemy import exc
 from flask_cors import CORS
 import json
 
-from .models import setup_db, Movie, Actor
-from .auth import AuthError, requires_auth
+from models import setup_db, Movie, Actor
+from auth import AuthError, requires_auth
 
 ITEMS_PER_PAGE = 6
 
@@ -218,10 +218,12 @@ def create_app(test_config=None):
     @requires_auth("post:actors")
     def add_an_actor(token):
         body = request.get_json()
-        new_name = body.get('name', None)
-        new_age = body.get('age', None)
-        new_gender = body.get('gender', None)
-        new_movie = body.get('movie', None)
+        print("body is :", body)
+        new_name = body['name']
+        new_age = body['age']
+        new_gender = body['gender']
+        new_movie = body['movie']
+        print(new_name)
         
         if len(new_name) == 0:
             abort(400)
