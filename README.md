@@ -4,7 +4,7 @@ The name of the application is called the Casting Agency.  The Casting Agency mo
 
 ## Deployment
 
-This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies)
+This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction.
 
 ## Getting Started
 
