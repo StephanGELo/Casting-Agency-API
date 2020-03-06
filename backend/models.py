@@ -77,6 +77,9 @@ class Actor(db.Model):
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
     movie = db.Column(db.Integer, db.ForeignKey('movies.id'))
+
+    def __repr__(self):
+        return f'<Actor %r>'% self
     
     def insert(self):
         db.session.add(self)
