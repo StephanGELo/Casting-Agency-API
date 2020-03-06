@@ -243,11 +243,11 @@ def create_app(test_config=None):
             )
             print("line 241 :", new_actor.name)
             new_actor.insert()
-            # actor = Actor.query.get(new_actor.id).detailed()    
+            actor = Actor.query.get(new_actor.id).detailed()    
 
             return jsonify({
                 "success": True,
-                "added_actor": "yeah"
+                "added_actor": [actor]
             })
         except Exception:
             abort(400)
