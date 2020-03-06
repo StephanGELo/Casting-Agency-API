@@ -56,10 +56,10 @@ Ensure that you are working using your created virtual environment.
 In `backend/app.py` remove the `.` from line 7 and 8. 
 
 Line 7 & 8 should look like this:
-
-`from models import setup_db, Movie, Actor`
-`from auth import AuthError, requires_auth`
-
+```
+    from models import setup_db, Movie, Actor
+    from auth import AuthError, requires_auth
+```
 ### Issue#1
 The `.` is required on line 7 and 8 when Heroku launches the app from the `wsgi.py` file found in the `casting-agency-folder`. The `.models` is equivalent to `backend.models`. It designates the path to the module. The issue is why the app can't be launched locally when the command lines below are executed in the terminal, unless the changes, as mentioned above, are made to lines 7 & 8.
 
@@ -81,7 +81,8 @@ The endpoints can be tested on Postman to check on the corresponding returned ob
 
 Refer to the Postman collection file in the `casting-agency-api` folder.
 
-### GET '/movies'
+### Endpoints for movies
+#### GET '/movies'
 
 - General:
   - Fetches a dictionary of movies
@@ -108,40 +109,11 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
 
 ```
 
-### GET '/actors'
-
-- General:
-  - Fetches a dictionary of actors
-  - Request Arguments: None
-  - Returns: an object with keys `actors` and `success`. The key `actors` contains a list of name, age, and gender with their corresponding values.
-
-- Sample:
-```
-    {
-        "actors": [
-            {
-            "age": 58,
-            "gender": "male",
-            "id": 1,
-            "name": "Jim Carrey"
-            },
-            {
-            "age": 46,
-            "gender": "male",
-            "id": 2,
-            "name": "James Marsden"
-            }
-        ],
-        "success": true
-    }
-
-```
-
-### GET '/movies-details'
+#### GET '/movies-details'
 
 - General:
   - Fetches a dictionary of movies with full details
-  - Request Arguments: None
+  - Request Arguments: The page_number. Default is set to page 1. The page number can be requested by adding `?page={page_number}` to the endpoint, e.g `/movies-details?page=2`.
   - Returns: an object with keys `movies `and `success`. The key `movies` is another object that contains a list of `actors`, the `id`, `release_date`, `title` of the movies. The list of actors provide the details of actors assigned to the movies.
 
 - Sample:
@@ -202,11 +174,41 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
     }
 ```
 
-### DELETE '/actors'
+### Endpoints for actors
+#### GET '/actors'
 
 - General:
-  - Delete details of an actor
-  - Request Arguments: `actor.id`
+  - Fetches a dictionary of actors
+  - Request Arguments: None
+  - Returns: an object with keys `actors` and `success`. The key `actors` contains a list of name, age, and gender with their corresponding values.
+
+- Sample:
+```
+    {
+        "actors": [
+            {
+            "age": 58,
+            "gender": "male",
+            "id": 1,
+            "name": "Jim Carrey"
+            },
+            {
+            "age": 46,
+            "gender": "male",
+            "id": 2,
+            "name": "James Marsden"
+            }
+        ],
+        "success": true
+    }
+
+```
+
+#### DELETE '/actors'
+
+- General:
+  - Delete details of an actor. Only a registered casting director and an executive Producer have the permissions to delete an actor.
+  - Request Arguments: `actor.id`, authentication token
   - Returns: an object with keys `deleted_actor `and `success`. The key `deleted_actor` is another object that contains the `id`, `name`, `age` and `gender` with their corresponding values.
 
 - Sample:
@@ -222,6 +224,53 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
     }
 ```
 
+#### POST '/actors'
+
+- General:
+  - Add an actor with the required details. Only a registered casting director and an executive Producer have the permissions to add an actor.
+  - Request Arguments: `actor.id`, authentication token
+  - Returns: an object with keys `added_actor `and `success`. The key `added_actor` is another object that contains the `id`, `name`, `age`, `gender` and `movie` with their corresponding values. The key `movie`, in this instance, is the assigned `movie_id` to this particular actor.
+
+- Sample:
+```
+    {
+        "added_actor": [
+            {
+                "age": 60,
+                "gender": "Female",
+                "id": 9,
+                "movie": 2,
+                "name": "Margot Robbie"
+            }
+        ],
+        "success": true
+    }
+```
+
+#### PATCH '/actors'
+
+- General:
+  - update details about an actor. Only a registered casting director and an executive Producer have the permissions to update details about an actor.
+  - Request Arguments: `actor.id`, authentication token
+  - Returns: an object with keys `updated_actor `and `success`. The key `updated_actor` is another object that contains the `id`, `name`, `age`, `gender` and `movie` with their corresponding values. The key `movie`, in this instance, is the assigned `movie_id` to this particular actor.
+
+- Sample:
+```
+{
+    "success": true,
+    "updated_actor": [
+        [
+            {
+                "age": 25,
+                "gender": "Female",
+                "id": 9,
+                "movie": 2,
+                "name": "Margot Robbie"
+            }
+        ]
+    ]
+}
+```
 ## Testing
 
 In order to carry out the tests on the endpoints, navigate to the backend folder in your terminal and run the following commands:
