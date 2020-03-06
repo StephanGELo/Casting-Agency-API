@@ -221,25 +221,25 @@ def create_app(test_config=None):
         new_name = body['name']
         new_age = body['age']
         new_gender = body['gender']
-        new_movie = body['movie']
+        # new_movie = body['movie']
         print("line 225 name is: ", new_name)
         print("line 226 name is: ", new_age)
         print("line 227 name is: ", new_gender)
-        print("line 228 name is: ", new_movie)
+        # print("line 228 name is: ", new_movie)
         
-        # if len(new_name) == 0:
-        #     abort(400)
-        # elif new_age == 0:
-        #     abort(400)
-        # elif len(new_gender) == 0:
-        #     abort(400)
+        if len(new_name) == 0:
+            abort(400)
+        elif new_age == 0:
+            abort(400)
+        elif len(new_gender) == 0:
+            abort(400)
 
         try:
             new_actor = Actor()
             new_actor.name = new_name
             new_actor.age = new_age
             new_actor.gender = new_gender
-            new_actor.movie = new_movie
+            # new_actor.movie = new_movie
         
             print("line 241 :", new_actor)
             new_actor.insert()
