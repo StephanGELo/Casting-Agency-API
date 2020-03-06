@@ -218,12 +218,11 @@ def create_app(test_config=None):
     @requires_auth("post:actors")
     def add_an_actor(token):
         body = request.get_json()
-        print("body is :", body)
         new_name = body['name']
         new_age = body['age']
         new_gender = body['gender']
         new_movie = body['movie']
-        print(new_name)
+        print("line 225 name is: ", new_name)
         
         if len(new_name) == 0:
             abort(400)
@@ -239,7 +238,7 @@ def create_app(test_config=None):
                 gender=new_gender,
                 movie=new_movie
             )
-
+            print("line 241 :", new_actor)
             new_actor.insert()
             actor = Actor.query.get(new_actor.id).detailed()    
 
