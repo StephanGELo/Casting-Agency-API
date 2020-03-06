@@ -48,7 +48,7 @@ def create_app(test_config=None):
     @app.route('/movies', methods=['GET'])
     def get_movies():
         try:
-            movies = Movie.query.all()
+            movies = Movie.query.order_by(Movie.id).all()
             formatted_movies = [movie.short() for movie in movies]
             selected_movies = paginate_items(request, formatted_movies)
 
@@ -66,7 +66,7 @@ def create_app(test_config=None):
     @app.route('/actors', methods=['GET'])
     def get_actors():
         try:
-            actors = Actor.query.all()
+            actors = Actor.query.order_by(Actor.id).all()
             formatted_actors = [actor.short() for actor in actors]
             selected_actors = paginate_items(request, formatted_actors)
             
