@@ -226,6 +226,9 @@ def create_app(test_config=None):
 
         if hasattr(body, 'movie'):
             new_movie = body['movie']
+        print("new_name is:", new_name)
+        print("new_age is:", new_age)
+        print("new_gender is:", new_gender)
         
         if len(new_name) == 0:
             abort(400)
