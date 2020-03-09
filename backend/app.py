@@ -130,8 +130,6 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body['title']
             new_release_date = body['release_date']
-            print("new title is: ", new_title)
-            print("r_date is :", new_release_date)
            
             if len(new_title) == 0:
                 abort(400)
@@ -221,10 +219,13 @@ def create_app(test_config=None):
     @requires_auth("post:actors")
     def add_an_actor(token):
         body = request.get_json()
+
         new_name = body['name']
         new_age = body['age']
         new_gender = body['gender']
-        new_movie = body['movie']
+
+        if body['movie']:
+            new_movie = body['movie']
         
         if len(new_name) == 0:
             abort(400)
@@ -239,7 +240,7 @@ def create_app(test_config=None):
                 age=new_age,
                 gender=new_gender
             )
-            if new_movie > 0:
+            if new_movie:
                 new_actor = Actor(movie=new_movie)
 
             new_actor.insert()
