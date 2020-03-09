@@ -229,7 +229,7 @@ def create_app(test_config=None):
         print("new_name is:", new_name)
         print("new_age is:", new_age)
         print("new_gender is:", new_gender)
-        
+
         if len(new_name) == 0:
             abort(400)
         elif new_age == 0:
@@ -243,8 +243,8 @@ def create_app(test_config=None):
                 age=new_age,
                 gender=new_gender
             )
-            if new_movie > 0:
-                new_actor = Actor(movie=new_movie)
+            # if new_movie > 0:
+            #     new_actor = Actor(movie=new_movie)
             print("you have a new actor: ", new_actor)
             new_actor.insert()
             actor = Actor.query.get(new_actor.id).detailed()    
