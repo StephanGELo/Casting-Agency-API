@@ -202,6 +202,27 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
     }
 ```
 
+#### POST '/movies'
+
+- General:
+  - Add a movie with the required details. Only a registered Executive Producer have the permissions to add an actor.
+  - Request Arguments: authentication token, an object containing the `title` and `release_date` of the new movie.
+  - Returns: an object with keys `added_movie `and `success`. The key `added_movie` is another object that contains the `id`, `title` and `release_date` with their corresponding values. 
+
+- Sample:
+```
+    {
+        "added_movie": [
+            {
+                "id": 5,
+                "release_date": "March 13, 2020",
+                "title": "Bloodshot"
+            }
+        ],
+        "success": true
+    }
+```
+
 ### Endpoints for actors
 #### GET '/actors'
 
@@ -229,10 +250,9 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
         ],
         "success": true
     }
-
 ```
 
-#### DELETE '/actors'
+#### DELETE '/actors/<int:actor_id>'
 
 - General:
   - Delete details of an actor. Only a registered casting director and an executive Producer have the permissions to delete an actor.
@@ -256,7 +276,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
 
 - General:
   - Add an actor with the required details. Only a registered casting director and an executive Producer have the permissions to add an actor.
-  - Request Arguments: `actor.id`, authentication token
+  - Request Arguments: authentication token, an object containing the `name`, `age`,`gender` and/or `movie` of the new actor.
   - Returns: an object with keys `added_actor `and `success`. The key `added_actor` is another object that contains the `id`, `name`, `age`, `gender` and `movie` with their corresponding values. The key `movie`, in this instance, is the assigned `movie_id` to this particular actor.
 
 - Sample:
@@ -275,7 +295,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
     }
 ```
 
-#### PATCH '/actors'
+#### PATCH '/actors/<int:actor_id>'
 
 - General:
   - update details about an actor. Only a registered casting director and an executive Producer have the permissions to update details about an actor.
