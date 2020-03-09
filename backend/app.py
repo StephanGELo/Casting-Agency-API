@@ -128,8 +128,8 @@ def create_app(test_config=None):
     def add_a_movie(token):
         try:
             body = request.get_json()
-            new_title = body.get('title', None)
-            new_release_date = body.get('release_date', None)
+            new_title = body['title']
+            new_release_date = body['release_date']
            
             if len(new_title) == 0:
                 abort(400)
