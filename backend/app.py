@@ -130,6 +130,8 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body['title']
             new_release_date = body['release_date']
+            print("new title is: ", new_title)
+            print("r_date is :", new_release_date)
            
             if len(new_title) == 0:
                 abort(400)
@@ -138,9 +140,10 @@ def create_app(test_config=None):
 
             new_movie = Movie(title=new_title, release_date=new_release_date)
             new_movie.insert()
+            movie = Movie.query.get(new_movie.id).short() 
             return jsonify({
                 "success": True,
-                "added_movie": [new_movie.short()]
+                "added_movie": [movie]
             }), 200
         except Exception:
             abort(400)
