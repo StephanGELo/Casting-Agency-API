@@ -224,7 +224,7 @@ def create_app(test_config=None):
         new_age = body['age']
         new_gender = body['gender']
 
-        if body['movie']:
+        if hasattr(body, 'movie'):
             new_movie = body['movie']
         
         if len(new_name) == 0:
