@@ -247,7 +247,7 @@ def create_app(test_config=None):
             #     new_actor = Actor(movie=new_movie)
             #     new_actor.insert()
             #     actor = Actor.query.get(new_actor.id).detailed() 
-            print("you have a new actor: ", new_actor)
+            # print("you have a new actor: ", new_actor)
             new_actor.insert()
             actor = Actor.query.get(new_actor.id).short() 
 
