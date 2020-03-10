@@ -107,9 +107,11 @@ Setting the `FLASK_APP` variable to `wsgi` directs flask to use the `backend` di
 
 ## Endpoint Library
 
-The endpoints can be tested on Postman to check on the corresponding returned objects for each endpoint.
+The endpoints can be tested on Postman to check on the corresponding returned objects for each endpoint.  
 
 Refer to the Postman collection file in the `casting-agency-api` folder.  Remember to use the JWTs generated from the Auth0 login, refer to section Deployment and Authentication, in order to test the endpoints that required the necessary authentication and permission.
+
+Alternatively, refer to the [postman docs](https://documenter.getpostman.com/preview/3439625-19dd2095-4442-4fc8-9127-2cf73f9dd824?versionTag=latest&apiName=CURRENT&version=latest&top-bar=ffffff&right-sidebar=303030&highlight=ef5b25#c1a80dc4-1465-43fc-bf7e-74327ab1102f) for this particular collection for the respective `Curl` commands for each endpoint. Remember to include the `headers={"Authorization": (ROLE's_JWT)}` at the end of each `curl` command where authorization is required for the endpoint.
 
 ### Endpoints for movies
 #### GET '/movies'

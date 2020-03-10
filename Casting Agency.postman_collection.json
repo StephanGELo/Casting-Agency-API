@@ -1,0 +1,691 @@
+{
+	"info": {
+		"_postman_id": "19dd2095-4442-4fc8-9127-2cf73f9dd824",
+		"name": "Casting Agency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "/movies-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTUzNmM5YjIwNjBkODg4MDZkODgiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4NTQ1LCJleHAiOjE1ODM5MDQ1NDUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsImdldDptb3ZpZXMtZGV0YWlscyJdfQ.uQZus-mTsZsBbpw__6TyvT7pMr1ZKmMmJe1jrcEDTwprxdv92uW1ySxGkxMWg5bHnbWV1noEan69NcL9RcrV7JxA6FERL5j2A3-dhWtzjjwEq_7N64bXjJ1FnbBnSABx4NZWbULGf19_0JCbwTqHrpMk_4i0nDne0ah4O1ysJl6_odcyWkcDMQGoBLs2L8gElW0xdWQnSZBBYglXzDBXki8kKqMRIdJlcjVyyr22_Af4gAlZm3X-Qe6Ml_qgT-RMSpS6kRJcCSEjVrJe4zcJjCOoKuazybcOIE0G9iHAjGxjWxOCtUg8ME-U46x-KP87kavnJ8r388Ziry11GLKoBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies-details",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTUzNmM5YjIwNjBkODg4MDZkODgiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4NTQ1LCJleHAiOjE1ODM5MDQ1NDUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsImdldDptb3ZpZXMtZGV0YWlscyJdfQ.uQZus-mTsZsBbpw__6TyvT7pMr1ZKmMmJe1jrcEDTwprxdv92uW1ySxGkxMWg5bHnbWV1noEan69NcL9RcrV7JxA6FERL5j2A3-dhWtzjjwEq_7N64bXjJ1FnbBnSABx4NZWbULGf19_0JCbwTqHrpMk_4i0nDne0ah4O1ysJl6_odcyWkcDMQGoBLs2L8gElW0xdWQnSZBBYglXzDBXki8kKqMRIdJlcjVyyr22_Af4gAlZm3X-Qe6Ml_qgT-RMSpS6kRJcCSEjVrJe4zcJjCOoKuazybcOIE0G9iHAjGxjWxOCtUg8ME-U46x-KP87kavnJ8r388Ziry11GLKoBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors-details?page=1",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors-details"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "/movies-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies-details",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors-details?page=1",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors-details"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\n            \"age\": 60,\n            \"gender\": \"Female\",\n            \"movie\": 2,\n            \"name\": \"Margot Robbie\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/5",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors/5",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/6",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t\t{\n            \"age\": 40,\n            \"gender\": \"female\",\n            \"movie\": 3,\n            \"name\": \"Ali Funny Wong\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors/6",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTVmZmM5YjIwNjBkODg4MDcwMjUiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY4ODY1LCJleHAiOjE1ODM5MDQ4NjUsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJnZXQ6bW92aWVzLWRldGFpbHMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.IvGJWwf65FrEJ_xBOX_BbAXFNvQIZ7lOFcHn01jVcdnMVMAgFS5Tv4oggwmsCdfO0SRcNcmLaNDAyeRgpEe_4hfT1o2d6s7BAwp0cyRPbjMkPY2LbMuq9Zg6TU41QRnba76pn6a7T_HYrx63tDHrXOIYkr7eWBpyj9C5cd2Jn2eJ3HbNYFmyx2Ud9kz60y9h4EYycmPIFa5aTMI3EIzuccadimA8FSXphJAj-RYnFaErLqD7pRGpxnhUOpeov5Bhq9nHFaDnpCpf8yXvOVN8xt8URQw--miF1kB6SZM32e6XWjUIrsxy0XXABZzgdeVyieBjRacj1D9Mv0iqih_KDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t    \"release_date\": \"Aug 7, 2020\",\n        \"title\": \"The Call Of the Wildest\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies/2",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executive Producer",
+			"item": [
+				{
+					"name": "/movies-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies-details",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors-details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors-details?page=1",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors-details"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\n            \"age\": 52,\n            \"gender\": \"Male\",\n            \"name\": \"Guy Pearce\",\n            \"movie\": null\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\n            \"title\": \"Bloodshot\",\n            \"release_date\": \"March 13, 2020\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/4",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies/5",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors/3",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"title\": \"Sonic The Hedgehog\",\n\t\t\"release_date\": \"June 27, 2020\"\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/movies/1",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actors/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTFRVGxHUmtVME5rWXpNekkyT0RjeE56aEVPREEyT1RCR01EVkJSamxEUXpBeVJEVXpRdyJ9.eyJpc3MiOiJodHRwczovL3VuaXZlcnNhbGVhZ2xlLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTY3ZTY0N2M5YjIwNjBkODg4MDcxMWIiLCJhdWQiOiJjYXN0aW5nIiwiaWF0IjoxNTgzODY5NDg3LCJleHAiOjE1ODM5MDU0ODcsImF6cCI6IjEweDdtT1R2anVQSWNqMGpGbTVPeTZjZE1rTEFWM0NFIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwiZ2V0Om1vdmllcy1kZXRhaWxzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.FeBWXH_WfX4rqMVyhZPqWRVVopL4YbgkC2sc0QHFt4zfaWhjw1ibcOgmhVBU_5Ci-kN_mCmYkAx8on7aGRCEWe-ytjEPi_qzgxGGBu3tTcqllgtNjkD65PhW1Qd15NJfgahPVEWVJxW5xxZ_dVUE0YiiIDokgBOUS9peiH2K_EMdoyHz3UVuIJuH0-jQhwD4h4Oql3olXyJPzc2PJ7mGZssBlriuAsrFcJXXXzz4S0yBF8RmV_pX-B9uK8i2ZYwveFq3Dop3eFuqnZkMEjamkbUEz9SN0LIooXx8BXsVRgQLMzmJtnAvogOccmUnLgfLiWfmXr2qMWJzk0e2qGh_xQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\n            \"age\": 50,\n            \"gender\": \"male\",\n            \"movie\": 1,\n            \"name\": \"James Awesome Marsden\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://stephangelcasting.herokuapp.com/actors/2",
+							"protocol": "https",
+							"host": [
+								"stephangelcasting",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
