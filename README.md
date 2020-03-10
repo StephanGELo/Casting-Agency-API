@@ -114,7 +114,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
 
 - General:
   - Fetches a dictionary of movies
-  - Request Arguments: None
+  - Request Arguments: The page_number. Default is set to page 1. The page number can be requested by adding `?page={page_number}` to the endpoint, e.g `/movies?page=2`.
   - Returns: an object with keys `movies` and `success`. The key `movies` contains a list of id, title and release_date with their corresponding values.
 
 - Sample:
@@ -222,7 +222,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
         "success": true
     }
 ```
-#### DELETE '/movies/<int:movie_id>'
+#### DELETE '/movies/{int:movie_id}'
 
 - General:
   - Delete details of a movie. Only a registered Executive Producer have the permissions to delete an a movie.
@@ -242,7 +242,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
         "success": true
     }
 ```
-#### PATCH '/movies/<int:movie_id>'
+#### PATCH '/movies/{int:movie_id}'
 
 - General:
   - update details about an movie. Only a registered Executive Producer have the permissions to update details about an actor.
@@ -272,7 +272,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
 
 - General:
   - Fetches a dictionary of actors
-  - Request Arguments: None
+  - Request Arguments: The page_number. Default is set to page 1. The page number can be requested by adding `?page={page_number}` to the endpoint, e.g `/actors?page=2`.
   - Returns: an object with keys `actors` and `success`. The key `actors` contains a list of name, age, and gender with their corresponding values.
 
 - Sample:
@@ -296,7 +296,66 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
     }
 ```
 
-#### DELETE '/actors/<int:actor_id>'
+#### GET '/actors-details'
+
+- General:
+  - Fetches a dictionary of actors
+  - Request Arguments:  The page_number. Default is set to page 1. The page number can be requested by adding `?page={page_number}` to the endpoint, e.g `/actors-details?page=2`.
+  - Returns: an object with keys `actors` and `success`. The key `actors` contains a list of `id`, `name`, `age`, `gender` and `movie` with their corresponding values.
+
+- Sample:
+```
+    {
+        "actors": [
+            {
+                "age": 58,
+                "gender": "male",
+                "id": 1,
+                "movie": 1,
+                "name": "Jim Carrey"
+            },
+            {
+                "age": 46,
+                "gender": "male",
+                "id": 2,
+                "movie": 1,
+                "name": "James Marsden"
+            },
+            {
+                "age": 42,
+                "gender": "male",
+                "id": 4,
+                "movie": 2,
+                "name": "Omar Sy"
+            },
+            {
+                "age": 32,
+                "gender": "female",
+                "id": 5,
+                "movie": 2,
+                "name": "Karen Gillan"
+            },
+            {
+                "age": 37,
+                "gender": "female",
+                "id": 6,
+                "movie": 3,
+                "name": "Ali Wong"
+            },
+            {
+                "age": 38,
+                "gender": "female",
+                "id": 7,
+                "movie": 4,
+                "name": "Andrea Riseborough"
+            }
+        ],
+        "success": true
+    }
+
+```
+
+#### DELETE '/actors/{int:actor_id}'
 
 - General:
   - Delete details of an actor. Only a registered casting director and an executive Producer have the permissions to delete an actor.
@@ -339,7 +398,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.  Rememb
     }
 ```
 
-#### PATCH '/actors/<int:actor_id>'
+#### PATCH '/actors/{int:actor_id}'
 
 - General:
   - update details about an actor. Only a registered casting director and an executive Producer have the permissions to update details about an actor.
