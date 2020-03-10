@@ -243,6 +243,7 @@ def create_app(test_config=None):
                 age=new_age,
                 gender=new_gender
             )
+            print("this is new_movie", new_movie)
             if new_movie > 0:
                 new_actor = Actor(movie=new_movie)
                 new_actor.insert()
