@@ -225,8 +225,8 @@ def create_app(test_config=None):
         new_gender = body['gender']
 
         if 'movie'in body:
-            print("this is new_movie", new_movie)
             new_movie = body['movie']
+            print("this is new_movie", new_movie)
         print("new_name is:", new_name)
         print("new_age is:", new_age)
         print("new_gender is:", new_gender)
