@@ -242,6 +242,29 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
         "success": true
     }
 ```
+#### PATCH '/movies/<int:movie_id>'
+
+- General:
+  - update details about an movie. Only a registered Executive Producer have the permissions to update details about an actor.
+  - Request Arguments: authentication token, `movie.id`, an object containing the keys `title` and `release_date` with the respective updated values.
+  - Returns: an object with keys `updated_movie `and `success`. The key `updated_movie` is another object that contains the `id`, `title` and`release_date` with their corresponding updated values.
+
+- Sample:
+```
+    {
+        "success": true,
+        "updated_movie": [
+            [
+                {
+                    "id": 1,
+                    "release_date": "June 27, 2020",
+                    "title": "Sonic The Hedgehog"
+                }
+            ]
+        ]
+    }
+
+```
 
 
 ### Endpoints for actors
