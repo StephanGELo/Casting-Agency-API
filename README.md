@@ -4,7 +4,7 @@ The name of the application is called the Casting Agency.  The Casting Agency mo
 
 ## Deployment
 
-This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction.
+This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction. Refer to the credentials given below to login in order to access the JWT for each role mentioned below.
 
 ## Authentication
 The app uses [Auth0](https://auth0.com) as a third party authentication service.
@@ -20,7 +20,7 @@ The three roles are:
     - password:
 
 - Casting Director
-  - All permissions a Casting Assistant has
+  - All permissions a Casting Assistant has, as mentioned above.
   - Permission to `post:actors` and `delete:actors` 
   - Permission to `patch:actors` and `patch:movies`
   - Login info:
@@ -28,7 +28,7 @@ The three roles are:
     - password:
 
 - Executive Producer
-  - All permissions a Casting Director has
+  - All permissions a Casting Director has, as mentioned above.
   - Permission to `post:movies` and `delete:movies` 
   - Login info:
     - Email:
@@ -99,7 +99,7 @@ export FLASK_ENV=development
 flask run
 ```
 
-Setting the `FLASK_ENV` variable to `development` will detect file changes and restart the server automatically.
+Setting the `FLASK_ENV` variable to `development` will detect the changes made to the file and restart the server automatically.
 
 Setting the `FLASK_APP` variable to `wsgi` directs flask to use the `backend` directory and the `app.py` file to find the application. 
 
@@ -107,7 +107,7 @@ Setting the `FLASK_APP` variable to `wsgi` directs flask to use the `backend` di
 
 The endpoints can be tested on Postman to check on the corresponding returned objects for each endpoint.
 
-Refer to the Postman collection file in the `casting-agency-api` folder.
+Refer to the Postman collection file in the `casting-agency-api` folder.  Remember to use the JWTs generated from the Auth0 login, refer to section Deployment and Authentication, in order to test the endpoints that required the necessary authentication and permission.
 
 ### Endpoints for movies
 #### GET '/movies'
