@@ -223,13 +223,7 @@ def create_app(test_config=None):
         new_name = body['name']
         new_age = body['age']
         new_gender = body['gender']
-
-        if 'movie'in body:
-            new_movie = body['movie']
-            print("this is new_movie", new_movie)
-        print("new_name is:", new_name)
-        print("new_age is:", new_age)
-        print("new_gender is:", new_gender)
+        new_movie = body['movie']
 
         if len(new_name) == 0:
             abort(400)
@@ -243,15 +237,11 @@ def create_app(test_config=None):
                 name=new_name,
                 age=new_age,
                 gender=new_gender
+                movie=new_movie
             )
-            print("this is new_movie", new_movie)
-            if new_movie > 0:
-                new_actor = Actor(movie=new_movie)
-                new_actor.insert()
-                actor = Actor.query.get(new_actor.id).detailed() 
-            # print("you have a new actor: ", new_actor)
+        
             new_actor.insert()
-            actor = Actor.query.get(new_actor.id).short()
+            actor = Actor.query.get(new_actor.id).detailed()
 
             return jsonify({
                 "success": True,
