@@ -222,6 +222,27 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
         "success": true
     }
 ```
+#### DELETE '/movies/<int:movie_id>'
+
+- General:
+  - Delete details of a movie. Only a registered Executive Producer have the permissions to delete an a movie.
+  - Request Arguments: `movie.id`, authentication token
+  - Returns: an object with keys `deleted_movie `and `success`. The key `deleted_movie` is another object that contains the `id`, `title` and `release_date` with their corresponding values. 
+
+- Sample:
+```
+    {
+        "deleted_movie": [
+            {
+                "id": 5,
+                "release_date": "March 13, 2020",
+                "title": "Bloodshot"
+            }
+        ],
+        "success": true
+    }
+```
+
 
 ### Endpoints for actors
 #### GET '/actors'
@@ -287,7 +308,7 @@ Refer to the Postman collection file in the `casting-agency-api` folder.
                 "age": 60,
                 "gender": "Female",
                 "id": 9,
-                "movie": 2,
+                "movie": null,
                 "name": "Margot Robbie"
             }
         ],
