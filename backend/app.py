@@ -236,7 +236,7 @@ def create_app(test_config=None):
             new_actor = Actor(
                 name=new_name,
                 age=new_age,
-                gender=new_gender
+                gender=new_gender,
                 movie=new_movie
             )
         
