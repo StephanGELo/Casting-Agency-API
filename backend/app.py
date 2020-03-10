@@ -88,7 +88,7 @@ def create_app(test_config=None):
     @requires_auth("get:movies-details")
     def get_movies_details(token):
         try:
-            movies = Movie.query.all()
+            movies = Movie.query.order_by(Movie.id).all()
             formatted_movies = [movie.detailed() for movie in movies]
             paginated_movies = paginate_items(request, formatted_movies)
 
@@ -184,7 +184,7 @@ def create_app(test_config=None):
     @requires_auth("get:actors")
     def get_actors_details(token):
         try:
-            actors = Actor.query.all()
+            actors = Actor.query.order_by(Actor.id).all()
             formatted_actors = [actor.detailed() for actor in actors]
             paginated_actors = paginate_items(request, formatted_actors)
 
