@@ -118,7 +118,7 @@ def create_app(test_config=None):
            
             return jsonify({
                 "success": True,
-                "deleted_movie": movie_id
+                "deleted_movie": [movie.short()]
             }), 200
         except Exception:
             abort(422)
@@ -224,7 +224,7 @@ def create_app(test_config=None):
         new_age = body['age']
         new_gender = body['gender']
         new_movie = body['movie']
-
+        
         if len(new_name) == 0:
             abort(400)
         elif new_age == 0:
