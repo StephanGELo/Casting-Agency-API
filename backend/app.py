@@ -9,6 +9,7 @@ from .auth import AuthError, requires_auth
 
 ITEMS_PER_PAGE = 6
 
+
 def paginate_items(request, list):
     page = request.args.get('page', 1, type=int)
     start = (page - 1) * ITEMS_PER_PAGE
@@ -18,6 +19,7 @@ def paginate_items(request, list):
     paginated_items = formatted_items[start:end]
 
     return paginated_items
+
 
 def create_app(test_config=None):
 
@@ -38,13 +40,13 @@ def create_app(test_config=None):
         return response
 
 
-#-------------------------------------------------------#
+# -------------------------------------------------------#
 # ROUTES
-#-------------------------------------------------------#
-    #---------------------------------------------------#
+# -------------------------------------------------------#
+    # ---------------------------------------------------#
     # Endpoints for index page
-    #---------------------------------------------------#    
-    
+    # ---------------------------------------------------#
+
     @app.route('/movies', methods=['GET'])
     def get_movies():
         try:
@@ -61,7 +63,6 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(404)
-    
 
     @app.route('/actors', methods=['GET'])
     def get_actors():
@@ -69,10 +70,10 @@ def create_app(test_config=None):
             actors = Actor.query.order_by(Actor.id).all()
             formatted_actors = [actor.short() for actor in actors]
             selected_actors = paginate_items(request, formatted_actors)
-            
+
             if len(selected_actors) == 0:
                 abort(404)
-            
+
             return jsonify({
                 "success": True,
                 "actors": selected_actors
@@ -80,10 +81,9 @@ def create_app(test_config=None):
         except Exception:
             abort(404)
 
-
-    #---------------------------------------------------#
+    # ---------------------------------------------------#
     # Endpoints for Movies
-    #---------------------------------------------------#
+    # ---------------------------------------------------#
     @app.route('/movies-details', methods=['GET'])
     @requires_auth("get:movies-details")
     def get_movies_details(token):
@@ -93,10 +93,11 @@ def create_app(test_config=None):
             paginated_movies = paginate_items(request, formatted_movies)
 
             if len(paginated_movies) == 0:
-                    abort(404)
-            
+                abort(404)
+
             for movie in paginated_movies:
-                movie['actors'] = [actor.detailed() for actor in movie['actors']]
+                movie['actors'] = [actor.detailed()
+                                   for actor in movie['actors']]
 
             return jsonify({
                 "success": True,
@@ -104,7 +105,7 @@ def create_app(test_config=None):
             })
         except Exception:
             abort(422)
-        
+
     @app.route('/movies/<int:movie_id>', methods=['DELETE'])
     @requires_auth("delete:movies")
     def delete_a_movie(token, movie_id):
@@ -115,7 +116,7 @@ def create_app(test_config=None):
 
         try:
             movie.delete()
-           
+
             return jsonify({
                 "success": True,
                 "deleted_movie": [movie.short()]
@@ -130,7 +131,7 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body['title']
             new_release_date = body['release_date']
-           
+
             if len(new_title) == 0:
                 abort(400)
             elif len(new_release_date) == 0:
@@ -138,7 +139,7 @@ def create_app(test_config=None):
 
             new_movie = Movie(title=new_title, release_date=new_release_date)
             new_movie.insert()
-            movie = Movie.query.get(new_movie.id).short() 
+            movie = Movie.query.get(new_movie.id).short()
             return jsonify({
                 "success": True,
                 "added_movie": [movie]
@@ -171,14 +172,14 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "updated_movie":[updated_movie]
+                "updated_movie": [updated_movie]
             })
         except Exception:
             abort(422)
-        
-    #---------------------------------------------------#
+
+    # ---------------------------------------------------#
     # Endpoints for Actors
-    #---------------------------------------------------#
+    # ---------------------------------------------------#
     @app.route('/actors-details', methods=['GET'])
     @requires_auth("get:actors")
     def get_actors_details(token):
@@ -188,8 +189,8 @@ def create_app(test_config=None):
             paginated_actors = paginate_items(request, formatted_actors)
 
             if len(paginated_actors) == 0:
-                    abort(404)
-                            
+                abort(404)
+
             return jsonify({
                 "success": True,
                 "actors": paginated_actors
@@ -224,7 +225,7 @@ def create_app(test_config=None):
         new_age = body['age']
         new_gender = body['gender']
         new_movie = body['movie']
-        
+
         if len(new_name) == 0:
             abort(400)
         elif new_age == 0:
@@ -239,7 +240,7 @@ def create_app(test_config=None):
                 gender=new_gender,
                 movie=new_movie
             )
-        
+
             new_actor.insert()
             actor = Actor.query.get(new_actor.id).detailed()
 
@@ -253,7 +254,7 @@ def create_app(test_config=None):
     @app.route('/actors/<int:actor_id>', methods=['PATCH'])
     @requires_auth("patch:actors")
     def update_actor(token, actor_id):
-        
+
         actor = Actor.query.get(actor_id)
 
         if actor is None:
@@ -282,13 +283,14 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "updated_actor":[updated_actor]
+                "updated_actor": [updated_actor]
             }), 200
         except Exception:
             abort(422)
-        #---------------------------------------------------#
+
+    # ---------------------------------------------------#
     # Error handlers
-    #---------------------------------------------------#
+    # ---------------------------------------------------#
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({
@@ -336,7 +338,7 @@ def create_app(test_config=None):
             "error": 500,
             "message": "Internal Server Error"
         }), 500
-    
+
     @app.errorhandler(AuthError)
     def auth_error(error):
         return jsonify({

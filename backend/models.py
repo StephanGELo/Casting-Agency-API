@@ -13,21 +13,22 @@ setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
 
+
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config ["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
     db.create_all()
 
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Models.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
-#------------------------#
+# ------------------------#
 # Movie model
-#------------------------#
+# ------------------------#
 
 class Movie(db.Model):
     __tablename__ = 'movies'
@@ -37,26 +38,26 @@ class Movie(db.Model):
     actors = db.relationship('Actor', backref='movies', lazy=True)
 
     def __repr__(self):
-            return f'<Movie %r>'% self
+        return f'<Movie %r>' % self
 
     def insert(self):
         db.session.add(self)
         db.session.commit()
-    
+
     def update(self):
         db.session.commit()
-    
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-    
+
     def short(self):
         return {
             'id': self.id,
             'title': self.title,
             'release_date': self.release_date
         }
-    
+
     def detailed(self):
         return {
             'id': self.id,
@@ -64,11 +65,11 @@ class Movie(db.Model):
             'release_date': self.release_date,
             'actors': self.actors
         }
-    
-    
-#------------------------#
+
+
+# ------------------------#
 # Actor model
-#------------------------#
+# ------------------------#
 
 class Actor(db.Model):
     __tablename__ = 'actors'
@@ -79,19 +80,19 @@ class Actor(db.Model):
     movie = db.Column(db.Integer, db.ForeignKey('movies.id'))
 
     def __repr__(self):
-        return f'<Actor %r>'% self
-    
+        return f'<Actor %r>' % self
+
     def insert(self):
         db.session.add(self)
         db.session.commit()
-    
+
     def update(self):
         db.session.commit()
-    
+
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-    
+
     def short(self):
         return {
             'id': self.id,
@@ -108,5 +109,3 @@ class Actor(db.Model):
             'gender': self.gender,
             'movie': self.movie
         }
-
-    

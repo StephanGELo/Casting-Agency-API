@@ -8,13 +8,14 @@ AUTH0_DOMAIN = 'universaleagle.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'casting'
 
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 # AuthError Exception
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 '''
 AuthError Exception
 A standardized way to communicate auth failure modes
 '''
+
 
 class AuthError(Exception):
     def __init__(self, error, status_code):
@@ -22,9 +23,9 @@ class AuthError(Exception):
         self.status_code = status_code
 
 
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 # Auth Header
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 
 def get_token_auth_header():
     authorization_header = request.headers.get('Authorization', None)
@@ -57,9 +58,9 @@ def get_token_auth_header():
     return token
 
 
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 # Check Permissions
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
         raise AuthError({
@@ -75,9 +76,9 @@ def check_permissions(permission, payload):
     return True
 
 
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 # Verify the Token
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 def verify_decode_jwt(token):
     # Get the public key from Auth0
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
@@ -114,13 +115,13 @@ def verify_decode_jwt(token):
                 issuer='https://' + AUTH0_DOMAIN + '/'
             )
             return payload
-        
+
         except jwt.ExpiredSignatureError:
             raise AuthError({
                 'code': 'token_expired',
                 'description': 'Token expired.'
             }, 401)
-        
+
         except jwt.JWTClaimsError:
             raise AuthError({
                 'code': 'invalid_claims',
@@ -133,9 +134,9 @@ def verify_decode_jwt(token):
     }, 401)
 
 
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 # @requires_auth decorator method
-#----------------------------------------------------------#
+# ----------------------------------------------------------#
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
