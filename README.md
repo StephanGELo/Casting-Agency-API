@@ -4,7 +4,9 @@ The name of the application is called the Casting Agency.  The Casting Agency mo
 
 ## Deployment
 
-This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction. Refer to the credentials given below to login in order to access the JWT for each role mentioned below.
+This app is hosted on heroku. The link to the app is [here, click me!](https://universaleagle.auth0.com/authorize?audience=casting&response_type=token&client_id=10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE&redirect_uri=https://stephangelcasting.herokuapp.com/movies). The backend is up and running. The frontend is still under construction. 
+
+Refer to the credentials given below to login in order to access the JWT for each role mentioned below.  Ensure that your browser history is cleared at least for the last 1 hour before login into each account.
 
 ## Authentication
 The app uses [Auth0](https://auth0.com) as a third party authentication service.
@@ -16,23 +18,23 @@ The three roles are:
 - Casting assistant 
   - Permission to `get:movies-details` and `get:actors-details`
   - Login info:
-    - Email:
-    - password:
+    - Email: `eaglecastassistant@gmail.com`
+    - password: `Passwordeca1`
 
 - Casting Director
   - All permissions a Casting Assistant has, as mentioned above.
   - Permission to `post:actors` and `delete:actors` 
   - Permission to `patch:actors` and `patch:movies`
   - Login info:
-    - Email:
-    - password:
+    - Email: `eaglecastdirector@gmail.com`
+    - password: `Passwordecd1`
 
 - Executive Producer
   - All permissions a Casting Director has, as mentioned above.
   - Permission to `post:movies` and `delete:movies` 
   - Login info:
-    - Email:
-    - password:
+    - Email: `eaglecastproducer@gmail.com`
+    - password: `Passwordecp1`
 
 ## Getting Started with local development
 
