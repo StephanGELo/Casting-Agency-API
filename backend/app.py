@@ -225,6 +225,7 @@ def create_app(test_config=None):
         new_gender = body['gender']
 
         if hasattr(body, 'movie'):
+            print("this is new_movie", new_movie)
             new_movie = body['movie']
         print("new_name is:", new_name)
         print("new_age is:", new_age)
