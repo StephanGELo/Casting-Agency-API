@@ -243,13 +243,13 @@ def create_app(test_config=None):
                 age=new_age,
                 gender=new_gender
             )
-            # if new_movie > 0:
-            #     new_actor = Actor(movie=new_movie)
-            #     new_actor.insert()
-            #     actor = Actor.query.get(new_actor.id).detailed() 
+            if new_movie > 0:
+                new_actor = Actor(movie=new_movie)
+                new_actor.insert()
+                actor = Actor.query.get(new_actor.id).detailed() 
             # print("you have a new actor: ", new_actor)
             new_actor.insert()
-            actor = Actor.query.get(new_actor.id).short() 
+            actor = Actor.query.get(new_actor.id).short()
 
             return jsonify({
                 "success": True,
