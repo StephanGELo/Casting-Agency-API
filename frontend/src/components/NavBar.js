@@ -1,5 +1,4 @@
 //To show the login and logout button
-// src/components/NavBar.js
 
 import React from "react";
 import { useAuth0 } from "../react-auth0-spa";
