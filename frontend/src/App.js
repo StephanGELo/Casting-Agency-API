@@ -6,6 +6,8 @@ import { Router, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import history from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
+import { RouteMovies } from './components/Movies';
+// import { RouteActors } from './components/Actors';
 import './App.css';
 
 function App() {
@@ -23,7 +25,9 @@ function App() {
         </header>
         <Switch>
           <Route path="/" exact/>
-          <PrivateRoute path="/profile" component={Profile} />
+          <Route path='/movies' component={RouteMovies} />
+          {/* <Route path='/actors' component={RouteActors} /> */} 
+          {/* <PrivateRoute path="/profile" component={Profile} /> */}
         </Switch>
       </Router>
     </div>
