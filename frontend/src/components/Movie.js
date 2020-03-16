@@ -1,11 +1,11 @@
 import React from 'react';
-import { Col, Card, Cardbody, CardTitle, CardText, Button } from 'reactstrap';
+import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import { Navlink as RouterNavLink, withRouter } from 'react-router-dom';
 
 const MovieItem = ({movie, exposedToken, token, removeItem}) => (
     <Col md="5" className="my-3">
         <Card>
-            <Cardbody>
+            <CardBody>
                 <CardTitle>
                     {movie.title}
                 </CardTitle>
@@ -20,7 +20,7 @@ const MovieItem = ({movie, exposedToken, token, removeItem}) => (
                             Delete
                         </Button>
                     </div>
-            </Cardbody>
+            </CardBody>
         </Card>
     </Col>
 );

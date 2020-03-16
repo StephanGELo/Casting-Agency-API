@@ -6,7 +6,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import history from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
-import { RouteMovies } from './components/Movies';
+import { RouteMovies } from './components/MovieView';
 // import { RouteActors } from './components/Actors';
 import './App.css';
 
