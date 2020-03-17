@@ -1,4 +1,6 @@
 {
     "domain": "universaleagle.auth0.com",
-    "clientId": "10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE"
+    "clientId": "10x7mOTvjuPIcj0jFm5Oy6cdMkLAV3CE",
+    "audience": "casting",
+    "loginRedirect": "https://stephangelcasting.herokuapp.com/movies"
 }
