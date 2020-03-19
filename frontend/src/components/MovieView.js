@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Button } from "reactstrap";
 import { NavLink as RouterNavLink, Route, Switch } from "react-router-dom";
 import jwt from "jwt-decode";
-import { useDataFetching } from "../hooks/useDataFetch";
 import { useAuth0 } from "../react-auth0-spa";
-import { Movie } from "./Movie";
 import { API_URL } from "../utils/auth_config";
+import { useDataFetching } from "../hooks/useDataFetch";
 import { Loader } from "./Loader";
+import { Movie } from "./Movie";
 
 const Movies = () => {
     const [response, setResponse] = useState({});
