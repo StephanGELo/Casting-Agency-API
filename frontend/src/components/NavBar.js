@@ -46,7 +46,7 @@ const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  Home
+                  StephanGEL Casting Agency
                 </NavLink>
               </NavItem>
             </Nav>
