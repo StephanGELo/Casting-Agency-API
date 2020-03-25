@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
-import { Navlink as RouterNavLink, withRouter } from 'react-router-dom';
+import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
-const MovieItem = ({movie, exposedToken, token, removeItem}) => (
+const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
     <Col md="5" className="my-3">
         <Card>
             <CardBody>
@@ -10,16 +10,35 @@ const MovieItem = ({movie, exposedToken, token, removeItem}) => (
                     {movie.title}
                 </CardTitle>
                 <CardText>
-                    {movie.release_date}
+                    Release Date: {movie.release_date}
                 </CardText>
-                    <div>
-                        <Button>
-                            Edit
+                <div className="clearfix p-2">
+                    {exposedToken.permissions.indexOf("patch:movies") !==
+                        -1 ? (
+                            <Button
+                                color="primary"
+                                className="float-left"
+                                tag={RouterNavLink}
+                                to={{
+                                    pathname: '/movies',
+                                    state: { movie, editing: true, token }
+                                }}
+                            >
+                                Edit
                         </Button>
-                        <Button>
+                        ) : null}
+                    {exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
+                        <Button
+                            tag={RouterNavLink}
+                            to="/movies"
+                            color="danger"
+                            className="float-right"
+                            onClick={() => deleteMovie(movie.id)}
+                        >
                             Delete
-                        </Button>
-                    </div>
+                    </Button>
+                    ) : null}
+                </div>
             </CardBody>
         </Card>
     </Col>
