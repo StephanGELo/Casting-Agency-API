@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Button } from "reactstrap";
 import { NavLink as RouterNavLink, Route, Switch } from "react-router-dom";
-import jwt from "jwt-decode";
+import * as JWT from 'jwt-decode';
 import { useAuth0 } from "../react-auth0-spa";
 import { API_URL } from "../utils/auth_config";
 import { useDataFetching } from "../hooks/useDataFetch";
@@ -14,8 +14,8 @@ const Movies = () => {
     const [token, setToken] = useState();
     const { getTokenSilently, user, loading } = useAuth0();
 
-    const url = `${API_URL}/movies?page=${pageNum}`;
-    console.log("url is: ", url)
+    const url = `${API_URL}?page=${pageNum}`;
+
     const result = useDataFetching(url, {}, token) || {};
 
     useEffect(() => {
@@ -25,7 +25,16 @@ const Movies = () => {
     if (user && !loading) getTokenSilently().then(res => setToken(res));
 
     let decodedToken;
-    if (token) decodedToken = jwt(token);
+
+    try {
+        if (token){
+            decodedToken = JWT(token)
+        }
+    } catch(error) {
+        console.log(error)
+    }
+    
+
 
     const selectPage = num => setPageNum(num);
     const create_pagination = () => {
@@ -53,7 +62,7 @@ const Movies = () => {
         const result = await fetch(`${API_URL}/movies/${id}`, {
             method: "DELETE",
             headers: {
-                Authorization: "Bearer " + token,
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json"
             }
         });
@@ -68,8 +77,8 @@ const Movies = () => {
                 {decodedToken &&
                     decodedToken.permissions.indexOf("post:movies") !== -1 ? (
                         <Button color="primary" to={{
-                            pathname: "/movies/add-movie",
-                            state: { editing: false, movieData: null, token: token }
+                            pathname: "/movies",
+                            state: { editing: false, movie: null, token: token }
                         }} tag={RouterNavLink}>
                             Add a movie
                         </Button>
