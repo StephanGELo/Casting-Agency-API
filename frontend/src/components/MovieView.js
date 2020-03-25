@@ -7,6 +7,7 @@ import { API_URL } from "../utils/auth_config";
 import { useDataFetching } from "../hooks/useDataFetch";
 import { Loader } from "./Loader";
 import { Movie } from "./Movie";
+import { AddMovie } from "./Forms/AddMovie";
 
 const Movies = () => {
     const [response, setResponse] = useState({});
@@ -77,7 +78,7 @@ const Movies = () => {
                 {decodedToken &&
                     decodedToken.permissions.indexOf("post:movies") !== -1 ? (
                         <Button color="primary" to={{
-                            pathname: "/movies",
+                            pathname: "/movies/addNewMovie",
                             state: { editing: false, movie: null, token: token }
                         }} tag={RouterNavLink}>
                             Add a movie
@@ -107,7 +108,7 @@ const Movies = () => {
 export const RouteMovies = () => {
     return (
         <Switch>
-            {/* <Route path="/movies/add-movie" component={AddMovie} /> */}
+            <Route path="/movies/addNewMovie" component={AddMovie} />
             <Route path="/movies" component={Movies} />
         </Switch>
     )
