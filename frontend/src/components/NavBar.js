@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { useAuth0 } from "../react-auth0-spa";
 
 import {
   Collapse,
@@ -19,9 +23,9 @@ import {
   DropdownItem
 } from "reactstrap";
 
-import { useAuth0 } from "../react-auth0-spa";
+library.add(fas, faUser, faPowerOff)
 
-const NavBar = () => {
+export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const toggle = () => setIsOpen(!isOpen);
@@ -33,7 +37,7 @@ const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <Navbar color="light" light expand="md">
+      <Navbar className="navbar navbar-dark bg-dark" light expand="md">
         <Container>
           <NavbarBrand className="logo" />
           <NavbarToggler onClick={toggle} />
@@ -133,7 +137,7 @@ const NavBar = () => {
                   </span>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="user" className="mr-3" />
+                  <FontAwesomeIcon icon={faUser} className="mr-3" />
                   <RouterNavLink
                     to="/actors"
                     activeClassName="router-link-exact-active"
@@ -142,7 +146,7 @@ const NavBar = () => {
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>
-                  <FontAwesomeIcon icon="power-off" className="mr-3" />
+                  <FontAwesomeIcon icon={faPowerOff} className="mr-3" />
                   <RouterNavLink
                     to="#"
                     id="qsLogoutBtn"
@@ -159,5 +163,3 @@ const NavBar = () => {
     </div>
   );
 };
-
-export default NavBar;
