@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 import { 
     Card,
     CardHeader,
@@ -30,8 +31,9 @@ export const AddMovie = () => {
                     </FormGroup>
                 </Form>
             </CardBody>
-            <CardFooter>
-                <Button className="btn btn-sm">Submit</Button>
+            <CardFooter className="d-flex justify-content-between">
+                <Button tag={RouterNavLink} to="/movies" color="warning">Cancel</Button>
+                <Button color="primary" type="submit">Submit</Button>
             </CardFooter>
         </Card>
     )
