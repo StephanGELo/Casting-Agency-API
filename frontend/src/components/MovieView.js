@@ -99,7 +99,7 @@ const Movies = () => {
                             <Loader />
                         )}
                 </Row>
-                <Row className="justify-content-center">{create_pagination}</Row>
+                <Row className="justify-content-center">{create_pagination()}</Row>
             </Container>
         </>
     );
