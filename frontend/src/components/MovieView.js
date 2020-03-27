@@ -7,7 +7,7 @@ import { API_URL } from "../utils/auth_config";
 import { useDataFetching } from "../hooks/useDataFetch";
 import { Loader } from "./Loader";
 import { Movie } from "./Movie";
-import { AddMovie } from "./Forms/AddMovie";
+import { AddMovieForm } from "./Forms/AddMovieForm";
 
 const Movies = () => {
     const [response, setResponse] = useState({});
@@ -15,7 +15,7 @@ const Movies = () => {
     const [token, setToken] = useState();
     const { getTokenSilently, user, loading } = useAuth0();
 
-    const url = `${API_URL}?page=${pageNum}`;
+    const url = `${API_URL}/movies?page=${pageNum}`;
 
     const result = useDataFetching(url, {}, token) || {};
 
@@ -108,7 +108,7 @@ const Movies = () => {
 export const RouteMovies = () => {
     return (
         <Switch>
-            <Route path="/movies/addNewMovie" component={AddMovie} />
+            <Route path="/movies/addNewMovie" component={AddMovieForm} />
             <Route path="/movies" component={Movies} />
         </Switch>
     )

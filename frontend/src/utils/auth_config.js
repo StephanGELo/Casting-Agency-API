@@ -1,1 +1,1 @@
-export const API_URL="https://stephangelcasting.herokuapp.com/movies"
+export const API_URL="https://stephangelcasting.herokuapp.com"

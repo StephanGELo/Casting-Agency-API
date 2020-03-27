@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useDataFetching = (url, initialData, token, body) => {
     const [data, setData] = useState(initialData)
@@ -16,7 +16,7 @@ export const useDataFetching = (url, initialData, token, body) => {
             setData(await response.json())
         }
         retrieveData()
-    }, [url, token])
+    }, [url, token, body])
     
     return data;
 }
