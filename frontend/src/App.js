@@ -7,7 +7,7 @@ import history from "./utils/history";
 import { RouteMovies } from './components/MovieView';
 import { Home } from './components/Home';
 import { Container } from "reactstrap";
-// import { RouteActors } from './components/Actors';
+import { RouteActors } from './components/ActorView';
 import './App.css';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/movies' component={RouteMovies} />
-            {/* <Route path='/actors' component={RouteActors} /> */}
+            <Route path='/actors' component={RouteActors} />
           </Switch>
         </Container>
       </div>

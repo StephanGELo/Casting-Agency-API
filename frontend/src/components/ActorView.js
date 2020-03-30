@@ -4,14 +4,18 @@ import { Route, Switch } from 'react-router-dom';
 
 const Actors = () => {
     return (
-        <Container>
-            <h1>Recent Actors</h1>
-        </Container>
+        <>
+            <div>
+                <h1>Recent Actors</h1>
+            </div>
+        </>
     );
 };
 
-export const RouteActors = () => (
-    <Switch>
-        <Route path="/actors" component={Actors} />
-    </Switch>
-);
+export const RouteActors = () => {
+    return (
+        <Switch>
+            <Route path="/actors" component={Actors} />
+        </Switch>
+    );
+};
