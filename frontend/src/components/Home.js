@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardText, CardImg, Container } from "reactstrap";
+import { Col, Row, Card, CardBody, CardText, CardImg, CardDeck } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-spa";
 // import ActorsImg from '../assets/actors.jpg'
@@ -10,12 +10,12 @@ export const Home = () => {
   return (
     <>
       {isAuthenticated ? (
-        <Container className="d-flex">
+        <CardDeck>
           <Card>
             <CardImg
               top
               width="100%"
-              height="300"
+              height="70%"
               src="https://image.shutterstock.com/image-photo/movie-clapper-film-reel-on-600w-169841813.jpg"
               alt="Movies img"
             />
@@ -27,7 +27,7 @@ export const Home = () => {
             <CardImg
               top
               width="100%"
-              height="300"
+              height="70%"
               src="https://image.shutterstock.com/image-photo/medium-shot-actors-rehearsing-theater-600w-1270982080.jpg"
               alt="Actors img"
             />
@@ -35,7 +35,7 @@ export const Home = () => {
               <Link to="/actors">Manage actors</Link>
             </CardBody>
           </Card>
-        </Container>
+        </CardDeck>
       ) : (
           <Card>
             <CardBody color="dark" className="homepage">
