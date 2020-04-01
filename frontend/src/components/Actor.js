@@ -20,7 +20,7 @@ const ActorItem = (props) => {
                     <div>Gender: {props.actor.gender}</div>
                 </CardBody>
                 <CardFooter>
-                    Movie assigned to: {props.actor.movie}
+                    Movie assigned to: {props.actor.movie !== null ? props.actor.movie : "None"}
                 </CardFooter>
             </Card>
         </Col>

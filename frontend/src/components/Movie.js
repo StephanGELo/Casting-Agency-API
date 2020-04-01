@@ -44,4 +44,4 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
     </Col>
 );
 
-export const Movie = withRouter(MovieItem)
+export const Movie = withRouter(MovieItem);
