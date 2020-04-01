@@ -14,7 +14,7 @@ const Actors = () => {
     const [token, setToken] = useState();
     const { getTokenSilently, user, loading } = useAuth0();
 
-    const url = `${API_URL}/actors`;
+    const url = `${API_URL}/actors-details`;
 
     const result = useDataFetching(url, {}, token) || {};
 
@@ -34,7 +34,6 @@ const Actors = () => {
         console.log(error)
     }
 
-
     return (
         <>
             <Container>
@@ -43,12 +42,12 @@ const Actors = () => {
                     <div className="text-right">
                         <Button color="primary" to={{
                             pathname:"/actors/AddNewActor",
-                            state: { editing: false, movie:null, token: token }
+                            state: { editing: false, actor:null, token: token }
                         }} tag={RouterNavLink}>
                         Add a New Actor
                         </Button>
                     </div>
-                ): null}
+                    ): null}
                 <Row>
                     {response.actors ? (
                         response.actors.map(actor => (
@@ -59,11 +58,11 @@ const Actors = () => {
                                 token={token}
                             />
                         ))
-                        ) : (
-                                <Loader />
-                            )
+                    ) : (
+                            <Loader />
+                        )
                     }
-                    <Actor />
+                    {/* <Actor /> */}
                 </Row>
             </Container>
         </>
