@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col, Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
-import { withRouter } from 'react-router-dom';
+import { Col, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
+import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
 const ActorItem = (props) => {
     return (
@@ -21,6 +21,23 @@ const ActorItem = (props) => {
                 </CardBody>
                 <CardFooter>
                     Movie assigned to: {props.actor.movie !== null ? props.actor.movie : "None"}
+                </CardFooter>
+                <CardFooter>
+                    {props.exposedToken && 
+                        props.exposedToken.permissions.indexOf("post:actors") !== -1 ? (
+                            <Button color ="primary"
+                                className="float-left"
+                                tag={RouterNavLink}
+                                to ={{
+                                    pathname: "/actors/addNewActor",
+                                    state: { editing: true, actor:props.actor, token: props.token}
+                                }}
+
+                            >
+                                Edit
+                            </Button>
+                        ) : null
+                    }
                 </CardFooter>
             </Card>
         </Col>
