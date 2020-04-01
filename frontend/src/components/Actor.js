@@ -1,13 +1,13 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
+import { Col, Card, CardHeader, CardBody, CardFooter} from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
-const ActorItem = () => {
+const ActorItem = (props) => {
     return (
-        <>
+        <Col md="4" className="my-3">
             <Card>
-                <CardHeader>
-                    Actor's Name
+                <CardHeader style={{fontWeight: "bold"}}>
+                    {props.actor.name}
                 </CardHeader>
                 <img 
                     width="100%" 
@@ -16,16 +16,14 @@ const ActorItem = () => {
                     alt="Vin Diesel"
                 />
                 <CardBody>
-                    Actor's Age
-                </CardBody>
-                <CardBody>
-                    Actor's Gender
+                    <div>Age: {props.actor.age}</div>
+                    <div>Gender: {props.actor.gender}</div>
                 </CardBody>
                 <CardFooter>
-                    Movie assigned to:
+                    Movie assigned to: {props.actor.movie}
                 </CardFooter>
             </Card>
-        </>
+        </Col>
     );
 };
 
