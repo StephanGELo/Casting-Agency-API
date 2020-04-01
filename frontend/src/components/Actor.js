@@ -25,7 +25,7 @@ const ActorItem = (props) => {
                 <CardFooter>
                     {props.exposedToken && 
                         props.exposedToken.permissions.indexOf("post:actors") !== -1 ? (
-                            <Button color ="primary"
+                            <Button color="primary"
                                 className="float-left"
                                 tag={RouterNavLink}
                                 to ={{
@@ -35,6 +35,17 @@ const ActorItem = (props) => {
 
                             >
                                 Edit
+                            </Button>
+                        ) : null
+                    }
+                    {
+                        props.exposedToken &&
+                        props.exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
+                            <Button color="danger"
+                                className="float-right"
+                                onClick={props.deleteActor(props.actor.id)}
+                            >
+                                Delete
                             </Button>
                         ) : null
                     }

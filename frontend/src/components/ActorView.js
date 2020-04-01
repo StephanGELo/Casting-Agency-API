@@ -34,6 +34,18 @@ const Actors = () => {
         console.log(error)
     }
 
+    const deleteActor = async id => {
+        const result = await fetch(`${API_URL}/actors/${id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json"
+            }
+        });
+        const getResult = await result.json()
+        setResponse(getResult)
+    };
+
     return (
         <>
             <Container>
@@ -56,13 +68,13 @@ const Actors = () => {
                                 actor={actor}
                                 exposedToken={decodedToken}
                                 token={token}
+                                deleteActor={deleteActor}
                             />
                         ))
                     ) : (
                             <Loader />
                         )
                     }
-                    {/* <Actor /> */}
                 </Row>
             </Container>
         </>
