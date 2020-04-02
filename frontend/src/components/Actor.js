@@ -2,12 +2,11 @@ import React from 'react';
 import { Col, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
-const ActorItem = (props) => {
-    return (
+const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
         <Col md="4" className="my-3">
             <Card>
                 <CardHeader style={{fontWeight: "bold"}}>
-                    {props.actor.name}
+                    {actor.name}
                 </CardHeader>
                 <img 
                     width="100%" 
@@ -16,34 +15,36 @@ const ActorItem = (props) => {
                     alt="Vin Diesel"
                 />
                 <CardBody>
-                    <div>Age: {props.actor.age}</div>
-                    <div>Gender: {props.actor.gender}</div>
+                    <div>Age: {actor.age}</div>
+                    <div>Gender: {actor.gender}</div>
                 </CardBody>
                 <CardFooter>
-                    Movie assigned to: {props.actor.movie !== null ? props.actor.movie : "None"}
+                    Movie assigned to: {actor.movie !== null ? (actor.movie) : "None"}
                 </CardFooter>
                 <CardFooter>
-                    {props.exposedToken && 
-                        props.exposedToken.permissions.indexOf("post:actors") !== -1 ? (
-                            <Button color="primary"
+                    {exposedToken && 
+                        exposedToken.permissions.indexOf("patch:actors") !== -1 ? (
+                            <Button 
+                                color="primary"
                                 className="float-left"
                                 tag={RouterNavLink}
                                 to ={{
                                     pathname: "/actors/addNewActor",
-                                    state: { editing: true, actor:props.actor, token: props.token}
+                                    state: { editing: true, actor, token}
                                 }}
-
                             >
                                 Edit
                             </Button>
                         ) : null
                     }
-                    {
-                        props.exposedToken &&
-                        props.exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
-                            <Button color="danger"
+                    {exposedToken &&
+                        exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
+                            <Button 
+                                color="danger"
+                                tag={RouterNavLink}
+                                to="/actors-details"
                                 className="float-right"
-                                onClick={props.deleteActor(props.actor.id)}
+                                onClick={() => deleteActor(actor.id)}
                             >
                                 Delete
                             </Button>
@@ -52,7 +53,6 @@ const ActorItem = (props) => {
                 </CardFooter>
             </Card>
         </Col>
-    );
-};
+);
 
 export const Actor = withRouter(ActorItem);

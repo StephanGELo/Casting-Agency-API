@@ -17,6 +17,7 @@ const Actors = () => {
     const url = `${API_URL}/actors-details`;
 
     const result = useDataFetching(url, {}, token) || {};
+    console.log("result is :", result)
 
     useEffect(() => {
         setResponse(result)
@@ -24,7 +25,7 @@ const Actors = () => {
 
     if (user && !loading) getTokenSilently().then(res => setToken(res));
 
-    let decodedToken = "";
+    let decodedToken;
 
     try {
         if (token) {
@@ -38,14 +39,15 @@ const Actors = () => {
         const result = await fetch(`${API_URL}/actors/${id}`, {
             method: 'DELETE',
             headers: {
-                Authorization: "Bearer " + token,
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json"
             }
         });
         const getResult = await result.json()
         setResponse(getResult)
     };
-
+    console.log("response is :", response)
+    console.log("token is :", token)
     return (
         <>
             <Container>
@@ -84,7 +86,7 @@ const Actors = () => {
 export const RouteActors = () => {
     return (
         <Switch>
-            <Route path="/actors" component={Actors} />
+            <Route path="/actors-details" component={Actors} />
         </Switch>
     );
 };

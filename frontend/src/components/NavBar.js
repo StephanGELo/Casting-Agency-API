@@ -139,7 +139,7 @@ export const NavBar = () => {
                 <NavItem>
                   <FontAwesomeIcon icon={faUser} className="mr-3" />
                   <RouterNavLink
-                    to="/actors"
+                    to="/actors-details"
                     activeClassName="router-link-exact-active"
                   >
                     Actors

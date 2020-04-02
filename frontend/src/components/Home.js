@@ -32,7 +32,7 @@ export const Home = () => {
               alt="Actors img"
             />
             <CardBody>
-              <Link to="/actors">Manage actors</Link>
+              <Link to="/actors-details">Manage actors</Link>
             </CardBody>
           </Card>
         </CardDeck>
