@@ -40,6 +40,9 @@ export const NavBar = () => {
       <Navbar className="navbar navbar-dark bg-dark" light expand="md">
         <Container>
           <NavbarBrand className="logo" />
+          <Nav className="mr-3" navbar>
+          <NavItem>StephanGEL Casting Agency</NavItem>
+          </Nav>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -50,7 +53,7 @@ export const NavBar = () => {
                   exact
                   activeClassName="router-link-exact-active"
                 >
-                  StephanGEL Casting Agency
+                  Home
                 </NavLink>
               </NavItem>
             </Nav>
@@ -89,7 +92,7 @@ export const NavBar = () => {
                     </DropdownItem>
                     <DropdownItem
                       tag={RouterNavLink}
-                      to="/actors"
+                      to="/actors-details"
                       className="dropdown-profile"
                       activeClassName="router-link-exact-active"
                     >
