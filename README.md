@@ -27,14 +27,14 @@ The three roles are:
   - Permission to `patch:actors` and `patch:movies`
   - Login info:
     - Email: `eaglecastdirector@gmail.com`
-    - password: `Passwordecd1`
+    - password: `${hidden}`
 
 - Executive Producer
   - All permissions a Casting Director has, as mentioned above.
   - Permission to `post:movies` and `delete:movies` 
   - Login info:
     - Email: `eaglecastproducer@gmail.com`
-    - password: `Passwordecp1`
+    - password: `${hidden}`
 
 ## Getting Started with local development
 
