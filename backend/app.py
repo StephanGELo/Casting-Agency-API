@@ -185,7 +185,7 @@ def create_app(test_config=None):
     # Endpoints for Actors
     # ---------------------------------------------------#
     @app.route('/actors-details', methods=['GET'])
-    @requires_auth("get:actors")
+    @requires_auth("get:actors-details")
     def get_actors_details(token):
         try:
             actors = Actor.query.order_by(Actor.id).all()
