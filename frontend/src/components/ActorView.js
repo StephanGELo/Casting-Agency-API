@@ -7,6 +7,7 @@ import { useDataFetching } from "../hooks/useDataFetch";
 import { Loader } from "./Loader";
 import { API_URL } from "../utils/auth_config";
 import * as JWT from 'jwt-decode';
+import { AddActorForm } from "./Forms/AddActorForm";
 
 
 const Actors = () => {
@@ -87,6 +88,7 @@ export const RouteActors = () => {
     return (
         <Switch>
             <Route path="/actors-details" component={Actors} />
+            <Route path="/actors/AddNewActor" component={AddActorForm} />
         </Switch>
     );
 };

@@ -37,7 +37,7 @@ export const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <Navbar className="navbar navbar-dark bg-dark" light expand="md">
+      <Navbar color="#179bb8" light expand="md">
         <Container>
           <NavbarBrand className="logo" />
           <Nav className="mr-3" navbar>
