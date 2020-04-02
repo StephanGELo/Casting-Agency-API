@@ -8,7 +8,7 @@ export const useDataFetching = (url, initialData, token, body) => {
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
