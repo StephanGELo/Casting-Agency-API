@@ -32,12 +32,43 @@ export const AddActorForm = props => {
         })
     };
 
+    const handleFormSubmit = async (id, data) => {
+        const result = await fetch(editing ? `${url}/${id}` : url, {
+            method: editing ? "PATCH" : "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const response = await result.json();
+
+        setActorInput({
+            name: response.added_actor.name,
+            age: response.added_actor.age,
+            gender: response.added_actor.gender,
+            movie:response.added_actor.movie
+        });
+        props.history.push('/actors-details')
+    };
+
 
     return (
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
             <CardHeader>Add a new Actor</CardHeader>
             <CardBody>
-                <Form>
+                <Form
+                    onSubmit={e =>{
+                        e.preventDefault();
+                        handleFormSubmit({
+                            name: actorInput.name,
+                            age: actorInput.age,
+                            gender: actorInput.gender,
+                            movie: actorInput.movie
+                        })
+                    }}
+                >
                     <FormGroup>
                         <Label for="actorName">Actor's Name'</Label>
                         <Input 
@@ -51,7 +82,7 @@ export const AddActorForm = props => {
                     <FormGroup>
                         <Label for="actorAge">Actor's age</Label>
                         <Input 
-                            type="text"
+                            type="number"
                             name="actorAge"
                             id="actorAge"
                             onChange={e => updateFormFields("age", e.target.value)}
@@ -71,7 +102,7 @@ export const AddActorForm = props => {
                     <FormGroup>
                         <Label for="assignedMovie">Assigned to Movie</Label>
                         <Input 
-                            type="text"
+                            type="number"
                             name="assignedMovie"
                             id="actorMovie"
                            onChange={e => updateFormFields("movie", e.target.value)}
@@ -85,6 +116,15 @@ export const AddActorForm = props => {
                 <Button 
                     color="primary" 
                     type="submit"
+                    onClick={e => {
+                        e.preventDefault();
+                        handleFormSubmit((actor && actor.id) || null, {
+                            name: actorInput.name,
+                            age: actorInput.age,
+                            gender: actorInput.gender,
+                            movie: actorInput.movie
+                        });
+                    }}
                 >Submit
                 </Button>
             </CardFooter>

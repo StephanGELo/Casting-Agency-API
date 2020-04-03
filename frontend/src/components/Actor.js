@@ -30,7 +30,7 @@ const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
                                 className="float-left"
                                 tag={RouterNavLink}
                                 to ={{
-                                    pathname: "/actors/addNewActor",
+                                    pathname: "/actors-details/addNewActor",
                                     state: { editing: true, actor, token}
                                 }}
                             >
