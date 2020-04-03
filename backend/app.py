@@ -224,9 +224,10 @@ def create_app(test_config=None):
     @requires_auth("post:actors")
     def add_an_actor(token):
         body = request.get_json()
+        print("body is :", body)
 
         new_name = body['name']
-        new_age = body['age']
+        new_age = int(body['age'])
         new_gender = body['gender']
         new_movie = body['movie']
 
