@@ -13,8 +13,8 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                     Release Date: {movie.release_date}
                 </CardText>
                 <div className="clearfix p-2">
-                    {exposedToken.permissions.indexOf("patch:movies") !==
-                        -1 ? (
+                    {exposedToken &&
+                        exposedToken.permissions.indexOf("patch:movies") !== -1 ? (
                             <Button
                                 color="primary"
                                 className="float-left"
@@ -25,18 +25,19 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                                 }}
                             >
                                 Edit
-                        </Button>
+                            </Button>
                         ) : null}
-                    {exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
-                        <Button
-                            tag={RouterNavLink}
-                            to="/movies"
-                            color="danger"
-                            className="float-right"
-                            onClick={() => deleteMovie(movie.id)}
-                        >
-                            Delete
-                    </Button>
+                    {exposedToken && 
+                        exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
+                            <Button
+                                tag={RouterNavLink}
+                                to="/movies"
+                                color="danger"
+                                className="float-right"
+                                onClick={() => deleteMovie(movie.id)}
+                            >
+                                Delete
+                            </Button>
                     ) : null}
                 </div>
             </CardBody>

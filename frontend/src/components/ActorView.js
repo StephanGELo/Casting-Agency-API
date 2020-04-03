@@ -18,7 +18,6 @@ const Actors = () => {
     const url = `${API_URL}/actors-details`;
 
     const result = useDataFetching(url, {}, token) || {};
-    console.log("result is :", result)
 
     useEffect(() => {
         setResponse(result)
@@ -47,8 +46,7 @@ const Actors = () => {
         const getResult = await result.json()
         setResponse(getResult)
     };
-    console.log("response is :", response)
-    console.log("token is :", token)
+    
     return (
         <>
             <Container>
@@ -56,7 +54,7 @@ const Actors = () => {
                 {decodedToken && decodedToken.permissions.indexOf("post:actors") !== -1 ? (
                     <div className="text-right">
                         <Button color="primary" to={{
-                            pathname:"/actors/AddNewActor",
+                            pathname:"/actors-details/AddNewActor",
                             state: { editing: false, actor:null, token: token }
                         }} tag={RouterNavLink}>
                         Add a New Actor
@@ -87,8 +85,8 @@ const Actors = () => {
 export const RouteActors = () => {
     return (
         <Switch>
+            <Route path="/actors-details/AddNewActor" component={AddActorForm} />
             <Route path="/actors-details" component={Actors} />
-            <Route path="/actors/AddNewActor" component={AddActorForm} />
         </Switch>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
+
 const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
         <Col md="4" className="my-3">
             <Card>
