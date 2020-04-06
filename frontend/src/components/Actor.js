@@ -5,7 +5,7 @@ import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
 const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
         <Col md="4" className="my-3">
-            <Card>
+            <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
                 <CardHeader style={{fontWeight: "bold"}}>
                     {actor.name}
                 </CardHeader>
@@ -13,7 +13,7 @@ const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
                     width="100%" 
                     // src="https://m.media-amazon.com/images/M/MV5BMjExNzA4MDYxN15BMl5BanBnXkFtZTcwOTI1MDAxOQ@@._V1_UY317_CR7,0,214,317_AL_.jpg"
                     src="https://media0.giphy.com/media/OJ1csu37BS3eg/giphy.webp?cid=ecf05e4703f7b5327442c7cb58adfddedfdfb37ca51a42ff&rid=giphy.webp"
-                    alt="Vin Diesel"
+                    alt={actor.name}
                 />
                 <CardBody>
                     <div>Age: {actor.age}</div>

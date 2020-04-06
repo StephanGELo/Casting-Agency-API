@@ -4,7 +4,7 @@ import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 
 const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
     <Col md="5" className="my-3">
-        <Card>
+        <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
             <CardBody>
                 <CardTitle>
                     {movie.title}

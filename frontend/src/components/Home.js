@@ -11,7 +11,7 @@ export const Home = () => {
     <>
       {isAuthenticated ? (
         <CardDeck>
-          <Card>
+          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
             <CardImg
               top
               width="100%"
@@ -23,7 +23,7 @@ export const Home = () => {
               <Link to="/movies">Manage movies</Link>
             </CardBody>
           </Card>
-          <Card>
+          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
             <CardImg
               top
               width="100%"
@@ -37,8 +37,8 @@ export const Home = () => {
           </Card>
         </CardDeck>
       ) : (
-          <Card>
-            <CardBody color="dark" className="homepage">
+          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
+            <CardBody className="homepage">
               <CardText>
               StephanGEL Casting Agency has less than a year of casting experience. This 
               platform models a company that is responsible for creating movies and managing 

@@ -51,7 +51,7 @@ export const AddMovieForm = (props) => {
 
     return (
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-            <CardHeader>Add a new Movie</CardHeader>
+            <CardHeader className="text-primary">Add a new Movie</CardHeader>
             <CardBody>
                 <Form
                     onSubmit={e => {
