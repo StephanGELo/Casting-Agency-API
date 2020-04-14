@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row, Card, CardBody, CardText, CardImg, CardDeck } from "reactstrap";
+import { Col, Row, Card, CardBody, CardText, CardImg, CardDeck, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-spa";
 // import ActorsImg from '../assets/actors.jpg'
@@ -20,7 +20,7 @@ export const Home = () => {
               alt="Movies img"
             />
             <CardBody>
-              <Link to="/movies">Manage movies</Link>
+              <Link to="/movies"><Button className="float-center">Manage movies</Button></Link>
             </CardBody>
           </Card>
           <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
@@ -32,7 +32,7 @@ export const Home = () => {
               alt="Actors img"
             />
             <CardBody>
-              <Link to="/actors-details">Manage actors</Link>
+              <Link to="/actors-details"><Button className="float-centre">Manage actors</Button></Link>
             </CardBody>
           </Card>
         </CardDeck>
