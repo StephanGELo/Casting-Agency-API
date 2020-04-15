@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
+import '../App.css';
 
 
 const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
@@ -22,35 +23,37 @@ const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
                 <CardFooter>
                     Movie assigned to: {actor.movie !== null ? (actor.movie) : "None"}
                 </CardFooter>
-                <CardFooter>
-                    {exposedToken && 
-                        exposedToken.permissions.indexOf("patch:actors") !== -1 ? (
-                            <Button 
-                                color="primary"
-                                className="float-left"
-                                tag={RouterNavLink}
-                                to ={{
-                                    pathname: "/actors-details/addNewActor",
-                                    state: { editing: true, actor, token}
-                                }}
-                            >
-                                Edit
-                            </Button>
-                        ) : null
-                    }
-                    {exposedToken &&
-                        exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
-                            <Button 
-                                color="danger"
-                                tag={RouterNavLink}
-                                to="/actors-details"
-                                className="float-right"
-                                onClick={() => deleteActor(actor.id)}
-                            >
-                                Delete
-                            </Button>
-                        ) : null
-                    }
+                <CardFooter >
+                    <div className="clearfix p-2">
+                        {exposedToken && 
+                            exposedToken.permissions.indexOf("patch:actors") !== -1 ? (
+                                <Button 
+                                    outline color="primary"
+                                    className="float-left"
+                                    tag={RouterNavLink}
+                                    to ={{
+                                        pathname: "/actors-details/addNewActor",
+                                        state: { editing: true, actor, token}
+                                    }}
+                                >
+                                    Edit
+                                </Button>
+                            ) : null
+                        }
+                        {exposedToken &&
+                            exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
+                                <Button
+                                    outline color="danger"
+                                    tag={RouterNavLink}
+                                    to={{pathname:"/actors-details"}}
+                                    className="float-right"
+                                    onClick={() => deleteActor(actor.id)}
+                                >
+                                    Delete
+                                </Button>
+                            ) : null
+                        }
+                    </div>
                 </CardFooter>
             </Card>
         </Col>

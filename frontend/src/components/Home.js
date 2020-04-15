@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Row, Card, CardBody, CardText, CardImg, CardDeck, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-spa";
+import "../App.css";
 // import ActorsImg from '../assets/actors.jpg'
 // import MoviesImg from '../assets/movies.jpg'
 
@@ -20,7 +21,7 @@ export const Home = () => {
               alt="Movies img"
             />
             <CardBody>
-              <Link to="/movies"><Button className="float-center">Manage movies</Button></Link>
+              <Link to="/movies"><div className="text-center"><Button outline color="info">Manage movies</Button></div></Link>
             </CardBody>
           </Card>
           <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
@@ -32,7 +33,7 @@ export const Home = () => {
               alt="Actors img"
             />
             <CardBody>
-              <Link to="/actors-details"><Button className="float-centre">Manage actors</Button></Link>
+              <Link to="/actors-details"><div className="text-center"><Button outline color="info">Manage actors</Button></div></Link>
             </CardBody>
           </Card>
         </CardDeck>

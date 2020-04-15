@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
+import '../App.css';
 
 const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
     <Col md="5" className="my-3">
@@ -16,7 +17,7 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                     {exposedToken &&
                         exposedToken.permissions.indexOf("patch:movies") !== -1 ? (
                             <Button
-                                color="primary"
+                                outline color="primary"
                                 className="float-left"
                                 tag={RouterNavLink}
                                 to={{
@@ -30,9 +31,9 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                     {exposedToken && 
                         exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
                             <Button
+                                outline color="danger"
                                 tag={RouterNavLink}
                                 to="/movies"
-                                color="danger"
                                 className="float-right"
                                 onClick={() => deleteMovie(movie.id)}
                             >

@@ -37,3 +37,17 @@
     transform: rotate(360deg);
   }
 }
+
+.text-center {
+  margin-top: 15px;
+}
+
+.btn-outline-danger {
+  color: #dc3545 !important;
+  border-color: #dc3545;
+  background-color: transparent !important;
+}
+
+.card {
+  box-shadow: 0 9px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
