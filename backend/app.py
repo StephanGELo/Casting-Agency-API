@@ -54,12 +54,16 @@ def create_app(test_config=None):
     @app.route('/movies', methods=['GET'])
     def get_movies():
         try:
-            movies = Movie.query.order_by(Movie.id).all()
-            formatted_movies = [movie.short() for movie in movies]
+            movies = Movie.query.order_by(Movie.created).all()
+            formatted_movies = [movie.format() for movie in movies]
             selected_movies = paginate_items(request, formatted_movies)
 
             if len(selected_movies) == 0:
                 abort(404)
+            
+            for movie in selected_movies:
+                movie['actors'] = [actor.detailed()
+                                   for actor in movie['actors']]            
 
             return jsonify({
                 "success": True,
@@ -93,7 +97,7 @@ def create_app(test_config=None):
     def get_movies_details(token):
         try:
             movies = Movie.query.order_by(Movie.id).all()
-            formatted_movies = [movie.detailed() for movie in movies]
+            formatted_movies = [movie.format() for movie in movies]
             paginated_movies = paginate_items(request, formatted_movies)
 
             if len(paginated_movies) == 0:
@@ -123,7 +127,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "deleted_movie": [movie.short()]
+                "deleted_movie": [movie.format()]
             }), 200
         except Exception:
             abort(422)
@@ -135,15 +139,19 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body['title']
             new_release_date = body['release_date']
+            new_image_link = body['image_link']
 
             if len(new_title) == 0:
                 abort(400)
             elif len(new_release_date) == 0:
                 abort(400)
+            
+            if len(new_image_link) == 0:
+                new_image_link = 'https://www.jilancer.com/protected/themes/jilancer/images/site-images/blank.png'
 
-            new_movie = Movie(title=new_title, release_date=new_release_date)
+            new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
             new_movie.insert()
-            movie = Movie.query.get(new_movie.id).short()
+            movie = Movie.query.get(new_movie.id).format()
             return jsonify({
                 "success": True,
                 "added_movie": [movie]
@@ -163,16 +171,20 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body.get('title', None)
             new_release_date = body.get('release_date', None)
+            new_image_link = body.get('image', None)
 
             if len(new_title) == 0:
                 abort(422)
             elif len(new_release_date) == 0:
                 abort(422)
+            if len(new_image_link) == 0:
+                new_image_link = 'https://www.jilancer.com/protected/themes/jilancer/images/site-images/blank.png'
 
             movie.title = new_title
             movie.release_date = new_release_date
+            movie.image_link = new_image_link
             movie.update()
-            updated_movie = [Movie.query.get(movie_id).short()]
+            updated_movie = [Movie.query.get(movie_id).format()]
 
             return jsonify({
                 "success": True,
