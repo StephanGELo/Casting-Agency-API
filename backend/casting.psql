@@ -12,15 +12,15 @@ CREATE TABLE public.actors (
   movie integer
 );
 
-INSERT INTO movies (id, title, release_date) VALUES (1, 'Sonic The Hedgehog', 'Feb 14, 2020');
-INSERT INTO movies (id, title, release_date) VALUES (2, 'The Call Of the Wild', 'Feb 7, 2020');
-INSERT INTO movies (id, title, release_date) VALUES (3, 'Birds of Prey', 'Feb 21, 2020');
-INSERT INTO movies (id, title, release_date) VALUES (4, 'Burden', 'Feb 28, 2020');
+INSERT INTO movies (id, title, release_date, image_link) VALUES (1, 'The Batman', 'June 23, 2021','https://cdn3.movieweb.com/i/movie/jO3sbhbCF07TXbbSnlIQ70H2cntPMj/154:70/The-Batman.jpg' );
+INSERT INTO movies (id, title, release_date, image_link) VALUES (2, 'Fast & Furious 9', 'March 31, 2021','https://cdn3.movieweb.com/i/movie/K0esKd8DzxbTGzJk2veFpTLoaXvBq0/154:70/Fast-Furious-9.jpg');
+INSERT INTO movies (id, title, release_date, image_link) VALUES (3, 'The Suicide Squad', 'August 4, 2021', 'https://cdn3.movieweb.com/i/movie/0EeX2R9UI3LKIxjzbbKVKcfWWH6QRB/154:70/The-Suicide-Squad.jpg');
+INSERT INTO movies (id, title, release_date, image_link) VALUES (4, 'Morbius', 'March 17, 2021', 'https://cdn3.movieweb.com/i/movie/s7kdVYLkT7ZhhNU2E7Wuezh4gTyXKt/154:70/Morbius.jpg');
 
-INSERT INTO actors (id, name, age, gender) VALUES (1, 'Jim Carrey', 58, 'male');
-INSERT INTO actors (id, name, age, gender) VALUES (2, 'James Marsden', 46, 'male');
-INSERT INTO actors (id, name, age, gender) VALUES (3, 'Harrison Ford', 77, 'male');
-INSERT INTO actors (id, name, age, gender) VALUES (4, 'Omar Sy', 42, 'male');
-INSERT INTO actors (id, name, age, gender) VALUES (5, 'Karen Gillan', 32, 'female');
-INSERT INTO actors (id, name, age, gender) VALUES (6, 'Ali Wong', 37, 'female');
-INSERT INTO actors (id, name, age, gender) VALUES (7, 'Andrea Riseborough', 38, 'female');
+
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (1, 'Robert Pattinson', 33, 'male', 'https://cdn3.movieweb.com/i/article/PR65VwbwvI3yCDxXpVJQk1RVS3Gt1k/433:75/Batman-Begins-Deepfake-Video-Robert-Pattinson.jpg', 1);
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (2, 'Andy Serkis', 55, 'male', 'https://cdn3.movieweb.com/i/article/Iwuchgl20qUYpl2hM1ijuxQMyGgc1v/433:75/The-Batman-Andy-Serkis-Pennyworth-Bosslogic-Fan-Art.jpg', 1);
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (3, 'Zoë Kravitz', 31, 'female', 'https://cdn3.movieweb.com/i/article/VsWWT8eiOxyo1h5CZPi0xj38k5Elsp/433:75/The-Batman-Zoe-Kravitz-Playing-Catwoman-Nerves.jpg', 1);
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (4, 'Colin Farrell', 43, 'male', 'https://cdn3.movieweb.com/i/article/A1NPsklt7i2WEzvsCyEI62h46xLgpv/433:75/The-Batman-Set-Photos-Penguin-Colin-Farrell.jpg', 1);
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (5, 'Paul Dano', 35, 'male', 'https://cdn3.movieweb.com/i/article/tRCjL0ystRLzlmvaB0e3Q15iQDd8D8/433:75/The-Batman-Cast-Paul-Dano-Riddler.jpg', 1);
+INSERT INTO actors (id, name, age, gender, image_link, movie) VALUES (6, 'Peter Sarsgaard', 49, 'male', 'https://cdn3.movieweb.com/i/article/Nz91YaMrBnsTWKWq6dRO6r3nDMpSDV/433:75/Magnificent-Seven-Remake-Cast-Peter-Sarsgaard.jpg', 1);

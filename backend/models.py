@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import Column, String, Integer, create_engine
+from sqlalchemy import Column, String, Integer, create_engine, DateTime
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
@@ -35,6 +35,8 @@ class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     release_date = db.Column(db.String(120), nullable=True)
+    image_link = db.Column(db.String(500))
+    created = db.Column(db.DateTime, server_default=db.func.now())
     actors = db.relationship('Actor', backref='movies', lazy=True)
 
     def __repr__(self):
@@ -51,18 +53,32 @@ class Movie(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def short(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'release_date': self.release_date
-        }
+    # def short(self):
+    #     return {
+    #         'id': self.id,
+    #         'title': self.title,
+    #         'release_date': self.release_date,
+    #         'image_link': self.image_link,
+    #         'created_on': self.created.isoformat()
+    #     }
 
-    def detailed(self):
+    # def detailed(self):
+    #     return {
+    #         'id': self.id,
+    #         'title': self.title,
+    #         'release_date': self.release_date,
+    #         'image_link':self.image_link,
+    #         'created_on':self.created.isoformat(),
+    #         'actors': self.actors
+    #     }
+
+    def format(self):
         return {
             'id': self.id,
             'title': self.title,
             'release_date': self.release_date,
+            'image_link':self.image_link,
+            'created_on':self.created,
             'actors': self.actors
         }
 
@@ -77,7 +93,10 @@ class Actor(db.Model):
     name = db.Column(db.String(120), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     gender = db.Column(db.String, nullable=False)
+    image_link = db.Column(db.String(500))
+    created = db.Column(db.DateTime, server_default=db.func.now())
     movie = db.Column(db.Integer, db.ForeignKey('movies.id'))
+
 
     def __repr__(self):
         return f'<Actor %r>' % self
@@ -99,6 +118,8 @@ class Actor(db.Model):
             'name': self.name,
             'age': self.age,
             'gender': self.gender,
+            'image_link': self.image_link,
+            'added_on': self.created
         }
 
     def detailed(self):
@@ -107,5 +128,6 @@ class Actor(db.Model):
             'name': self.name,
             'age': self.age,
             'gender': self.gender,
+            'added_on':self.created,
             'movie': self.movie
         }
