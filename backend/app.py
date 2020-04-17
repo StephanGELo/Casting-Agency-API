@@ -68,7 +68,8 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "movies": selected_movies
+                "movies": selected_movies,
+                "total_movies": len(formatted_movies)
             })
         except Exception:
             abort(404)
@@ -110,7 +111,8 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "movies": paginated_movies
+                "movies": paginated_movies,
+                "total_movies": len(formatted_movies)
             })
         except Exception:
             abort(422)
