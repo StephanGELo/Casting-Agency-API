@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Button } from "reactstrap";
+import { Container,CardDeck, Row, Button } from "reactstrap";
 import { NavLink as RouterNavLink, Route, Switch } from "react-router-dom";
 import * as JWT from 'jwt-decode';
 import { useAuth0 } from "../react-auth0-spa";
@@ -40,7 +40,11 @@ const Movies = () => {
     const selectPage = num => setPageNum(num);
     const create_pagination = () => {
         let pageNumbers = [];
-        let maxPage = Math.ceil(result.total_movies / 6);
+        let maxPage = 0;
+        if (result.movies.length !== 0) {
+            maxPage = Math.ceil(result.movies.length / 2);
+            console.log("maxpage is ", result.movies.length)
+        }
 
         for (let i = 1; i <= maxPage; i++) {
             pageNumbers = [
@@ -75,15 +79,17 @@ const Movies = () => {
         <>
             <Container>
                 <h1>Recent Movies</h1>
-                {decodedToken &&
-                    decodedToken.permissions.indexOf("post:movies") !== -1 ? (
+                {decodedToken && decodedToken.permissions.indexOf("post:movies") !== -1 ? (
+                    <div className="text-right">
                         <Button color="primary" to={{
                             pathname: "/movies/addNewMovie",
                             state: { editing: false, movie: null, token: token }
                         }} tag={RouterNavLink}>
                             Add a movie
                         </Button>
-                    ) : null}
+                    </div>
+                ) : null}
+                
                 <Row>
                     {response.movies ? (
                         response.movies.map(movie => (
@@ -99,7 +105,7 @@ const Movies = () => {
                             <Loader />
                         )}
                 </Row>
-                <Row className="justify-content-center">{create_pagination()}</Row>
+                <Row className="justify-content-center">Current page: {create_pagination()}</Row>
             </Container>
         </>
     );

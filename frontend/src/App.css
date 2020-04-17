@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #87cefa;
+  font-family: Open Sans Condensed;
 }
 
 .App-logo {
@@ -49,5 +50,9 @@
 }
 
 .card {
-  box-shadow: 0 9px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 9px 5px 0 rgba(128, 128, 128, 0.3), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
+}
+
+CardImg {
+  border-radius: 10px;
 }

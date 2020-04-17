@@ -1,18 +1,31 @@
 import React from 'react';
-import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import { Col, Card, CardBody, CardHeader, CardFooter, CardImg, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 import '../App.css';
 
 const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
-    <Col md="5" className="my-3">
+    <Col md="4" className="my-3">
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-            <CardBody>
-                <CardTitle>
-                    {movie.title}
-                </CardTitle>
-                <CardText>
-                    Release Date: {movie.release_date}
-                </CardText>
+             <CardHeader style={{fontWeight: "bold", backgroundColor:'orange', color:"black"}}>
+                {movie.title}
+            </CardHeader>
+            <CardImg 
+                width="100%"
+                height="70%"
+                src={movie.image_link}
+                alt={movie.name}
+            />
+            <CardBody style={{fontFamily:"Open Sans Condensed"}}>
+                <div>Release Date: {movie.release_date}</div>
+                <div>Cast: {" "}
+                    {
+                        movie.actors.length !== 0 ?
+                            movie.actors.join(", ")
+                        : " TBA"
+                    }
+                </div>
+            </CardBody>
+            <CardFooter>
                 <div className="clearfix p-2">
                     {exposedToken &&
                         exposedToken.permissions.indexOf("patch:movies") !== -1 ? (
@@ -41,9 +54,10 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                             </Button>
                     ) : null}
                 </div>
-            </CardBody>
+            </CardFooter>
         </Card>
     </Col>
+
 );
 
 export const Movie = withRouter(MovieItem);
