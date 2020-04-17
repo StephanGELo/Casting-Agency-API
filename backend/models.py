@@ -112,6 +112,9 @@ class Actor(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def get_name(self):
+       return self.name
+
     def short(self):
         return {
             'id': self.id,

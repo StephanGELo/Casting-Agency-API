@@ -62,8 +62,9 @@ def create_app(test_config=None):
                 abort(404)
             
             for movie in selected_movies:
-                movie['actors'] = [actor.detailed()
-                                   for actor in movie['actors']]            
+                movie['actors'] = [actor.get_name()
+                                   for actor in movie['actors']]   
+      
 
             return jsonify({
                 "success": True,
@@ -104,7 +105,7 @@ def create_app(test_config=None):
                 abort(404)
 
             for movie in paginated_movies:
-                movie['actors'] = [actor.detailed()
+                movie['actors'] = [actor.get_name()
                                    for actor in movie['actors']]
 
             return jsonify({
