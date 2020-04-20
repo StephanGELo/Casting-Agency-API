@@ -40,11 +40,10 @@ const Movies = () => {
     const selectPage = num => setPageNum(num);
     const create_pagination = () => {
         let pageNumbers = [];
-        let maxPage = 0;
-        if (result.movies.length !== 0) {
-            maxPage = Math.ceil(result.movies.length / 2);
-            console.log("maxpage is ", result.movies.length)
-        }
+        
+       let maxPage = Math.ceil(result.total_movies / 10);
+            // console.log("maxpage is ", result.movies.length)
+     
 
         for (let i = 1; i <= maxPage; i++) {
             pageNumbers = [
@@ -56,7 +55,7 @@ const Movies = () => {
                         selectPage(i);
                     }}
                 >
-                    {i}
+                    {i + " "}
                 </span>
             ];
         }
@@ -81,7 +80,7 @@ const Movies = () => {
                 <h1>Recent Movies</h1>
                 {decodedToken && decodedToken.permissions.indexOf("post:movies") !== -1 ? (
                     <div className="text-right">
-                        <Button color="primary" to={{
+                        <Button outline color="primary" to={{
                             pathname: "/movies/addNewMovie",
                             state: { editing: false, movie: null, token: token }
                         }} tag={RouterNavLink}>
@@ -105,7 +104,7 @@ const Movies = () => {
                             <Loader />
                         )}
                 </Row>
-                <Row className="justify-content-center">Current page: {create_pagination()}</Row>
+                <Row className="justify-content-center">{create_pagination()}</Row>
             </Container>
         </>
     );

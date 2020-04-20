@@ -14,7 +14,7 @@
 .body-gradient-light-grey {
     display: block;
     /* background-image: linear-gradient(to bottom,#FFBD54 0%,#9858fe 50%,#FFBC3A 100%); */
-    background-image: linear-gradient(135deg,#0086ff 0%,#f8f9fa 40%,#44c7f4 90%);
+    background-image: linear-gradient(135deg,#0086ff 0%,#0ef5df 40%,#44c7f4 90%);
     height: 2300px;
 }
 

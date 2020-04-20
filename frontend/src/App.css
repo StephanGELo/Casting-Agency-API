@@ -42,6 +42,15 @@
 .text-center {
   margin-top: 15px;
 }
+.text-right {
+  text-align: right!important;
+  padding-bottom: 30px;
+}
+.justify-content-center {
+  color: #007bff;
+  padding-top: 30px;
+  justify-content: center!important;
+}
 
 .btn-outline-danger {
   color: #dc3545 !important;
@@ -51,8 +60,34 @@
 
 .card {
   box-shadow: 0 9px 5px 0 rgba(128, 128, 128, 0.3), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
+  min-width: 250px!important;
 }
 
 CardImg {
   border-radius: 10px;
+}
+
+.card-footer {
+  padding: 0.5rem!important;
+}
+.p-2 {
+  padding: .1rem!important;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.0 !important;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
