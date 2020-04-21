@@ -57,6 +57,10 @@
   border-color: #dc3545;
   background-color: transparent !important;
 }
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
 
 .card {
   box-shadow: 0 9px 5px 0 rgba(128, 128, 128, 0.3), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
