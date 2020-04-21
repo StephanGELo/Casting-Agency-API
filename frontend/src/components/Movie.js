@@ -44,10 +44,13 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                     {exposedToken && 
                         exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
                             <Button
-                                outline color="danger"
-                                tag={RouterNavLink}
-                                to="/movies"
+                                outline color="primary"
                                 className="float-right"
+                                tag={RouterNavLink}
+                                to={{
+                                    pathname: "/movies",
+                                    state: {editing: false}
+                                }}
                                 onClick={() => deleteMovie(movie.id)}
                             >
                                 Delete
