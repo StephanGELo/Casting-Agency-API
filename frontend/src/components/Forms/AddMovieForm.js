@@ -20,7 +20,8 @@ export const AddMovieForm = (props) => {
     const { editing, movie, token } = props.location.state;
     const [ movieInput, setMovieInput ] = useState({
         title: (editing && movie && movie.title) || "",
-        release_date: (editing && movie && movie.release_date) || ""
+        release_date: (editing && movie && movie.release_date) || "",
+        image_link:(editing && movie && movie.image_link) || "",
     });
 
     const updateFormFields = (field, value) => {
@@ -58,7 +59,8 @@ export const AddMovieForm = (props) => {
                         e.preventDefault();
                         handleFormSubmit({
                             title: movieInput.title,
-                            release_date: movieInput.release_date
+                            release_date: movieInput.release_date,
+                            image_link: movieInput.image_link
                         })
                     }}
                 >
@@ -72,6 +74,17 @@ export const AddMovieForm = (props) => {
                             onChange={e => updateFormFields("title", e.target.value)}
                         />
                         <FormText>Enter the title of the movie.</FormText>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="imageLink">Cover Image Link</Label>
+                        <Input 
+                            type="textarea" 
+                            name="imageLink" 
+                            id="imageLink" 
+                            value={movieInput.image_link}
+                            onChange={e => updateFormFields("image_link", e.target.value)}
+                        />
+                        <FormText>Enter the image link address for the cover.</FormText>
                     </FormGroup>
                     <FormGroup>
                         <Label for="movieReleaseDate">Movie Release Date</Label>
@@ -95,7 +108,8 @@ export const AddMovieForm = (props) => {
                         e.preventDefault();
                         handleFormSubmit((movie && movie.id) || null, {
                             title: movieInput.title,
-                            release_date: movieInput.release_date
+                            release_date: movieInput.release_date,
+                            image_link: movieInput.image_link
                         });
 
                     }}
