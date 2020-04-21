@@ -44,7 +44,8 @@ export const AddMovieForm = (props) => {
 
         setMovieInput({
             title: response.added_movie[0].title,
-            release_date: response.added_movie[0].release_date
+            release_date: response.added_movie[0].release_date,
+            image_link: response.added_movie[0].image_link
         });
         props.history.push('/movies')
 
