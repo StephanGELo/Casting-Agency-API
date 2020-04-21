@@ -143,6 +143,7 @@ def create_app(test_config=None):
             new_title = body['title']
             new_release_date = body['release_date']
             new_image_link = body['image_link']
+            print("App.py on line 146 The new image is:", new_image_link)
 
             if len(new_title) == 0:
                 abort(400)
