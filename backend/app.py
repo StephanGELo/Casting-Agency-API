@@ -1,4 +1,4 @@
-import os
+import os, sys
 from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc
 from flask_cors import CORS
@@ -7,8 +7,9 @@ import json
 from .models import setup_db, Movie, Actor
 from .auth import AuthError, requires_auth
 
-ITEMS_PER_PAGE = 10
+script_dir = sys.path[0]
 
+ITEMS_PER_PAGE = 10
 
 def paginate_items(request, list):
     page = request.args.get('page', 1, type=int)
@@ -151,7 +152,7 @@ def create_app(test_config=None):
                 abort(400)
             
             if len(new_image_link) == 0:
-                new_image_link = 'https://www.jilancer.com/protected/themes/jilancer/images/site-images/blank.png'
+                new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.png')
 
             new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
             new_movie.insert()
@@ -175,14 +176,14 @@ def create_app(test_config=None):
             body = request.get_json()
             new_title = body.get('title', None)
             new_release_date = body.get('release_date', None)
-            new_image_link = body.get('image', None)
+            new_image_link = body.get('image_link', None)
 
             if len(new_title) == 0:
                 abort(422)
             elif len(new_release_date) == 0:
                 abort(422)
             if len(new_image_link) == 0:
-                new_image_link = 'https://www.jilancer.com/protected/themes/jilancer/images/site-images/blank.png'
+                new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.png')
 
             movie.title = new_title
             movie.release_date = new_release_date
