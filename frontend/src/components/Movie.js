@@ -4,7 +4,7 @@ import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 import '../App.css';
 
 const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
-    <Col md="3" className="my-1" >
+    <Col md="3" className="my-2" >
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333', height:'500px'}}>
              <CardHeader style={{fontWeight: "bold", backgroundColor:'orange', color:"black"}}>
                 {movie.title}
@@ -44,13 +44,8 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                     {exposedToken && 
                         exposedToken.permissions.indexOf("delete:movies") !== -1 ? (
                             <Button
-                                outline color="primary"
+                                outline color="danger"
                                 className="float-right"
-                                tag={RouterNavLink}
-                                to={{
-                                    pathname: "/movies",
-                                    state: {editing: false}
-                                }}
                                 onClick={() => deleteMovie(movie.id)}
                             >
                                 Delete

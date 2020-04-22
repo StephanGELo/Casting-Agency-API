@@ -65,6 +65,8 @@
 .card {
   box-shadow: 0 9px 5px 0 rgba(128, 128, 128, 0.3), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
   min-width: 250px!important;
+  margin-bottom: 0.5rem!important;
+  margin-top: 0.5rem!important;
 }
 
 CardImg {
@@ -81,3 +83,8 @@ CardImg {
 .btn {
   line-height: 1.0 !important;
 }
+
+/* .my-1 {
+  margin-bottom: 15px!important;
+  margin-top: 15px!important;
+} */
