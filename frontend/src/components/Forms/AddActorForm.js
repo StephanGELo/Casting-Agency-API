@@ -48,6 +48,7 @@ export const AddActorForm = props => {
             name: response.added_actor.name,
             age: response.added_actor.age,
             gender: response.added_actor.gender,
+            image_link: response.added_actor.image_link,
             movie:response.added_actor.movie
         });
         props.history.push('/actors-details')
@@ -56,7 +57,7 @@ export const AddActorForm = props => {
 
     return (
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-            <CardHeader className="text-primary" style={{fontSize:14}}>Add a new Actor</CardHeader>
+            <CardHeader className="text-primary" style={{fontSize:20}}>Add a new Actor</CardHeader>
             <CardBody>
                 <Form
                     onSubmit={e =>{
@@ -65,12 +66,13 @@ export const AddActorForm = props => {
                             name: actorInput.name,
                             age: actorInput.age,
                             gender: actorInput.gender,
+                            image_link: actorInput.image_link,
                             movie: actorInput.movie
                         })
                     }}
                 >
                     <FormGroup>
-                        <Label for="actorName">Actor's Name'</Label>
+                        <Label for="actorName">Name</Label>
                         <Input 
                             type="text"
                             name="actorName"
@@ -81,7 +83,7 @@ export const AddActorForm = props => {
                         <FormText>Enter the name of the actor.</FormText>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="actorAge">Actor's age</Label>
+                        <Label for="actorAge">Age</Label>
                         <Input 
                             type="number"
                             name="actorAge"
@@ -92,7 +94,7 @@ export const AddActorForm = props => {
                         <FormText>Enter the age of the actor.</FormText>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="actorGender">Actor's gender</Label>
+                        <Label for="actorGender">Gender</Label>
                         <Input 
                             type="text"
                             name="actorGender"
@@ -101,6 +103,17 @@ export const AddActorForm = props => {
                             onChange={e => updateFormFields("gender", e.target.value)}
                         />
                         <FormText>Enter the gender of the actor.</FormText>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="actorImageLink"> Photo Link</Label>
+                        <Input 
+                            type="text"
+                            name="actorImageLink"
+                            id="actorImageLink"
+                            value={actorInput.image_link}
+                            onChange={e => updateFormFields("image_link", e.target.value)}
+                        />
+                        <FormText>Copy and Paste the link of the photo here.</FormText>
                     </FormGroup>
                     <FormGroup>
                         <Label for="assignedMovie">Assigned to Movie</Label>
