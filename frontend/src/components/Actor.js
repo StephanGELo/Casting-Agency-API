@@ -6,21 +6,22 @@ import '../App.css';
 
 const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
         <Col md="4" className="my-3">
-            <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-                <CardHeader style={{fontWeight: "bold"}}>
+            <Card inverse style={{ backgroundColor:'#333', borderColor:'#333', height:'500px'}}>
+                <CardHeader style={{fontWeight: "bold", backgroundColor:'orange', color:"black"}}>
                     {actor.name}
                 </CardHeader>
                 <img 
                     width="100%" 
+                    height="50%"
                     // src="https://m.media-amazon.com/images/M/MV5BMjExNzA4MDYxN15BMl5BanBnXkFtZTcwOTI1MDAxOQ@@._V1_UY317_CR7,0,214,317_AL_.jpg"
-                    src="https://media0.giphy.com/media/OJ1csu37BS3eg/giphy.webp?cid=ecf05e4703f7b5327442c7cb58adfddedfdfb37ca51a42ff&rid=giphy.webp"
+                    src={actor.image_link}
                     alt={actor.name}
                 />
-                <CardBody>
-                    <div>Age: {actor.age}</div>
+                <CardBody styel={{fontFamily: "Open Sans Condensed", color:"silver"}}>
+                <div>Age: {actor.age}</div>
                     <div>Gender: {actor.gender}</div>
                 </CardBody>
-                <CardFooter>
+                <CardFooter className="float-left">
                     Movie assigned to: {actor.movie !== null ? (actor.movie) : "None"}
                 </CardFooter>
                 <CardFooter >
