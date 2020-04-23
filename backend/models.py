@@ -115,17 +115,17 @@ class Actor(db.Model):
     def get_name(self):
        return self.name
 
-    def short(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'age': self.age,
-            'gender': self.gender,
-            'image_link': self.image_link,
-            'added_on': self.created
-        }
+    # def short(self):
+    #     return {
+    #         'id': self.id,
+    #         'name': self.name,
+    #         'age': self.age,
+    #         'gender': self.gender,
+    #         'image_link': self.image_link,
+    #         'added_on': self.created
+    #     }
 
-    def detailed(self):
+    def format(self):
         return {
             'id': self.id,
             'name': self.name,

@@ -214,7 +214,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "actors": paginated_actors
+                "actors": paginated_actors,
                 "total_actors": len(formatted_actors)
             })
         except Exception:
@@ -264,7 +264,7 @@ def create_app(test_config=None):
                 name=new_name,
                 age=new_age,
                 gender=new_gender,
-                image_link=new_image_link
+                image_link=new_image_link,
                 movie=new_movie
             )
 
