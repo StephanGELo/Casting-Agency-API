@@ -45,8 +45,6 @@ const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
                             exposedToken.permissions.indexOf("delete:actors") !== -1 ? (
                                 <Button
                                     outline color="danger"
-                                    tag={RouterNavLink}
-                                    to={{pathname:"/actors-details"}}
                                     className="float-right"
                                     onClick={() => deleteActor(actor.id)}
                                 >

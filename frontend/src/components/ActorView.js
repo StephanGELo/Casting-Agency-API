@@ -53,7 +53,7 @@ const Actors = () => {
                 <h1>Recent Actors</h1>
                 {decodedToken && decodedToken.permissions.indexOf("post:actors") !== -1 ? (
                     <div className="text-right">
-                        <Button color="primary" to={{
+                        <Button outline color="primary" to={{
                             pathname:"/actors-details/AddNewActor",
                             state: { editing: false, actor:null, token: token }
                         }} tag={RouterNavLink}>
