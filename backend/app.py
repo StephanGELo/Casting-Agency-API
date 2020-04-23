@@ -79,7 +79,7 @@ def create_app(test_config=None):
     def get_actors():
         try:
             actors = Actor.query.order_by(Actor.id).all()
-            formatted_actors = [actor.short() for actor in actors]
+            formatted_actors = [actor.format() for actor in actors]
             selected_actors = paginate_items(request, formatted_actors)
 
             if len(selected_actors) == 0:
@@ -87,7 +87,8 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "actors": selected_actors
+                "actors": selected_actors,
+                "total_actors": len(formatted_actors)
             })
         except Exception:
             abort(404)
@@ -150,8 +151,7 @@ def create_app(test_config=None):
                 abort(400)
             elif len(new_release_date) == 0:
                 abort(400)
-            
-            if len(new_image_link) == 0:
+            elif len(new_image_link) == 0:
                 new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.png')
 
             new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
@@ -182,7 +182,7 @@ def create_app(test_config=None):
                 abort(422)
             elif len(new_release_date) == 0:
                 abort(422)
-            if len(new_image_link) == 0:
+            elif len(new_image_link) == 0:
                 new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.png')
 
             movie.title = new_title
@@ -206,7 +206,7 @@ def create_app(test_config=None):
     def get_actors_details(token):
         try:
             actors = Actor.query.order_by(Actor.id).all()
-            formatted_actors = [actor.detailed() for actor in actors]
+            formatted_actors = [actor.format() for actor in actors]
             paginated_actors = paginate_items(request, formatted_actors)
 
             if len(paginated_actors) == 0:
@@ -215,6 +215,7 @@ def create_app(test_config=None):
             return jsonify({
                 "success": True,
                 "actors": paginated_actors
+                "total_actors": len(formatted_actors)
             })
         except Exception:
             abort(422)
@@ -232,7 +233,7 @@ def create_app(test_config=None):
 
             return jsonify({
                 "success": True,
-                "deleted_actor": actor.short()
+                "deleted_actor": actor.format()
             })
         except Exception:
             abort(422)
@@ -246,6 +247,7 @@ def create_app(test_config=None):
         new_name = body['name']
         new_age = int(body['age'])
         new_gender = body['gender']
+        image_link = body['image_link']
         new_movie = body['movie']
 
         if len(new_name) == 0:
@@ -254,17 +256,20 @@ def create_app(test_config=None):
             abort(400)
         elif len(new_gender) == 0:
             abort(400)
+        elif len(new_image_link) == 0:
+            new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')        
 
         try:
             new_actor = Actor(
                 name=new_name,
                 age=new_age,
                 gender=new_gender,
+                image_link=new_image_link
                 movie=new_movie
             )
 
             new_actor.insert()
-            actor = Actor.query.get(new_actor.id).detailed()
+            actor = Actor.query.get(new_actor.id).format()
 
             return jsonify({
                 "success": True,
@@ -286,6 +291,7 @@ def create_app(test_config=None):
         new_name = body.get('name', None)
         new_age = body.get('age', None)
         new_gender = body.get('gender', None)
+        new_image_link = body.get('image_link', None)
         new_movie = body.get('movie', None)
 
         if len(new_name) == 0:
@@ -294,14 +300,18 @@ def create_app(test_config=None):
             abort(422)
         elif len(new_gender) == 0:
             abort(422)
+        elif len(new_image_link) == 0:
+            new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')
 
         try:
             actor.name = new_name
             actor.age = new_age
             actor.gender = new_gender
+            actor.image_link = new_image_link
             actor.new_movie = new_movie
+
             actor.update()
-            updated_actor = [Actor.query.get(actor_id).detailed()]
+            updated_actor = [Actor.query.get(actor_id).format()]
 
             return jsonify({
                 "success": True,

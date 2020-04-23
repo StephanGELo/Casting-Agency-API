@@ -131,6 +131,7 @@ class Actor(db.Model):
             'name': self.name,
             'age': self.age,
             'gender': self.gender,
+            'image_link': self.image_link,
             'added_on':self.created,
             'movie': self.movie
         }
