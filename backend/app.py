@@ -247,7 +247,7 @@ def create_app(test_config=None):
         new_name = body['name']
         new_age = int(body['age'])
         new_gender = body['gender']
-        image_link = body['image_link']
+        new_image_link = body['image_link']
         new_movie = body['movie']
 
         if len(new_name) == 0:
