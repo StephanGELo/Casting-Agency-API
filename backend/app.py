@@ -152,7 +152,7 @@ def create_app(test_config=None):
             elif len(new_release_date) == 0:
                 abort(400)
             elif len(new_image_link) == 0:
-                new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.png')
+                new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')
 
             new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
             new_movie.insert()
@@ -241,25 +241,26 @@ def create_app(test_config=None):
     @app.route('/actors', methods=['POST'])
     @requires_auth("post:actors")
     def add_an_actor(token):
-        body = request.get_json()
-        print("body is :", body)
-
-        new_name = body['name']
-        new_age = int(body['age'])
-        new_gender = body['gender']
-        new_image_link = body['image_link']
-        new_movie = body['movie']
-
-        if len(new_name) == 0:
-            abort(400)
-        elif new_age == 0:
-            abort(400)
-        elif len(new_gender) == 0:
-            abort(400)
-        elif len(new_image_link) == 0:
-            new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')        
-
         try:
+            body = request.get_json()
+            print("body is :", body)
+
+            new_name = body['name']
+            new_age = int(body['age'])
+            new_gender = body['gender']
+            new_image_link = body['image_link']
+            new_movie = body['movie']
+
+            if len(new_name) == 0:
+                abort(400)
+            elif new_age == 0:
+                abort(400)
+            elif len(new_gender) == 0:
+                abort(400)
+            elif len(new_image_link) == 0:
+                new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')        
+
+        
             new_actor = Actor(
                 name=new_name,
                 age=new_age,
