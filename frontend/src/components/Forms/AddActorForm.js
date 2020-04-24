@@ -22,6 +22,7 @@ export const AddActorForm = props => {
         name: (editing && actor && actor.name) || "",
         age: (editing && actor && actor.age) || "",
         gender: (editing && actor && actor.gender) || "",
+        image_link: (editing && actor && actor.image_link) || "",
         movie: (editing && actor && actor.movie) || ""
     });
 
@@ -43,6 +44,7 @@ export const AddActorForm = props => {
         });
 
         const response = await result.json();
+        console.log("response is ", response)
 
         setActorInput({
             name: response.added_actor.name,
@@ -129,9 +131,9 @@ export const AddActorForm = props => {
                 </Form>
             </CardBody>
             <CardFooter className="d-flex justify-content-between">
-                <Button tag={RouterNavLink} to="/actors-details" color="warning">Cancel</Button>
+                <Button tag={RouterNavLink} to="/actors-details" outline color="warning">Cancel</Button>
                 <Button 
-                    color="primary" 
+                    outline color="primary" 
                     type="submit"
                     onClick={e => {
                         e.preventDefault();
@@ -139,6 +141,7 @@ export const AddActorForm = props => {
                             name: actorInput.name,
                             age: actorInput.age,
                             gender: actorInput.gender,
+                            image_link: actorInput.image_link,
                             movie: actorInput.movie
                         });
                     }}
