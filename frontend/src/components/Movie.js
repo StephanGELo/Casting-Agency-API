@@ -34,7 +34,7 @@ const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
                                 className="float-left"
                                 tag={RouterNavLink}
                                 to={{
-                                    pathname: '/movies/AddNewMovie',
+                                    pathname: '/movies/addNewMovie',
                                     state: { movie, editing: true, token }
                                 }}
                             >

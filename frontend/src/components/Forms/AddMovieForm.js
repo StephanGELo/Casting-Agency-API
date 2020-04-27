@@ -53,16 +53,16 @@ export const AddMovieForm = (props) => {
 
     return (
         <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-            <CardHeader className="text-primary">Add a new Movie</CardHeader>
+            <CardHeader className="text-primary">Add/Edit a Movie</CardHeader>
             <CardBody>
                 <Form
                     onSubmit={e => {
                         e.preventDefault();
-                        handleFormSubmit({
+                        this.handleFormSubmit({
                             title: movieInput.title,
                             release_date: movieInput.release_date,
                             image_link: movieInput.image_link
-                        })
+                        }).bind(this)
                     }}
                 >
                     <FormGroup>
