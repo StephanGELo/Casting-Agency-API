@@ -183,7 +183,7 @@ def create_app(test_config=None):
             elif len(new_release_date) == 0:
                 abort(422)
             elif len(new_image_link) == 0:
-                new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')
+                new_image_link = os.path.join(script_dir, '../frontend/public/no_movie_poster.jpeg')
 
             movie.title = new_title
             movie.release_date = new_release_date
