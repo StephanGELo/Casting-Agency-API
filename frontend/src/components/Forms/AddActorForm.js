@@ -44,14 +44,14 @@ export const AddActorForm = props => {
         });
 
         const response = await result.json();
-        console.log("response is ", response)
+        console.log("response is ", response.added_actor)
 
         setActorInput({
-            name: response.added_actor.name,
-            age: response.added_actor.age,
-            gender: response.added_actor.gender,
-            image_link: response.added_actor.image_link,
-            movie:response.added_actor.movie
+            name: response.added_actor[0].name,
+            age: response.added_actor[0].age,
+            gender: response.added_actor[0].gender,
+            image_link: response.added_actor[0].image_link,
+            movie:response.added_actor[0].movie
         });
         props.history.push('/actors-details')
     };
