@@ -145,14 +145,11 @@ def create_app(test_config=None):
             new_title = body['title']
             new_release_date = body['release_date']
             new_image_link = body['image_link']
-            print("App.py on line 146 The new image is:", new_image_link)
 
             if len(new_title) == 0:
                 abort(400)
             elif len(new_release_date) == 0:
                 abort(400)
-            elif len(new_image_link) == 0:
-                new_image_link = os.path.join(script_dir, '../frontend/public/logo192.png')
 
             new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
             new_movie.insert()
