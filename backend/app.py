@@ -28,21 +28,21 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add(
-            'Access-Control-Allow-Origin',
-            '*'
-        )        
-        response.headers.add(
-            'Access-Control-Allow-Headers',
-            'Content-Type, Authorization, true'
-        )
-        response.headers.add(
-            'Access-Control-Allow-Methods',
-            'GET, POST, DELETE, PATCH'
-        )
-        return response
+    # @app.after_request
+    # def after_request(response):
+    #     response.headers.add(
+    #         'Access-Control-Allow-Origin',
+    #         '*'
+    #     )        
+    #     response.headers.add(
+    #         'Access-Control-Allow-Headers',
+    #         'Content-Type, Authorization, true'
+    #     )
+    #     response.headers.add(
+    #         'Access-Control-Allow-Methods',
+    #         'GET, POST, DELETE, PATCH'
+    #     )
+        # return response
 
 
 # -------------------------------------------------------#
@@ -150,6 +150,8 @@ def create_app(test_config=None):
                 abort(400)
             elif len(new_release_date) == 0:
                 abort(400)
+            elif len(new_image_link) == 0:
+
 
             new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
             new_movie.insert()
