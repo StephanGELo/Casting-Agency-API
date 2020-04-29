@@ -26,7 +26,7 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    CORS(app)
+    # CORS(app)
 
     @app.after_request
     def after_request(response):
@@ -34,14 +34,14 @@ def create_app(test_config=None):
             'Access-Control-Allow-Origin',
             '*'
         )        
-    #     response.headers.add(
-    #         'Access-Control-Allow-Headers',
-    #         'Content-Type, Authorization, true'
-    #     )
-    #     response.headers.add(
-    #         'Access-Control-Allow-Methods',
-    #         'GET, POST, DELETE, PATCH'
-    #     )
+        response.headers.add(
+            'Access-Control-Allow-Headers',
+            'Content-Type, Authorization, true'
+        )
+        response.headers.add(
+            'Access-Control-Allow-Methods',
+            'GET, POST, DELETE, PATCH'
+        )
         return response
 
 
