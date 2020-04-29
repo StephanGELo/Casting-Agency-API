@@ -26,7 +26,7 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    CORS(app)
+    # CORS(app)
 
     @app.after_request
     def after_request(response):
