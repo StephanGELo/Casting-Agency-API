@@ -26,17 +26,13 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
     setup_db(app)
-    # CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     @app.after_request
-    def after_request(response):
-        response.headers.add(
-            'Access-Control-Allow-Origin',
-            '*'
-        )        
+    def after_request(response):       
         response.headers.add(
             'Access-Control-Allow-Headers',
-            'Content-Type, Authorization, true'
+            'Content-Type, Authorization'
         )
         response.headers.add(
             'Access-Control-Allow-Methods',
