@@ -28,12 +28,12 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
 
-    # @app.after_request
-    # def after_request(response):
-    #     response.headers.add(
-    #         'Access-Control-Allow-Origin',
-    #         '*'
-    #     )        
+    @app.after_request
+    def after_request(response):
+        response.headers.add(
+            'Access-Control-Allow-Origin',
+            '*'
+        )        
     #     response.headers.add(
     #         'Access-Control-Allow-Headers',
     #         'Content-Type, Authorization, true'
@@ -42,7 +42,7 @@ def create_app(test_config=None):
     #         'Access-Control-Allow-Methods',
     #         'GET, POST, DELETE, PATCH'
     #     )
-        # return response
+        return response
 
 
 # -------------------------------------------------------#
