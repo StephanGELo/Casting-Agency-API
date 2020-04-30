@@ -151,11 +151,16 @@ def create_app(test_config=None):
             elif len(new_release_date) == 0:
                 abort(400)
             elif len(new_image_link) == 0:
+                new_image_link = os.path.join(script_dir,'../frontend/src/assets/no_movie_poster.png')
 
-
-            new_movie = Movie(title=new_title, release_date=new_release_date, image_link=new_image_link)
+            new_movie = Movie(
+                title=new_title, 
+                release_date=new_release_date, 
+                image_link=new_image_link
+                )
             new_movie.insert()
             movie = Movie.query.get(new_movie.id).format()
+
             return jsonify({
                 "success": True,
                 "added_movie": [movie]
