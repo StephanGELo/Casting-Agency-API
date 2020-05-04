@@ -54,6 +54,10 @@
   justify-content: center!important;
 }
 
+body {
+  font-family: Open Sans Condensed!important;
+}
+
 /* .btn-outline-danger {
   color: #dc3545 !important;
   border-color: #dc3545;
@@ -76,6 +80,13 @@ CardImg {
   border-radius: 10px;
 }
 
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  color: silver;
+}
+
 .card-footer {
   padding: 0.5rem!important;
 }
@@ -85,6 +96,34 @@ CardImg {
 
 .btn {
   line-height: 1.0 !important;
+}
+
+.btn-outline-primary {
+  color: silver!important;
+  border-color: silver!important;
+}
+
+.btn-outline-danger {
+  color: silver!important;
+  border-color: silver!important;
+}
+
+.btn-outline-warning {
+  color: silver!important;
+  border-color: silver!important;
+}
+
+.btn-add {
+  border-color:#007bff!important;
+  color: #007bff!important;
+  background-color: transparent!important;
+  transition-duration: .04s;
+}
+
+.btn-add:hover {
+  background-color: #007bff!important;
+  color: silver!important;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 /* .my-1 {

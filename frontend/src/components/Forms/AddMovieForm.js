@@ -101,9 +101,9 @@ export const AddMovieForm = (props) => {
                 </Form>
             </CardBody>
             <CardFooter className="d-flex justify-content-between">
-                <Button tag={RouterNavLink} to="/movies" color="warning">Cancel</Button>
+                <Button tag={RouterNavLink} to="movies" outline color="warning">Cancel</Button>
                 <Button 
-                    color="primary" 
+                    outline color="primary" 
                     type="submit"
                     onClick={e => {
                         e.preventDefault();

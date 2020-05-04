@@ -1,29 +1,28 @@
 import React from 'react';
-import { Col, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
+import { Col, Card, CardHeader, CardBody, CardFooter, CardImg, Button } from 'reactstrap';
 import { NavLink as RouterNavLink, withRouter } from 'react-router-dom';
 import '../App.css';
 
 
 const ActorItem =  ({actor, exposedToken, token, deleteActor}) => (
-        <Col md="4" className="my-3">
+        <Col md="3" className="my-2">
             <Card inverse style={{ backgroundColor:'#333', borderColor:'#333', height:'500px'}}>
                 <CardHeader style={{fontWeight: "bold", backgroundColor:'orange', color:"black"}}>
                     {actor.name}
                 </CardHeader>
-                <img 
+                <CardImg 
                     width="100%" 
                     height="50%"
-                    // src="https://m.media-amazon.com/images/M/MV5BMjExNzA4MDYxN15BMl5BanBnXkFtZTcwOTI1MDAxOQ@@._V1_UY317_CR7,0,214,317_AL_.jpg"
                     src={actor.image_link}
                     alt={actor.name}
                 />
-                <CardBody styel={{fontFamily: "Open Sans Condensed", color:"silver"}}>
-                <div>Age: {actor.age}</div>
+                <CardBody style={{fontFamily: "Open Sans Condensed", color:"silver"}}>
+                    <div>Age: {actor.age}</div>
                     <div>Gender: {actor.gender}</div>
                 </CardBody>
-                <CardFooter className="float-left">
+                <CardBody>
                     Movie assigned to: {actor.movie !== null ? (actor.movie) : "None"}
-                </CardFooter>
+                </CardBody>
                 <CardFooter >
                     <div className="clearfix p-2">
                         {exposedToken && 

@@ -80,7 +80,7 @@ const Movies = () => {
                 <h1>Recent Movies</h1>
                 {decodedToken && decodedToken.permissions.indexOf("post:movies") !== -1 ? (
                     <div className="text-right">
-                        <Button outline color="primary" to={{
+                        <Button className="btn-add" to={{
                             pathname: "/movies/addNewMovie",
                             state: { editing: false, movie: null, token: token }
                         }} tag={RouterNavLink}>
