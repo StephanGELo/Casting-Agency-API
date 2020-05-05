@@ -68,6 +68,10 @@ body {
   border-color: #007bff!important;
 } */
 
+.homepage {
+  background-color: rgba(51, 51, 51, 0.9)!important;
+}
+
 .card {
   box-shadow: 0 9px 5px 0 rgba(128, 128, 128, 0.3), 0 6px 20px 0 rgba(128, 128, 128, 0.19);
   min-width: 250px!important;

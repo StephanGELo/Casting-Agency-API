@@ -15,7 +15,8 @@
     /* display: block; */
     background-image: linear-gradient(135deg,#0086ff 0%,#0ef5df 40%,#44c7f4 90%);
     /* height: 2300px; */
-    background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-06-beer-006_1_1.jpg?w=800&dpr=1&fit=default&crop=default&auto=format&fm=pjpg&q=75&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=ca5f92a4672ca7815fcac777ecf58a8e');
+    /* background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-tong-06-beer-006_1_1.jpg?w=800&dpr=1&fit=default&crop=default&auto=format&fm=pjpg&q=75&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=ca5f92a4672ca7815fcac777ecf58a8e'); */
+    background-image: url('https://www.adorama.com/alc/wp-content/uploads/2016/07/lighting-for-ALC-1024x576.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-size: 100% 100%;

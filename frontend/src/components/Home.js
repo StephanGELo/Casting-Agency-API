@@ -12,24 +12,26 @@ export const Home = () => {
     <>
       {isAuthenticated ? (
         <CardDeck>
-          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
+          <Card className="homepage">
             <CardImg
               top
               width="100%"
               height="70%"
-              src="https://image.shutterstock.com/image-photo/movie-clapper-film-reel-on-600w-169841813.jpg"
+              // src="https://image.shutterstock.com/image-photo/movie-clapper-film-reel-on-600w-169841813.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQJYRa6_-OqbNgGPogzlkAvuQqTA3mI-MMKbTFDQcgPOJtrDFoc&usqp=CAU"
               alt="Movies img"
             />
             <CardBody>
               <Link to="/movies"><div className="text-center"><Button outline color="info">Manage movies</Button></div></Link>
             </CardBody>
           </Card>
-          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
+          <Card className="homepage">
             <CardImg
               top
               width="100%"
               height="70%"
-              src="https://image.shutterstock.com/image-photo/medium-shot-actors-rehearsing-theater-600w-1270982080.jpg"
+              // src="https://image.shutterstock.com/image-photo/medium-shot-actors-rehearsing-theater-600w-1270982080.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRnnXQDMqx2vmQf1TcjDB9OKcWqLSnFxffoMDpV5di6AOaNlfaK&usqp=CAU"
               alt="Actors img"
             />
             <CardBody>
@@ -38,27 +40,42 @@ export const Home = () => {
           </Card>
         </CardDeck>
       ) : (
-          <Card inverse style={{ backgroundColor:'#333', borderColor:'#333'}}>
-            <CardBody className="homepage">
+          <Card className="homepage">
+            <CardBody>
               <CardText>
-              StephanGEL Casting Agency has less than a year of casting experience. This 
-              platform models a company that is responsible for creating movies and managing 
-              and assigning actors to those movies.
+              This platform models a company that is responsible for creating movies, managing 
+              and assigning actors to those movies. You can login as the following:
               </CardText>
               <CardText>
-              As a casting assistant, you are authorized to see the details of the movies and the actors.
+              <strong>Casting assistant</strong> -  Authorized to see the details of the movies and the actors.
+              <p>
+               <ul>
+                  <li>Username: <strong>castassistant@gmail.com</strong></li>
+                 <li>password: <strong>passworD1$</strong></li>
+               </ul>
+              </p>
               </CardText>
               <CardText>
-              You'll be authorized to create new actors as well as modifying movies if you are
-              logged in as a Casting Director.
+              <strong>Casting Director</strong> - Have all the priviledges of a Casting Assistant and authorized to create new Actors and edit the details of Movies
+              <p>
+                <ul>
+                  <li>Username: <strong>castdirector@gmail.com</strong></li>
+                  <li>password: <strong>passwordD2$</strong></li>
+                </ul>
+              </p>
               </CardText>
               <CardText>
-              Being an executive Producer, you have all the priviledges that a Casting Director has. 
-              In addition, you can create and delete new movies.
+              <strong>Executive Producer</strong> - Have all the priviledges of a Casting Director and authorized to edit Actors, create and delete Movies.
+              <p>
+                <ul>
+                  <li>Username: <strong>castproducer@gmail.com</strong></li>
+                  <li>password: <strong>passworD3$</strong></li>
+                </ul>
+              </p>
               </CardText>
               <CardText>
-              If you are new, kindly sign up/register for a new account by clicking on the loggin button.
-              Wait for 2-3 days for your user account to be verified.  You can contact us upon creating your account.
+              Otherwise, you can register and login using your own account. Make use of your google, facebook or lindkedIn to login.
+              You will have limited access in using the platform though unless given desired permissions.
               </CardText>
             </CardBody>
           </Card>
