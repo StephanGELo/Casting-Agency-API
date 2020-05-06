@@ -6,8 +6,9 @@ import noPhotoMovieImg from '../assets/no_movie_poster.png'
 
 const MovieItem = ({movie, exposedToken, token, deleteMovie}) => (
     <Col md="3" className="my-2" >
-        <Card inverse style={{ backgroundColor:'#333', borderColor:'#333', height:'500px'}}>
-             <CardHeader style={{fontWeight: "bold", backgroundColor:'orange', color:"black"}}>
+        {/* <Card inverse style={{ backgroundColor:'#333', borderColor:'#333', height:'500px'}}> */}
+        <Card className="card-movie">
+             <CardHeader className="card-header">
                 {movie.title}
             </CardHeader>
             <CardImg 
